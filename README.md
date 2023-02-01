@@ -1,24 +1,37 @@
-# README
+# <Gunpla for Beginners!>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+作成したガンプラをグレード(HG,MG,RGなど)又は製作スタイル（完全塗装以上は除外）ごとにタグ付けして投稿し、
+新しく購入する際の参考にしたり、ユーザー同士でコミュニケーションをとれるようなガンプラ初心者向けコミュニティサイト
 
-Things you may want to cover:
+### テーマを選んだ理由
+まず、製作したプラモデルの記事を投稿し、コミュニケーションをとるサイトは既に存在していますが、完全塗装や改造を加えた記事が多く、
+新しく購入する際の参考や初心者には利用しづらい状況です。確かに、塗装や改造を施した作品には心を奪われますが、ガンプラの魅力は
+ほんの少しの手間暇を加えることでグッと完成度が上昇するところだと思っています。そこでその素晴らしさを伝えるために、
+素組、墨入れ、部分塗装、艶消しの4つの項目で記事を投稿することができ、ガンプラ本来の魅力について語り合うことができるような
+サイトを作りたいと考えました。このサイトでなら、初心者の方々がより自身の作品の完成度を高めたいと考えた時の参考になる
+ことが可能ですし、原型から大きな変化もないので次に購入するガンプラの参考になり、初心者の方の充実したガンプラライフにつながると思い
+本テーマを選びました。
 
-* Ruby version
+### ターゲットユーザ
+ガンプラ初心者
 
-* System dependencies
+### 主な利用シーン
+新しくガンプラを購入しようとしたとき、ガンプラを製作し写真を投稿しようとしたときなど
 
-* Configuration
+## 設計書
+https://docs.google.com/spreadsheets/d/15bZ-p2Zi3Ont2QKoEwRjVsYk5Wb2CztgT-cwC_FB5y4/edit#gid=885378170
 
-* Database creation
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- サイト名             : photoAC
+- URL                  : https://www.photo-ac.com/
+- 利用可能範囲について : https://blog.acworks.co.jp/2017/11/06/ok_ng/
+- こちらの記事を見る限り、トップページに使用するのに問題はないと思います。
