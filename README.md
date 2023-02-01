@@ -21,7 +21,7 @@
 新しくガンプラを購入しようとしたとき、ガンプラを製作し写真を投稿しようとしたときなど
 
 ## 設計書
-https://docs.google.com/spreadsheets/d/15bZ-p2Zi3Ont2QKoEwRjVsYk5Wb2CztgT-cwC_FB5y4/edit#gid=885378170
+
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -31,7 +31,4 @@ https://docs.google.com/spreadsheets/d/15bZ-p2Zi3Ont2QKoEwRjVsYk5Wb2CztgT-cwC_FB
 - IDE：Cloud9
 
 ## 使用素材
-- サイト名             : photoAC
-- URL                  : https://www.photo-ac.com/
-- 利用可能範囲について : https://blog.acworks.co.jp/2017/11/06/ok_ng/
-- こちらの記事を見る限り、トップページに使用するのに問題はないと思います。
+- 自分で撮影した写真を使用するので必要なし
