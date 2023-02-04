@@ -27,6 +27,11 @@
 - 新しくプラモデルを購入しようとしたときの参考が欲しいとき
 
 ## 設計書
+- ER図: https://app.diagrams.net/#G1AcFN98XVmHHMkFcuPJEVPaFJaG98WFff
+- テーブル定義書: https://docs.google.com/spreadsheets/d/1YBRSJaOkQBVlTcGXU4m58MD6wmSzG3oXY5g9nBGKiDE/edit#gid=1373217982
+- アプリケーション詳細設計書: https://docs.google.com/spreadsheets/d/1Ju8CY9B-8fTWZRXVTA15nviJp9vUdeNjU6rMU_gDQhg/edit#gid=549108681
+- UIフレーム: https://app.diagrams.net/#G1Qu2pSLeUFOtFcdGxlmrXNV0Me_cVvNvv
+- ワイヤーフレーム: https://app.diagrams.net/#G1Vz9MBlB5TNBBlgmHftmedkEcF3bJEGBi
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -36,4 +41,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 自分で撮影した写真を使用するので必要なし
+- 
