@@ -1,2 +1,22 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<h1>投稿編集</h1>
+<%= form_with model: @post, url: public_update_path, method: :patch do |f| %>
+  <table>
+    <tr>
+      <td>タイトル</td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <td>タグ</td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td>説明</td>
+      <td><%= f.text_area :introduction %></td>
+    </tr>
+    <tr>
+      <td>画像選択</td>
+      <td></td>
+    </tr>
+  </table>
+  <%= f.submit '編集を保存する' %>
+<% end %>
