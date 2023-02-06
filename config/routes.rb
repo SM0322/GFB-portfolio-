@@ -3,8 +3,8 @@ Rails.application.routes.draw do
     get 'posts/new'
     post 'posts' => "posts#create"
     get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
+    get 'posts/:id' => 'posts#show', as: 'post'
+    get 'posts/:id/edit' => 'posts#edit', as: 'edit'
   end
   namespace :public do
     get 'homes/top'
