@@ -29,9 +29,15 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     tag_list=params[:post][:name].split(',')
-    @post.update(post_params)
-    @post.save_tag(tag_list)
-    redirect_to public_post_path
+    if @post.update(post_params)
+      @old_relations = PostTag.where(post_id: @post.id)
+      @old_relations.each do |relation|
+        relation.delete
+      end 
+      @post.save_tag(tag_list)
+      redirect_to public_post_path
+    else
+    end
   end
   
   def destroy
