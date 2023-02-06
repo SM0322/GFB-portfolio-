@@ -1,2 +1,19 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+#そのタグに紐づく投稿が何件あるかをカウントしている
+<diV>
+  <% @tags.each do |tag| %>
+    <%= tag.name %>
+    <%= "(#{tag.posts.count})" %>
+  <% end %>
+</diV>
+
+#投稿には複数のタグが存在し配列である。その中から要素を抜き出してそれぞれ表示させるためのものがmap(&:name)であり、.join(',')で区切っている。
+<div>
+  <% @posts.each do |post| %>
+    <div>
+      <%= post.title %>
+    </div>
+    <div>
+      <i><%= post.tags.map(&:name).join(',') %></i>
+    </div>
+  <% end %>
+</div>
