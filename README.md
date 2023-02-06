@@ -32,7 +32,7 @@
 - アプリケーション詳細設計書: https://docs.google.com/spreadsheets/d/1Ju8CY9B-8fTWZRXVTA15nviJp9vUdeNjU6rMU_gDQhg/edit#gid=549108681
 - UIフレーム: https://app.diagrams.net/#G1Qu2pSLeUFOtFcdGxlmrXNV0Me_cVvNvv
 - ワイヤーフレーム: https://app.diagrams.net/#G1Vz9MBlB5TNBBlgmHftmedkEcF3bJEGBi
-- WBS: https://docs.google.com/spreadsheets/d/1QRPkFk6R9eZjk65_p2c_41ZcOWLMPJLHchNzsKIZtJc/edit#gid=1773513600
+- WBS: https://docs.google.com/spreadsheets/d/1rajiUV1arUFovC_AmXLVsA70QqrQZpW9PYjKlEzARsw/edit#gid=1773513600
 
 ## 開発環境
 - OS：Linux(CentOS)
