@@ -10,10 +10,13 @@
 <div>
   <% @posts.each do |post| %>
     <div>
-      <%= link_to post.title, public_path(post.id) %>
+      <%= link_to post.title, public_post_path(post.id) %>
     </div>
     <div>
       <i><%= post.tags.map(&:name).join(',') %></i>
+    </div>
+    <div>
+      <%= link_to '削除する', public_destroy_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
     </div>
   <% end %>
 </div>

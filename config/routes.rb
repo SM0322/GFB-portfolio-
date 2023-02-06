@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'posts/:id' => 'posts#show', as: 'post'
     get 'posts/:id/edit' => 'posts#edit', as: 'edit'
     patch 'posts/:id' => 'posts#update', as: 'update'
+    delete 'posts/:id' => 'posts#destroy', as: 'destroy'
   end
   namespace :public do
     get 'homes/top'
