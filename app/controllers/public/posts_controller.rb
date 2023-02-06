@@ -23,11 +23,14 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tag = @post.tags.pluck(:name).join(',')
   end
   
   def update
     @post = Post.find(params[:id])
+    tag_list=params[:post][:name].split(',')
     @post.update(post_params)
+    @post.save_tag(tag_list)
     redirect_to public_post_path
   end
   

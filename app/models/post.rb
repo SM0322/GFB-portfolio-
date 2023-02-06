@@ -9,7 +9,8 @@ class Post < ApplicationRecord
     new_tags = sent_tags - current_tags                           #(例)既にa,b,cのタグが存在し、新たにb,dのタグが登録されると、new_tags = dとなる
     
     old_tags.each do |old|                                        #このメソッドで古いタグを消去する。例でいうところのold_tags = a,cが消去される。
-      self.tags.delete　tag.find_by(name: old)
+      self.tags.delete
+      Tag.find_by(name: old)
     end 
     
     new_tags.each do |new|                                        #このメソッドで新しく登録されたnew_tags = dが保存される。

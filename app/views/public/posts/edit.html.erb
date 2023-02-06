@@ -6,8 +6,8 @@
       <td><%= f.text_field :title %></td>
     </tr>
     <tr>
-      <td>タグ</td>
-      <td><%= f.text_field :name %></td>
+      <td>タグ(,で区切ると複数のタグを登録できます)</td>
+      <td><%= f.text_field :name, value: @tag %></td>
     </tr>
     <tr>
       <td>説明</td>
