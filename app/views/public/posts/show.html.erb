@@ -39,10 +39,13 @@
       <% @post_comments.each do |comment| %>
         <%= comment.customer.name %>
         <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.message %>
+        <% if comment.customer == current_customer %>
+          <%= link_to "削除する", post_post_comment_path(comment.post, comment), method: :delete %>
+        <% end %>
       <% end %>
     </div>
     <div>
-      <%= form_with model: [@post, @post_comment] do |f| %>
+      <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
         <%= f.text_area :message, rows: '5', placeholder: "コメントをここに" %>
         <%= f.submit "送信する" %>
       <% end %>
