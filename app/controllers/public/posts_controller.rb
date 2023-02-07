@@ -20,6 +20,8 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @tag = @post.tags.all
+    @post_comment = PostComment.new
+    @post_comments = @post.post_comments.all
   end
 
   def edit
