@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   belongs_to :customer
   has_many :post_tags, dependent: :destroy
   has_many :tags,through: :post_tags
+  has_many :favorites, dependent: :destroy
+
   
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?   #unlessでタグが存在するか確認し、存在するならばcurrent_tagsという変数にタグ名を配列として習得する。
@@ -17,5 +19,9 @@ class Post < ApplicationRecord
       new_post_tag = Tag.find_or_create_by(name: new)
       self.tags << new_post_tag
     end 
-  end 
+  end
+  
+  def favorited_by?(customer)
+    favorites.exists?(customer_id: customer.id)
+  end
 end

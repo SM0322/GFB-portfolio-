@@ -15,6 +15,24 @@
       <td><%= link_to tag.name, search_tag_path(tag_id: tag.id) %></td>
     <% end %>
   </tr>
+  <tr>
+    <td>いいね</td>
+    <td>
+      <% if @post.favorited_by?(current_customer) %>
+        <p>
+          <%= link_to favorites_path(post_id: @post.id), method: :delete do %>
+            ♡<%= @post.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to favorites_path(post_id: @post.id), method: :post do %>
+            ♡<%= @post.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% end %>
+    </td>
+  </tr>
 </table>
 
 <p><%= link_to '編集する', edit_post_path %></p>

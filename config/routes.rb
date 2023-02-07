@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about', as: 'about'
     get "search_tag" => "posts#search_tag"
     resources :posts
+    resource :favorites, only: [:create, :destroy]
   end
   
   devise_for :customers,skip: [:passwords], controllers: {
