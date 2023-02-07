@@ -19,11 +19,12 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @tag = @post.tags.all
   end
 
   def edit
     @post = Post.find(params[:id])
-    @tag = @post.tags.pluck(:name).join(',')
+    @tag = @post.tags.map(&:name).join(',')
   end
   
   def update
@@ -45,6 +46,12 @@ class Public::PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
+  
+  def search_tag
+    @tags = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts.all
+  end 
   
   private
   

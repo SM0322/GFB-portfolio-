@@ -1,0 +1,16 @@
+<h1><%= @tag.name %>の投稿一覧</h1>
+
+<div>
+  <% @tags.each do |tag| %>
+    <%= "(#{tag.posts.count})" %>
+  <% end %>
+</div>
+
+<% @posts.each do |post| %>
+  <div>
+    <%= link_to post.title, post_path(post.id) %>
+  </div>
+  <div>
+    <%= post.tags.map(&:name).join(',') %>
+  </div>
+<% end %>

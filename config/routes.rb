@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
     get '/about' => 'homes#about', as: 'about'
+    get "search_tag" => "posts#search_tag"
     resources :posts
   end
   

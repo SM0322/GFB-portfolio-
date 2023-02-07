@@ -1,10 +1,10 @@
 #そのタグに紐づく投稿が何件あるかをカウントしている
-<diV>
+<div>
   <% @tags.each do |tag| %>
-    <%= tag.name %>
+    <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
     <%= "(#{tag.posts.count})" %>
   <% end %>
-</diV>
+</div>
 
 #投稿には複数のタグが存在し配列である。その中から要素を抜き出してそれぞれ表示させるためのものがmap(&:name)であり、.join(',')で区切っている。
 <div>
@@ -13,7 +13,11 @@
       <%= link_to post.title, post_path(post.id) %>
     </div>
     <div>
-      <i><%= post.tags.map(&:name).join(',') %></i>
+      <p>タグ
+      <% post.tags.each do |tag| %>
+        <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+      <% end %>
+      </p>
     </div>
     <div>
       <%= link_to '削除する', post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

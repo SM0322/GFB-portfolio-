@@ -11,7 +11,9 @@
   </tr>
   <tr>
     <td>タグ</td>
-    <td><%= @post.tags.map(&:name).join(',') %></td>
+    <% @tag.each do |tag| %>
+      <td><%= link_to tag.name, search_tag_path(tag_id: tag.id) %></td>
+    <% end %>
   </tr>
 </table>
 
