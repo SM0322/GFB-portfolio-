@@ -13,10 +13,21 @@ class Public::CustomersController < ApplicationController
   end
   
   def update
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+     redirect_to customer_path(@customer.id)
+    else
+     render :edit_customer_path
+    end 
   end
 
   def unsubscribe
   end
   
+  private
+  
+  def customer_params
+    params.require(:customer).permit(:name)
+  end 
   
 end
