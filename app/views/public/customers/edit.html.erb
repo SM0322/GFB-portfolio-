@@ -1,0 +1,21 @@
+<h1>ユーザー編集画面</h1>
+<%= form_with model: @customer, url: customer_path(@customer), method: :patch do |f| %>
+<table>
+  <tr>
+    <td>ユーザー名</td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td>画像選択</td>
+    <td><%#= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td>自己紹介</td>
+    <td><%#= f.text_field :introduction %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= f.submit "変更を保存する" %></td>
+  </tr>
+</table>
+<% end %>

@@ -33,7 +33,9 @@
       <% end %>
     </td>
   </tr>
-  <tr>
+</table>
+
+
     <div>
       <p>コメント件数: <%= @post_comments.count %></p>
       <% @post_comments.each do |comment| %>
@@ -50,7 +52,6 @@
         <%= f.submit "送信する" %>
       <% end %>
     </div>
-  </tr>
-</table>
+
 
 <p><%= link_to '編集する', edit_post_path %></p>

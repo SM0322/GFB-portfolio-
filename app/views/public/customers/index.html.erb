@@ -1,0 +1,14 @@
+<h1>顧客一覧</h1>
+
+<% @customers.each do |customer| %>
+<table>
+  <tr>
+    <td>ユーザー名</td>
+    <td>投稿数</td>
+  </tr>
+  <tr>
+    <td><%= link_to customer.name, customer_path(customer) %></td>
+    <td><%= customer.posts.count %></td>
+  </tr>
+</table>
+<% end %>
