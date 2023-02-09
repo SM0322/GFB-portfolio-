@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    resources :customers
+  end
   scope module: :public do
     root to: "homes#top"
     get '/about' => 'homes#about', as: 'about'

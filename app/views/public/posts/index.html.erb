@@ -6,6 +6,13 @@
   <% end %>
 </div>
 
+<h1>投稿検索フォーム</h1>
+<%= search_form_for @q do |f| %>
+  <%= f.label :title, "Keyword" %>
+  <%= f.search_field :title_cont %>
+  <%= f.submit "検索" %>
+<% end %>
+
 #投稿には複数のタグが存在し配列である。その中から要素を抜き出してそれぞれ表示させるためのものがmap(&:name)であり、.join(',')で区切っている。
 <div>
   <% @posts.each do |post| %>

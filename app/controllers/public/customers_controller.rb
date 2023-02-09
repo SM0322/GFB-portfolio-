@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
   def index
-    @customers = Customer.all
+    @q = Customer.ransack(params[:q])
+    @customers = @q.result(distinct: true)
   end
 
   def show
