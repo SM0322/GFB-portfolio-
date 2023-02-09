@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  namespace :public do
-    resources :customers
-  end
   scope module: :public do
     root to: "homes#top"
     get '/about' => 'homes#about', as: 'about'
     get "search_tag" => "posts#search_tag"
+    get "search" => "searches#search"
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
     end

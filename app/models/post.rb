@@ -25,4 +25,12 @@ class Post < ApplicationRecord
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end
+
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @post = Post.where("title LIKE?", "#{word}")
+    else search == "partial_match"
+      @post = Post.where("title LIKE?", "%#{word}%")
+    end 
+  end 
 end
