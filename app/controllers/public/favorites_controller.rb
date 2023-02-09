@@ -11,5 +11,5 @@ class Public::FavoritesController < ApplicationController
     favorite = current_customer.favorites.find_by(post_id: @post.id)
     favorite.destroy
     redirect_to request.referer
-  end 
+  end
 end

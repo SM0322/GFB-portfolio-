@@ -1,0 +1,12 @@
+<h1><%= @customer.name %>さんのいいね一覧</h1>
+
+<% @posts.each do |post| %>
+<table>
+  <tr>
+    <td>投稿名</td>
+  </tr>
+  <tr>
+    <td><%= link_to post.title, post_path(post) %></td>
+  </tr>
+</table>
+<% end %>

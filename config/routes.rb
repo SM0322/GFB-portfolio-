@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
     end
     resource :favorites, only: [:create, :destroy]
-    resources :customers, only: [:index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update] do
+      get :favorites, on: :member
+    end
   end
   
   devise_for :customers,skip: [:passwords], controllers: {
