@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <td>画像選択</td>
-      <td></td>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
     </tr>
   </table>
   <%= f.submit '投稿する' %>

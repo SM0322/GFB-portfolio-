@@ -6,6 +6,12 @@
     <td><%= @post.title %></td>
   </tr>
   <tr>
+    <td>画像</td>
+    <td>
+      <%= image_tag @post.get_image %>
+    </td>
+  </tr>
+  <tr>
     <td>説明</td>
     <td><%= @post.introduction %></td>
   </tr>
@@ -60,17 +66,35 @@
 
 <div>
 <% @posts.each do |post| %>
-  <div>
-  <%= link_to post.title, post_path(post) %>
-  <% if @post.favorited_by?(current_customer) %>
-    <%= link_to favorites_path(post_id: @post.id), method: :delete do %>
-      ♡<%= @post.favorites.count %> いいね
-    <% end %>
-  <% else %>
-    <%= link_to favorites_path(post_id: @post.id), method: :post do %>
-      ♡<%= @post.favorites.count %> いいね
-    <% end %>
-  <% end %>
-  </div>
+<table>
+  <tr>
+    <td>投稿名</td>
+    <td><%= link_to post.title, post_path(post) %></td>
+  </tr>
+  <tr>
+    <td>画像</td>
+    <td>
+      <%= image_tag post.get_image %>
+    </td>
+  </tr>
+  <tr>
+    <td>いいね数</td>
+    <td>
+      <% if post.favorited_by?(@customer) %>
+        <p>
+          <%= link_to favorites_path(post_id: post.id), method: :delete do %>
+            ♡<%= post.favorites.count %>いいね
+          <% end %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to favorites_path(post_id: post.id), method: :post do %>
+            ♡<%= post.favorites.count %>いいね
+          <% end %>
+        </p>
+      <% end %>
+    </td>
+  </tr>
+</table>
 <% end %>
 </div>

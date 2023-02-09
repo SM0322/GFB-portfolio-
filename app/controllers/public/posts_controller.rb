@@ -43,6 +43,7 @@ class Public::PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to post_path
     else
+      render:edit
     end
   end
   
@@ -61,6 +62,6 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:title, :introduction)
+    params.require(:post).permit(:title, :introduction, :image)
   end 
 end

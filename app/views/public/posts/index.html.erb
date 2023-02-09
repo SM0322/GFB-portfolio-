@@ -17,6 +17,9 @@
 <div>
   <% @posts.each do |post| %>
     <div>
+      <%= image_tag post.get_image %>
+    </div>
+    <div>
       <%= link_to post.title, post_path(post.id) %>
     </div>
     <div>

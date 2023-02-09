@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :tags,through: :post_tags
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_one_attached :image
 
   
   def save_tag(sent_tags)
@@ -32,5 +33,13 @@ class Post < ApplicationRecord
     else search == "partial_match"
       @post = Post.where("title LIKE?", "%#{word}%")
     end 
-  end 
+  end
+  
+  def get_image
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+      image
+  end
 end
