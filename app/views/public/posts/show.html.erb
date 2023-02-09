@@ -8,7 +8,9 @@
   <tr>
     <td>画像</td>
     <td>
-      <%= image_tag @post.get_image %>
+      <% @post.images.each do |image| %>
+        <%= image_tag(image,width:100) %>
+      <% end %>
     </td>
   </tr>
   <tr>
@@ -74,7 +76,9 @@
   <tr>
     <td>画像</td>
     <td>
-      <%= image_tag post.get_image %>
+      <% post.images.each do |image| %>
+        <%= image_tag(image,width:100) %>
+      <% end %>
     </td>
   </tr>
   <tr>

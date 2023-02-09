@@ -15,7 +15,7 @@
     </tr>
     <tr>
       <td>画像選択</td>
-      <td><%= f.file_field :image, accept: "image/*" %></td>
+      <td><%= f.file_field :images, multiple: true %></td>
     </tr>
   </table>
   <%= f.submit '編集を保存する' %>
