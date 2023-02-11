@@ -34,16 +34,8 @@
     <div>
       <%= link_to '削除する', post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
     </div>
-    <div>
-      <% if post.favorited_by?(current_customer) %>
-        <%= link_to favorites_path(post_id: post.id),method: :delete do %>
-          ♡<%= post.favorites.count %> いいね
-        <% end %>
-      <% else %>
-        <%= link_to favorites_path(post_id: post.id),method: :post do %>
-          ♡<%= post.favorites.count %> いいね
-        <% end %>
-      <% end %>
+    <div id = "favorite_<%= post.id %>">
+      <%= render partial: "public/favorites/favorite", locals: {post: post} %>
     </div>
   <% end %>
 </div>

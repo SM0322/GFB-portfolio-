@@ -30,19 +30,9 @@
   <tr>
     <td>いいね</td>
     <td>
-      <% if @post.favorited_by?(current_customer) %>
-        <p>
-          <%= link_to favorites_path(post_id: @post.id), method: :delete do %>
-            ♡<%= @post.favorites.count %> いいね
-          <% end %>
-        </p>
-      <% else %>
-        <p>
-          <%= link_to favorites_path(post_id: @post.id), method: :post do %>
-            ♡<%= @post.favorites.count %> いいね
-          <% end %>
-        </p>
-      <% end %>
+      <div id = "favorite_<%= @post.id %>">
+      <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
+      </div>
     </td>
   </tr>
 </table>
@@ -84,19 +74,9 @@
   <tr>
     <td>いいね数</td>
     <td>
-      <% if post.favorited_by?(@customer) %>
-        <p>
-          <%= link_to favorites_path(post_id: post.id), method: :delete do %>
-            ♡<%= post.favorites.count %>いいね
-          <% end %>
-        </p>
-      <% else %>
-        <p>
-          <%= link_to favorites_path(post_id: post.id), method: :post do %>
-            ♡<%= post.favorites.count %>いいね
-          <% end %>
-        </p>
-      <% end %>
+      <div id = "favorite_<%= post.id %>">
+        <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+      </div>
     </td>
   </tr>
 </table>

@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     get "search" => "searches#search"
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
-    resource :favorites, only: [:create, :destroy]
     resources :customers, only: [:index, :show, :edit, :update] do
       get :favorites, on: :member
     end
