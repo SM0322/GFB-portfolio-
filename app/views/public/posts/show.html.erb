@@ -1,5 +1,5 @@
 <h1>投稿詳細</h1>
-
+<%= @post.rate %>
 <table>
   <tr>
     <td>作品名</td>
@@ -33,6 +33,23 @@
       <div id = "favorite_<%= @post.id %>">
       <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
       </div>
+    </td>
+  </tr>
+    <tr>
+    <td>満足度</td>
+    <td>
+      <div id="rate_<%= @post.id %>"></div>
+      <script>
+        let elem = document.querySelector('#rate_<%= @post.id %>');
+        let opt = {  
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          score: "<%= @post.rate %>",
+          readOnly: true,
+         };
+        raty(elem,opt);
+      </script>
     </td>
   </tr>
 </table>
