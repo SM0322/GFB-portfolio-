@@ -1,6 +1,6 @@
 <h1>新規投稿</h1>
 
-<%= form_with model: @post, url: posts_path, method: :post do |f| %>
+<%= form_with model: @post, url: posts_path, method: :post,local:true do |f| %>
   <table>
     <tr>
       <td>タイトル</td>
@@ -16,7 +16,24 @@
     </tr>
     <tr>
       <td>画像選択</td>
-      <td><%= f.file_field :images, multiple: true %></td>
+      <td><%#= f.file_field :images, multiple: true %></td>
+    </tr>
+    <tr>
+      <div id="star">
+        <%= f.label :rate, '満足度' %>
+        <%= f.hidden_field :rate, id: :review_star %>
+      </div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+  let elem = document.querySelector('#star');
+  let opt = {  
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        score: "<%= @post.rate %>",
+   };
+  raty(elem,opt);
+      </script>
     </tr>
   </table>
   <%= f.submit '投稿する' %>

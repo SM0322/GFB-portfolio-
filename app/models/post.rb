@@ -5,7 +5,6 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many_attached :images
-
   
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?   #unlessでタグが存在するか確認し、存在するならばcurrent_tagsという変数にタグ名を配列として習得する。
@@ -42,4 +41,6 @@ class Post < ApplicationRecord
     end
       images
   end
+  
+  
 end
