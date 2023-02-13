@@ -35,7 +35,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     tag_list=params[:post][:name].split(',')
-    if @post.update(post_params)
+    if @post.update(post_params.merge(rate: params[:rate]))
       PostTag.where(post_id: @post.id).destroy_all
       @post.save_tag(tag_list)
       redirect_to post_path

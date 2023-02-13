@@ -17,6 +17,25 @@
       <td>画像選択</td>
       <td><%= f.file_field :images, multiple: true %></td>
     </tr>
+    <tr>
+      <div id="star">
+        <%= f.label :rate, '満足度' %>
+        <%= f.hidden_field :rate %>
+      </div>
+      
+      <div id="rate_<%= @post.id %>"></div>
+      <script>
+      let raty_elem = document.querySelector('#rate_<%= @post.id %>');
+      raty_elem.innerHTML = ""
+      let option = {  
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        scoreName: '[rate]',
+       };
+      raty(raty_elem,option);
+      </script>
+    </tr>
   </table>
   <%= f.submit '編集を保存する' %>
 <% end %>

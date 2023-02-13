@@ -1,0 +1,101 @@
+<h1>投稿詳細</h1>
+<%= @post.rate %>
+<table>
+  <tr>
+    <td>作品名</td>
+    <td><%= @post.title %></td>
+  </tr>
+  <tr>
+    <td>画像</td>
+    <td>
+      <% @post.images.each do |image| %>
+        <%= image_tag(image,width:100) %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>説明</td>
+    <td><%= @post.introduction %></td>
+  </tr>
+  <tr>
+    <td>タグ</td>
+    <% @tag.each do |tag| %>
+      <td><%= link_to tag.name, search_tag_path(tag_id: tag.id) %></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>ユーザー名</td>
+    <td><%= link_to @post.customer.name, admin_customer_path(@customer) %></td>
+  </tr>
+  <tr>
+    <td>いいね</td>
+    <td>
+      <div id = "favorite_<%= @post.id %>">
+      <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
+      </div>
+    </td>
+  </tr>
+    <tr>
+    <td>満足度</td>
+    <td>
+      <div id="rate_<%= @post.id %>"></div>
+      <script>
+        let elem = document.querySelector('#rate_<%= @post.id %>');
+        let opt = {  
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          score: "<%= @post.rate %>",
+          readOnly: true,
+         };
+        raty(elem,opt);
+      </script>
+    </td>
+  </tr>
+</table>
+
+<p><%= link_to '編集する', edit_admin_post_path %></p>
+
+<div>
+  <p>コメント件数: <%= @post_comments.count %></p>
+    <% @post_comments.each do |comment| %>
+      <%= comment.customer.name %>
+      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.message %>
+      <% if comment.customer == current_customer %>
+        <%= link_to "削除する", post_post_comment_path(comment.post, comment), method: :delete %>
+      <% end %>
+    <% end %>
+</div>
+<div>
+  <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
+    <%= f.text_area :message, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+
+<div>
+<% @posts.each do |post| %>
+<table>
+  <tr>
+    <td>投稿名</td>
+    <td><%= link_to post.title, admin_post_path(post) %></td>
+  </tr>
+  <tr>
+    <td>画像</td>
+    <td>
+      <% post.images.each do |image| %>
+        <%= image_tag(image,width:100) %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>いいね数</td>
+    <td>
+      <div id = "favorite_<%= post.id %>">
+        <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+      </div>
+    </td>
+  </tr>
+</table>
+<% end %>
+</div>

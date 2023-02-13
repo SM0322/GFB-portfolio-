@@ -1,0 +1,4 @@
+<h1>顧客一覧</h1>
+<% @customers.each do |customer| %>
+  <%= link_to customer.name, admin_customer_path(customer) %>
+<% end %>

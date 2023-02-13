@@ -1,0 +1,44 @@
+<h1>会員詳細</h1>
+
+<table>
+  <tr>
+    <td>ユーザー名</td>
+    <td><%= @customer.name %></td>
+  </tr>
+  <tr>
+    <td>自己紹介</td>
+    <td><%#= @customer.introduction %></td>
+  </tr>
+  <tr>
+    <td>会員ステータス</td>
+    <% if @customer.is_deleted == false %>
+      <td>有効</td>
+    <% else %>
+      <td>退会済み</td>
+    <% end %>
+  </tr>
+  <tr>
+    <td><%= link_to "コメント一覧", post_comments_admin_customer_path(@customer) %></td>
+  </tr>
+  <tr>
+    <td><%= link_to '編集する', edit_admin_customer_path(@customer) %></td>
+  </tr>
+</table>
+
+<h1><%= @customer.name %>さんの投稿一覧</h1>
+<% @posts.each do |post| %>
+<table>
+  <tr>
+    <td>投稿名</td>
+    <td><%= link_to post.title, post_path(post) %></td>
+  </tr>
+  <tr>
+    <td>いいね数</td>
+    <td>
+    <div id = "favorite_<%= post.id %>">
+      <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+    </div>
+    </td>
+  </tr>
+</table>
+<% end %>

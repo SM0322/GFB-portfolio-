@@ -1,0 +1,41 @@
+#そのタグに紐づく投稿が何件あるかをカウントしている
+<div>
+  <% @tags.each do |tag| %>
+    <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+    <%= "(#{tag.posts.count})" %>
+  <% end %>
+</div>
+
+<h1>投稿検索フォーム</h1>
+<%= search_form_for @q do |f| %>
+  <%= f.label :title, "Keyword" %>
+  <%= f.search_field :title_cont %>
+  <%= f.submit "検索" %>
+<% end %>
+
+#投稿には複数のタグが存在し配列である。その中から要素を抜き出してそれぞれ表示させるためのものがmap(&:name)であり、.join(',')で区切っている。
+<div>
+  <% @posts.each do |post| %>
+    <div>
+      <% post.images.each do |image| %>
+        <%= image_tag(image,width:100) %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to post.title, admin_post_path(post.id) %>
+    </div>
+    <div>
+      <p>タグ
+      <% post.tags.each do |tag| %>
+        <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+      <% end %>
+      </p>
+    </div>
+    <div>
+      <%= link_to '削除する', admin_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    </div>
+    <div id = "favorite_<%= post.id %>">
+      <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+    </div>
+  <% end %>
+</div>
