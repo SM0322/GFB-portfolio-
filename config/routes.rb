@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'tags/index'
-  end
-  namespace :admin do
-    get 'post_comments/index'
-  end
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -35,7 +29,6 @@ Rails.application.routes.draw do
       get :post_comments, on: :member
     end
     resources :posts, only: [:index, :show, :edit, :update, :destroy]
-    resources :tags, only: [:index, :create]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
