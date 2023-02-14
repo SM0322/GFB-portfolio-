@@ -1,4 +1,13 @@
 <h1>投稿詳細</h1>
+      <div class="sliderWrapper">
+	<div class="slider">
+        <% @post.images.each do |image| %>
+          <div><%= image_tag image, size: "500x500" %></div>
+        <% end %>
+	</div>
+</div>
+
+
 <%= @post.rate %>
 <table>
   <tr>
@@ -8,9 +17,14 @@
   <tr>
     <td>画像</td>
     <td>
-      <% @post.images.each do |image| %>
-        <%= image_tag(image,width:100) %>
-      <% end %>
+
+    <div class="sliderWrapper">
+      <div class="slider">
+        <% @post.images.each do |image| %>
+          <div style="height: 300px;"><%#= image_tag image, size: "50x50", style: "width:100%" %></div>
+        <% end %>
+      </div>
+    </div>
     </td>
   </tr>
   <tr>

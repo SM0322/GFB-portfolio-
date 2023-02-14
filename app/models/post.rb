@@ -6,6 +6,10 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many_attached :images
   
+  validates :title, presence: true
+  validates :introduction, presence: true
+  validates :images, presence: true
+  
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?   #unlessでタグが存在するか確認し、存在するならばcurrent_tagsという変数にタグ名を配列として習得する。
     old_tags = current_tags - sent_tags                           #(例)既にa,b,cのタグが存在し、新たにb,dのタグが登録されると、old_tags = a,cとなる

@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+//import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
@@ -28,3 +28,12 @@ ActiveStorage.start()
     raty.init();
     return raty;
  }
+ 
+
+    $(document).ready(function(){
+      global.$('.slider').slick({
+        autoplay: true,
+        autoplaySpeed: 1500,
+        speed: 700,
+      });
+    });

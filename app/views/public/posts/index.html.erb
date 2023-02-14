@@ -17,9 +17,7 @@
 <div>
   <% @posts.each do |post| %>
     <div>
-      <% post.images.each do |image| %>
-        <%= image_tag(image,width:100) %>
-      <% end %>
+      <%= image_tag post.images[0] %>
     </div>
     <div>
       <%= link_to post.title, post_path(post.id) %>
