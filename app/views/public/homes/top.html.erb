@@ -1,2 +1,55 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="card text-light">
+      <%= image_tag 'default.jpg', size:"750x500" %>
+      <div class="card-img-overlay">
+        <h5 class="card-title">
+        <p class="text-center">
+         ようこそ、ながのCAKEへ!</br>
+         このサイトは、ケーキ販売のECサイトになります。</br>
+         会員でない方も商品の閲覧はできますが、</br>
+         購入には会員登録が必要になります。
+        </p>
+        </h5>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-5">
+    <h2>人気の投稿</h2>
+    <table class="table table-borderless">
+    <% @post_favorite_ranks.each do |post| %>
+      <tr>
+        <td>
+        <p>
+          <% post.images.each do |image| %>
+            <%= image_tag(image,width:100) %>
+          <% end %>
+        </p>
+        <P><%= link_to post.title, post_path(post.id) %></P>
+        <p><%= post.customer.name %></p>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+  
+  <div class="row mt-5">
+    <h2>新着投稿</h2>
+    <table class="table table-borderless">
+    <% @post_news.each do |post| %>
+      <tr>
+        <td>
+        <p>
+          <% post.images.each do |image| %>
+            <%= image_tag(image,width:100) %>
+          <% end %>
+        </p>
+        <P><%= link_to post.title, post_path(post.id) %></P>
+        <p><%= post.customer.name %></p>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>
