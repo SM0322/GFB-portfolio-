@@ -1,7 +1,7 @@
 <div class="container">
   
   <div class="row">
-    <div class="center-block mt-5">
+    <div class="col-6 offset-3 mt-5">
       <div class="card text-light">
         <%= image_tag 'default.jpg', size:"750x500" %>
           <div class="card-img-overlay">
@@ -19,7 +19,7 @@
   </div>
   
   <div class="row">
-    <div class="center-block mt-5">
+    <div class="col-6 offset-3 mt-5">
       <h2 class="text-center">新着投稿</h2>
         <div class="d-flex justify-content-around">
           <% @post_news.each do |post| %>
@@ -34,7 +34,7 @@
   </div>
 
   <div class="row">
-    <div class="center-block mt-5">
+    <div class="col-6 offset-3 mt-5">
       <h2 class="text-center">人気の投稿</h2>
         <div class="d-flex justify-content-around">
           <% @post_favorite_ranks.each do |post| %>
