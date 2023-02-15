@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <h2 classs="text-center">会員詳細</h1>
+    <p><%= customer.name %></p>
+  </div>
+  
+  <div class="row">
+    <h2 classs="text-center">自己紹介</h1>
+    <p><%#= @customer.introduction %></p>
+  </div>
+  
+  <div class="row">
+    <p classs="text-center"><%= link_to '編集する', edit_customer_path(customer) %></p>
+  </div>
+</div>
