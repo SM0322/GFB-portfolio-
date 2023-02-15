@@ -1,115 +1,95 @@
-<h1>投稿詳細</h1>
-      <div class="sliderWrapper">
-	<div class="slider">
-        <% @post.images.each do |image| %>
-          <div><%= image_tag image, size: "500x500" %></div>
-        <% end %>
-	</div>
-</div>
-
-
-<%= @post.rate %>
-<table>
-  <tr>
-    <td>作品名</td>
-    <td><%= @post.title %></td>
-  </tr>
-  <tr>
-    <td>画像</td>
-    <td>
-
-    <div class="sliderWrapper">
-      <div class="slider">
-        <% @post.images.each do |image| %>
-          <div style="height: 300px;"><%#= image_tag image, size: "50x50", style: "width:100%" %></div>
-        <% end %>
-      </div>
+<div class="container">
+  
+  <div class="row">
+    
+    <div class="col-2 mt-5">
+      <%= render 'public/customers/customer_info', customer: @customer %>
     </div>
-    </td>
-  </tr>
-  <tr>
-    <td>説明</td>
-    <td><%= @post.introduction %></td>
-  </tr>
-  <tr>
-    <td>タグ</td>
-    <% @tag.each do |tag| %>
-      <td><%= link_to tag.name, search_tag_path(tag_id: tag.id) %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <td>ユーザー名</td>
-    <td><%= link_to @post.customer.name, customer_path(@customer) %></td>
-  </tr>
-  <tr>
-    <td>いいね</td>
-    <td>
-      <div id = "favorite_<%= @post.id %>">
-      <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
+    
+    <div class="col-9 offset-1">
+      
+      <div class="mt-5">
+        <h2 class="text-left"><%= @post.title %></h2>
+      <div class="mt-5">
+        <div class="sliderWrapper">
+	        <div class="slider">
+            <% @post.images.each do |image| %>
+              <div><%= image_tag image, size: "1000x600" %></div>
+            <% end %>
+	        </div>
+        </div>
       </div>
-    </td>
-  </tr>
-    <tr>
-    <td>満足度</td>
-    <td>
-      <div id="rate_<%= @post.id %>"></div>
-      <script>
-        let elem = document.querySelector('#rate_<%= @post.id %>');
-        let opt = {  
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          score: "<%= @post.rate %>",
-          readOnly: true,
-         };
-        raty(elem,opt);
-      </script>
-    </td>
-  </tr>
-</table>
-
-<p><%= link_to '編集する', edit_post_path %></p>
-
-<div>
-  <p>コメント件数: <%= @post_comments.count %></p>
-    <% @post_comments.each do |comment| %>
-      <%= comment.customer.name %>
-      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.message %>
-      <% if comment.customer == current_customer %>
-        <%= link_to "削除する", post_post_comment_path(comment.post, comment), method: :delete %>
-      <% end %>
-    <% end %>
-</div>
-<div>
-  <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
-    <%= f.text_area :message, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
-
-<div>
-<% @posts.each do |post| %>
-<table>
-  <tr>
-    <td>投稿名</td>
-    <td><%= link_to post.title, post_path(post) %></td>
-  </tr>
-  <tr>
-    <td>画像</td>
-    <td>
-      <% post.images.each do |image| %>
-        <%= image_tag(image,width:100) %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td>いいね数</td>
-    <td>
-      <div id = "favorite_<%= post.id %>">
-        <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+      
+      <div class="mt-5">
+        <p>
+          タグ:
+          <% @tag.each do |tag| %>
+            <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+          <% end %>
+        </p>
+        <p><%= @post.introduction %></p>
       </div>
-    </td>
-  </tr>
-</table>
-<% end %>
+      
+      <div class="row">
+        
+        <div class="col-3">
+          <div id="rate_<%= @post.id %>"></div>
+          <script>
+            let elem = document.querySelector('#rate_<%= @post.id %>');
+            let opt = {  
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: "<%= @post.rate %>",
+              readOnly: true,
+             };
+            raty(elem,opt);
+          </script>
+        </div>
+        
+        <div class="col-2 offset-7">
+          <div id = "favorite_<%= @post.id %>">
+            <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
+          </div>
+          <div class="mt-2">
+            <p><%= link_to '編集する', edit_post_path %></p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5">
+        <div>
+          <p>コメント件数: <%= @post_comments.count %></p>
+          <% @post_comments.each do |comment| %>
+            <div class="mt-2">
+              <p><%= comment.customer.name %>: <%= comment.created_at.strftime('%Y/%m/%d') %></p>
+              <p><%= comment.message %></p>
+              <% if comment.customer == current_customer %>
+                <p><%= link_to "削除する", post_post_comment_path(comment.post, comment), method: :delete %></p>
+              <% end %>
+            </div>
+          <% end %>
+          <div>
+            <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
+              <p><%= f.text_area :message, rows: '5', placeholder: "コメントをここに" %></p>
+              <p><%= f.submit "送信する" %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5">
+      <h2 class="text-center"><%= @customer.name %>さんの他の投稿</h2>
+        <div class="d-flex justify-content-around">
+          <% @posts.each do |post| %>
+          <div class="m-3">
+            <p class="text-center"><%= image_tag post.images[0], size: "200x200" %></p>
+            <p class="text-center"><%= link_to post.title, post_path(post.id) %></p>
+            <p class="text-center"><%= post.customer.name %></p>
+            <div id = "favorite_<%= post.id %>">
+              <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
 </div>
