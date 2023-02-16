@@ -1,21 +1,20 @@
-<h1>顧客一覧</h1>
-
-<h1>ユーザー検索フォーム</h1>
-<%= search_form_for @q do |f| %>
-  <%= f.label :name, "Keyword" %>
-  <%= f.search_field :name_cont %>
-  <%= f.submit "検索" %>
-<% end %>
-
-<% @customers.each do |customer| %>
-<table>
-  <tr>
-    <td>ユーザー名</td>
-    <td>投稿数</td>
-  </tr>
-  <tr>
-    <td><%= link_to customer.name, customer_path(customer) %></td>
-    <td><%= customer.posts.count %></td>
-  </tr>
-</table>
-<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 offset-1 mt-5">
+      <%= render 'public/customers/customer_info', customer: current_customer %>
+    </div>
+    <div class="col-9">
+      <div class="mt-5">
+        <h2 class="text-center">顧客一覧</h1>
+          <div class="d-flex flex-wrap">
+            <% @customers.each do |customer| %>
+              <div class="m-4">
+                <div><%= link_to customer.name, customer_path(customer) %></div>
+                <div><%= customer.posts.count %>件</div>
+              </div>
+            <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

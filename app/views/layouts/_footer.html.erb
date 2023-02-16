@@ -1,39 +1,7 @@
-<% if customer_signed_in? %>
-  <li>
-    <%= link_to "ホーム", root_path %>
-  </li>
-  <li>
-    <%= link_to "マイページ", customer_path(current_customer) %>
-  </li>
-  <li>
-    <%= link_to "投稿一覧", posts_path %>
-  </li>
-  <li>
-    <%= link_to "ユーザー一覧", customers_path %>
-  </li>
-  <li>
-    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-  </li>
-<% else %>
-  <li>
-    <%= link_to "ホーム", root_path %>
-  </li>
-  <li>
-    <%= link_to "ABOUT", about_path %>
-  </li>
-  <li>
-    <%= link_to "新規登録", new_customer_registration_path %>
-  </li>
-  <li>
-    <%= link_to "ログイン", new_customer_session_path %>
-  </li>
-<% end %>
-
-<div>
-  <%= form_with url:search_path,local: true, method: :get do |f| %>
-    <%= f.text_field :word %>
-    <%= f.select :range, options_for_select([['Customer'],['Post']]) %>
-    <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
-    <%= f.submit "検索" %>
-  <% end %>
-</div>
+<footer>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container">
+      <div class="center-block"><p class="text-light">Copyright © Infratop Inc. All Rights Reserved.</p></div>
+    </div>
+  </nav>
+</footer>

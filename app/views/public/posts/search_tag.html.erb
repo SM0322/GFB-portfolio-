@@ -1,16 +1,31 @@
-<h1><%= @tag.name %>の投稿一覧</h1>
-
-<div>
-  <% @tags.each do |tag| %>
-    <%= "(#{tag.posts.count})" %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-2 mt-2">
+      <%= render 'public/customers/customer_info', customer: current_customer %>
+    </div>
+    <div class="col-9 offset-1">
+      <div class="mt-2">
+        <h2 class="text-center">タグ一覧</h2>
+        <% @tags.each do |tag| %>
+          <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+          <%= "(#{tag.posts.count})" %>
+        <% end %>
+      </div>
+      <div class="mt-5">
+        <h2 class="text-center"><%= @tag.name %>の投稿一覧</h2>
+          <div class="d-flex flex-wrap">
+            <% @posts.each do |post| %>
+              <div class="m-4">
+                <div><%= image_tag post.images[0], size: "200x200" %></div>
+                <p class="text-center"><%= link_to post.title, post_path(post.id) %></p>
+                <p class="text-center"><%= link_to '削除する', post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
+                <div id = "favorite_<%= post.id %>">
+                  <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<% @posts.each do |post| %>
-  <div>
-    <%= link_to post.title, post_path(post.id) %>
-  </div>
-  <div>
-    <%= post.tags.map(&:name).join(',') %>
-  </div>
-<% end %>

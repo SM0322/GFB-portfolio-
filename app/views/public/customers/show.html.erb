@@ -1,23 +1,30 @@
-
-
-<h1><%= @customer.name %>さんの投稿一覧</h1>
-<% @posts.each do |post| %>
-<table>
-  <tr>
-    <td>投稿名</td>
-    <td><%= link_to post.title, post_path(post) %></td>
-  </tr>
-  <tr>
-    <td>いいね数</td>
-    <td>
-    <div id = "favorite_<%= post.id %>">
-      <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 offset-1 mt-5">
+      <%= render 'public/customers/customer_info', customer: @customer %>
     </div>
-    </td>
-  </tr>
-</table>
-<% end %>
-
-<div>
-  <p><%= link_to @customer.name, favorites_customer_path(@customer) %>さんのいいね一覧 %></p>
+    <div class="col-9">
+      <h2 class="text-center"><%= @customer.name %>さんの投稿一覧</h2>
+      <div class="d-flex flex-wrap">
+        <% @posts.each do |post| %>
+          <div class="m-4">
+            <div><%= image_tag post.images[0], size: "200x200" %></div>
+            <p class="text-center"><%= link_to post.title, post_path(post.id) %></p>
+            <p class="text-center">
+              <% post.tags.each do |tag| %>
+                <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+              <% end %>
+            </p>
+            <p class="text-center"><%= link_to '削除する', post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
+            <div id = "favorite_<%= post.id %>">
+              <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="m-4">
+        <p class="text-center"><%= link_to @customer.name, favorites_customer_path(@customer) %>さんのいいね一覧</p>
+      </div>
+    </div>  
+  </div>
 </div>

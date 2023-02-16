@@ -1,23 +1,43 @@
-<h1>ユーザー編集画面</h1>
-<%= form_with model: @customer, url: customer_path(@customer), method: :patch do |f| %>
-<table>
-  <tr>
-    <td>ユーザー名</td>
-    <td><%= f.text_field :name %></td>
-  </tr>
-  <tr>
-    <td>画像選択</td>
-    <td><%#= f.text_field :name %></td>
-  </tr>
-  <tr>
-    <td>自己紹介</td>
-    <td><%#= f.text_field :introduction %></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td><%= f.submit "変更を保存する" %></td>
-  </tr>
-</table>
-<% end %>
-
-<%= link_to "退会する", unsubscribe_path %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-7 offset-3 mt-3">
+      <h2>ユーザー情報編集</h2>
+      <%= form_with model: @customer, url: customer_path(@customer), method: :patch do |f| %>
+      <div class="row">
+        <div class="col-7 mt-3">
+          <p><%= f.label :name, 'ユーザー名' %></p>
+        </div>
+        <div class="col-1 mt-3">
+          <p><%= f.text_field :name %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7 mt-3">
+          <p><%#= f.label :profile_image, '画像選択' %></p>
+        </div>
+        <div class="col-1 mt-3">
+          <p><%#= f.file_field :profile_image %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7 mt-3">
+          <p><%#= f.label :introduction, '自己紹介' %></p>
+        </div>
+        <div class="col-1 mt-3">
+          <p><%#= f.text_area :introduction %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 offset-7 mt-3">
+          <p><%= f.submit '編集を保存する' %></p>
+        </div>
+      </div>
+      <% end %>
+      <h2>退会を希望される方</h2>
+      <div>
+        <span><%= link_to "こちら", unsubscribe_path %></span>
+        から退会手続きを行ってください。
+      </div>
+    </div>
+  </div>
+</div>

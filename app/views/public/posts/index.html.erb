@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-2 mt-5">
+    <div class="col-2 offset-1 mt-5">
       <%= render 'public/customers/customer_info', customer: current_customer %>
     </div>
-    <div class="col-9 offset-1">
+    <div class="col-9">
       <div class="mt-5">
         <h2 class="text-center">タグ一覧</h2>
         <% @tags.each do |tag| %>
@@ -24,9 +24,9 @@
                 <% end %>
               </p>
               <p class="text-center"><%= link_to '削除する', post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
-              <p class="text-center" id = "favorite_<%= post.id %>">
+              <div id = "favorite_<%= post.id %>">
                 <%= render partial: "public/favorites/favorite", locals: {post: post} %>
-              </p>
+              </div>
             </div>
           <% end %>
         </div>

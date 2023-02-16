@@ -1,13 +1,9 @@
-<div class="container">
-  
+<div class="container-fluid">
   <div class="row">
-    
-    <div class="col-2 mt-5">
+    <div class="col-2 offset-1 mt-5">
       <%= render 'public/customers/customer_info', customer: @customer %>
     </div>
-    
-    <div class="col-9 offset-1">
-      
+    <div class="col-9">
       <div class="mt-5">
         <h2 class="text-left"><%= @post.title %></h2>
       <div class="mt-5">
@@ -19,7 +15,6 @@
 	        </div>
         </div>
       </div>
-      
       <div class="mt-5">
         <p>
           タグ:
@@ -29,7 +24,6 @@
         </p>
         <p><%= @post.introduction %></p>
       </div>
-      
       <div class="row">
         
         <div class="col-3">
@@ -46,7 +40,6 @@
             raty(elem,opt);
           </script>
         </div>
-        
         <div class="col-2 offset-7">
           <div id = "favorite_<%= @post.id %>">
             <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
