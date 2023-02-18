@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @customer = @post.customer
-    @posts = @customer.posts.order('id DESC').limit(4)
+    @posts = @customer.posts.where.not(id: @post.id).order('id DESC').limit(4)
     @tag = @post.tags.all
     @post_comment = PostComment.new
     @post_comments = @post.post_comments.all
