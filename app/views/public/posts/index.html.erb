@@ -1,35 +1,37 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-2 offset-1 mt-5">
+    <div class="col-2 mt-2">
       <%= render 'public/customers/customer_info', customer: current_customer %>
     </div>
-    <div class="col-9">
-      <div class="mt-5">
-        <h2 class="text-center">タグ一覧</h2>
+    <div class="col-10 mt-2">
+      <h2 class="text-center mb-2">タグ一覧</h2>
         <% @tags.each do |tag| %>
           <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
           <%= "(#{tag.posts.count})" %>
         <% end %>
-      </div>
-      <div class="mt-5">
-        <h2 class="text-center">投稿一覧</h2>
-        <div class="d-flex flex-wrap">
-          <% @posts.each do |post| %>
-            <div class="m-4">
-              <div><%= image_tag post.images[0], size: "200x200" %></div>
-              <p class="text-center"><%= link_to post.title, post_path(post.id) %></p>
-              <p class="text-center">
+      <h2 class="text-center mb-2">投稿一覧</h2>
+      <div class="d-flex flex-wrap">
+        <% @posts.each do |post| %>
+          <div class="blog-box">
+            <div class="blog-item">
+              <%= image_tag post.images[0], size: "150x150" %>
+              <section class="blog-text">
+                <h3 class="blog-text-heading">
+                  <a><%= link_to post.title, post_path(post.id) %></a>
+                </h3>
                 <% post.tags.each do |tag| %>
-                  <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+                <div class="actions mb-3">
+                  <%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
+                </div>
                 <% end %>
-              </p>
-              <p class="text-center"><%= link_to '削除する', post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
-              <div id = "favorite_<%= post.id %>">
-                <%= render partial: "public/favorites/favorite", locals: {post: post} %>
-              </div>
+                <p class="blog-date"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+                <span class="category" id = "favorite_<%= post.id %>">
+                  <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+                </span>
+              </section>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
