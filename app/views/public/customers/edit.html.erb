@@ -13,18 +13,18 @@
       </div>
       <div class="row">
         <div class="col-7 mt-3">
-          <p><%#= f.label :profile_image, '画像選択' %></p>
+          <p><%= f.label :profile_image, '画像選択' %></p>
         </div>
         <div class="col-1 mt-3">
-          <p><%#= f.file_field :profile_image %></p>
+          <p><%= f.file_field :profile_image, accept: "image/*" %></p>
         </div>
       </div>
       <div class="row">
         <div class="col-7 mt-3">
-          <p><%#= f.label :introduction, '自己紹介' %></p>
+          <p><%= f.label :introduction, '自己紹介' %></p>
         </div>
         <div class="col-1 mt-3">
-          <p><%#= f.text_area :introduction %></p>
+          <p><%= f.text_area :introduction %></p>
         </div>
       </div>
       <div class="row">
