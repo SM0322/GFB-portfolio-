@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :ensure_current_customer, {only: [:edit, :unsubscribe, :withdrawal]}
   def index
     @q = Customer.ransack(params[:q])
     @customers = @q.result(distinct: true)
@@ -44,4 +45,9 @@ class Public::CustomersController < ApplicationController
     params.require(:customer).permit(:name)
   end 
   
+  def ensure_current_customer
+    if current_customer.id != params[:id].to_i
+      redirect_to customer_path(current_customer.id)
+    end
+  end 
 end
