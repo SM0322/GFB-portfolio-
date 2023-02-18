@@ -33,7 +33,10 @@ ActiveStorage.start()
     $(document).ready(function(){
       global.$('.slider').slick({
         autoplay: true,
-        autoplaySpeed: 1500,
         speed: 700,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        dots: true,
+        arrows: false,
       });
     });
