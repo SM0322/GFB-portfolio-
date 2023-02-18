@@ -1,31 +1,18 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-2 offset-1 mt-5">
+    <div class="col-2 mt-2">
       <%= render 'public/customers/customer_info', customer: @customer %>
     </div>
-    <div class="col-9">
-      <div class="mt-5">
-        <h2 class="text-left"><%= @post.title %></h2>
-      <div class="mt-5">
-        <div class="sliderWrapper">
-	        <div class="slider">
-            <% @post.images.each do |image| %>
-              <div><%= image_tag image, size: "1000x600" %></div>
-            <% end %>
-	        </div>
-        </div>
-      </div>
-      <div class="mt-5">
-        <p>
-          タグ:
-          <% @tag.each do |tag| %>
-            <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+    <div class="col-10 mt-2">
+      <h2 class="text-center mb-2"><%= @post.title %></h2>
+      <div class="sliderWrapper mt-2">
+	      <div class="slider">
+          <% @post.images.each do |image| %>
+            <div><%= image_tag image, size: "1000x600" %></div>
           <% end %>
-        </p>
-        <p><%= @post.introduction %></p>
+	      </div>
       </div>
-      <div class="row">
-        
+      <div class="row mt-2">
         <div class="col-3">
           <div id="rate_<%= @post.id %>"></div>
           <script>
@@ -44,44 +31,78 @@
           <div id = "favorite_<%= @post.id %>">
             <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
           </div>
-          <div class="mt-2">
-            <p><%= link_to '編集する', edit_post_path %></p>
-          </div>
         </div>
       </div>
+      <div class="mt-2">
+        <p class="text-box"><%= @post.introduction %></p>
+        <p>
+          タグ:
+          <% @tag.each do |tag| %>
+            <%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
+          <% end %>
+        </p>
+      </div>
+      <% if @customer == current_customer %>
+      <div class="mt-2">
+        <p><%= link_to '編集する', edit_post_path, class: 'btn btn-warning btn-sm btn-block mb-3' %></p>
+      </div>
+      <% end %>
       <div class="mt-5">
         <div>
           <p>コメント件数: <%= @post_comments.count %></p>
-          <% @post_comments.each do |comment| %>
-            <div class="mt-2">
-              <p><%= comment.customer.name %>: <%= comment.created_at.strftime('%Y/%m/%d') %></p>
-              <p><%= comment.message %></p>
-              <% if comment.customer == current_customer %>
-                <p><%= link_to "削除する", post_post_comment_path(comment.post, comment), method: :delete %></p>
-              <% end %>
-            </div>
-          <% end %>
           <div>
             <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
-              <p><%= f.text_area :message, rows: '5', placeholder: "コメントをここに" %></p>
+              <p><%= f.text_area :message, rows: '3', cols: 130, placeholder: "コメントをここに" %></p>
               <p><%= f.submit "送信する" %></p>
             <% end %>
           </div>
+          <% @post_comments.each do |comment| %>
+            <div class="mt-2">
+              <p><%= comment.customer.name %>: </p>
+              <p><%= comment.message %></p>
+              <div class="row">
+                <div class="col">
+                  <%= comment.created_at.strftime('%Y/%m/%d') %>
+                </div>
+                <div class="pull-right">
+                  <% if comment.customer == current_customer %>
+                    <p><%= link_to "削除する", post_post_comment_path(comment.post, comment), method: :delete,class: "btn btn-danger" %></p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="mt-5">
       <h2 class="text-center"><%= @customer.name %>さんの他の投稿</h2>
         <div class="d-flex justify-content-around">
           <% @posts.each do |post| %>
-          <div class="m-3">
-            <p class="text-center"><%= image_tag post.images[0], size: "200x200" %></p>
-            <p class="text-center"><%= link_to post.title, post_path(post.id) %></p>
-            <p class="text-center"><%= post.customer.name %></p>
-            <div id = "favorite_<%= post.id %>">
-              <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+          <div class="blog-box">
+            <div class="blog-item">
+              <%= image_tag post.images[0], size: "150x150" %>
+              <section class="blog-text">
+              <h3 class="blog-text-heading">
+                <a><%= link_to post.title, post_path(post.id) %></a>
+              </h3>
+              <% post.tags.each do |tag| %>
+              <div class="actions mb-3">
+                <%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
+              </div>
+              <% end %>
+              <p class="blog-date"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+              <span class="category" id = "favorite_<%= post.id %>">
+                <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+              </span>
+              </section>
             </div>
           </div>
           <% end %>
+        </div>
+        <div class="text-center">
+          <p class="link_tag">
+            <%= link_to 'すべて見る', customer_path(@customer), class: 'btn btn-dark btn-sm btn-block mb-3' %>
+          </p>
         </div>
     </div>
   </div>
