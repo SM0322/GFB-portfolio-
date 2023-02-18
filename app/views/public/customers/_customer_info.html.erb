@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <h3 classs="text-center">会員詳細</h1>
-    <%= image_tag customer.profile_image, size: "100x100" %>
+    <%#= image_tag customer.profile_image, size: "100x100" %>
     <p><%= customer.name %></p>
   </div>
   
   <div class="row">
     <h3 classs="text-center">自己紹介</h1>
-    <p><%= @customer.introduction %></p>
+    <p><%= customer.introduction %></p>
   </div>
   
   <div class="row">
