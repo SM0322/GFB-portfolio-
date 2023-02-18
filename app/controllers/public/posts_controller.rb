@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :ensure_post_customer, {only: [:edit, :update, :destroy]}
+  
   def new
     @post = Post.new
   end
@@ -60,5 +62,12 @@ class Public::PostsController < ApplicationController
   
   def post_params
     params.require(:post).permit(:rate, :title, :introduction, images: [])
-  end 
+  end
+  
+  def ensure_post_customer
+    @post = Post.find(params[:id])
+    if current_customer.id != @post.customer_id
+      redirect_to post_path(@post)
+    end
+  end  
 end

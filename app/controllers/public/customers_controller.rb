@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
-  before_action :ensure_current_customer, {only: [:edit, :unsubscribe, :withdrawal]}
+  before_action :ensure_current_customer, {only: [:edit, :update, :unsubscribe, :withdrawal]}
+  
   def index
     @q = Customer.ransack(params[:q])
     @customers = @q.result(distinct: true)
