@@ -1,31 +1,24 @@
 <div class="container">
-  <div class="row">
-    <div class="mt-5">
-      <div class="card text-light">
-        <%= image_tag 'default.jpg', size:"750x500" %>
-          <div class="card-img-overlay">
-            <h5 class="card-title">
-            <p class="text-center">
-            ようこそ、ながのCAKEへ!</br>
-            このサイトは、ケーキ販売のECサイトになります。</br>
-            会員でない方も商品の閲覧はできますが、</br>
-            購入には会員登録が必要になります。
-            </p>
-            </h5>
-          </div>
+  <div class="row mt-5">
+    <div class="col">
+      <div class="sliderWrapper">
+	      <div class="slider">
+          <div><%= image_tag 'default.jpg', size:"750x500" %></div>
+          <div><%= image_tag 'no_image.jpg', size:"750x500" %></div>
+	      </div>
       </div>
     </div>
-    <div class="mt-5">
-      <h2 class="text-center">新着投稿</h2>
-        <div class="d-flex justify-content-around">
-          <%= render 'public/posts/index_form', posts: @post_news %>
-        </div>
+    <div class="col mt-5">
+      <h2  class="text-center">新着投稿</h2>
+      <div class="d-flex justify-content-around">
+        <%= render 'public/posts/index_form', posts: @post_news %>
+      </div>
     </div>
-    <div class="mt-5">
+    <div class="col mt-5">
       <h2 class="text-center">人気の投稿</h2>
-        <div class="d-flex justify-content-around">
-          <%= render 'public/posts/index_form', posts: @post_favorite_ranks %>
-        </div>
+      <div class="d-flex justify-content-around">
+        <%= render 'public/posts/index_form', posts: @post_favorite_ranks %>
+      </div>
     </div>
   </div>
 </div>
