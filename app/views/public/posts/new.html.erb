@@ -1,31 +1,30 @@
 <h1>新規投稿</h1>
 
 <%= form_with model: @post, url: posts_path, method: :post,local:true do |f| %>
-  <table>
-    <tr>
-      <td>タイトル</td>
-      <td><%= f.text_field :title %></td>
-    </tr>
-    <tr>
-      <td>タグ</td>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <td>説明</td>
-      <td><%= f.text_area :introduction %></td>
-    </tr>
-    <tr>
-      <td>画像選択</td>
-      <td><%= f.file_field :images, multiple: true %></td>
-    </tr>
-    <tr>
-      <div id="star">
-        <%= f.label :rate, '満足度' %>
-        <%= f.hidden_field :rate %>
-      </div>
+  <div>
+    <p>タイトル</p>
+    <p><%= f.text_field :title %></p>
+  </div>
+  <div>
+    <p>タグ</p>
+    <p><%= f.text_field :name %></p>
+  </div>
+  <div>
+    <p>説明</p>
+    <p><%= f.text_area :introduction %></p>
+  </div>
+  <div>
+    <p>画像選択</p>
+    <p><%= f.file_field :images, multiple: true, accept: "image/*" %></p>
+  </div>
+  <div id="new-image"></div>
+  <div id="star">
+    <%= f.label :rate, '満足度' %>
+    <%= f.hidden_field :rate %>
+  </div>
       
-      <div id="rate_<%= @post.id %>"></div>
-      <script>
+  <div id="rate_<%= @post.id %>"></div>
+    <script>
       let raty_elem = document.querySelector('#rate_<%= @post.id %>');
       raty_elem.innerHTML = ""
       let option = {  
@@ -36,7 +35,5 @@
        };
       raty(raty_elem,option);
       </script>
-    </tr>
-  </table>
   <%= f.submit '投稿する' %>
 <% end %>
