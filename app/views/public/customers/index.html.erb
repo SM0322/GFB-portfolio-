@@ -1,20 +1,31 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-2 offset-1 mt-5">
+    <div class="col-2 mt-2">
       <%= render 'public/customers/customer_info', customer: current_customer %>
     </div>
-    <div class="col-9">
-      <div class="mt-5">
-        <h2 class="text-center">顧客一覧</h1>
-          <div class="d-flex flex-wrap">
-            <% @customers.each do |customer| %>
-              <div class="m-4">
-                <div><%= link_to customer.name, customer_path(customer) %></div>
-                <div><%= customer.posts.count %>件</div>
+    <div class="col-9 offset-1 mt-2">
+      <h2 class="text-center mb-2">ユーザー一覧</h1>
+        <div>
+        <% @customers.each do |customer| %>
+          <div class="m-4">
+            <div class="d-flex justify-content-around">
+              <%= render 'public/posts/index_form', posts: customer.posts.order('id DESC').limit(3) %>
+            </div>
+            <div class="row">
+              <div class="col-1">
+                <% if customer.profile_image.attached? %>
+                  <%= image_tag customer.profile_image, size: "40x40" %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg', size: "40x40" %>
+                <% end %>
               </div>
-            <% end %>
+              <div class="col-11 mt-1">
+                <%= link_to customer.name, customer_path(customer) %>
+              </div>
+            </div>
           </div>
-      </div>
+        <% end %>
+        </div>
     </div>
   </div>
 </div>

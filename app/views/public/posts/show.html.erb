@@ -3,7 +3,7 @@
     <div class="col-2 mt-2">
       <%= render 'public/customers/customer_info', customer: @customer %>
     </div>
-    <div class="col-10 mt-2">
+    <div class="col-9 offset-1 mt-2">
       <h2 class="text-center mb-2"><%= @post.title %></h2>
       <div class="sliderWrapper mt-2">
 	      <div class="slider">
@@ -52,7 +52,7 @@
           <p>コメント件数: <%= @post_comments.count %></p>
           <div>
             <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
-              <p><%= f.text_area :message, rows: '3', cols: 130, placeholder: "コメントをここに" %></p>
+              <p><%= f.text_area :message, rows: '3', cols: 110, placeholder: "コメントをここに" %></p>
               <p><%= f.submit "送信する" %></p>
             <% end %>
           </div>

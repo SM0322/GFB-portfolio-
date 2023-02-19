@@ -19,5 +19,5 @@ class Customer < ApplicationRecord
     else search == "partial_match"
       @customer = Customer.where("name LIKE?", "%#{word}%")
     end 
-  end 
+  end
 end

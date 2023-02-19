@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row">
     <h3 classs="text-center">会員詳細</h1>
-    <%#= image_tag customer.profile_image, size: "100x100" %>
+      <% if customer.profile_image.attached? %>
+        <%= image_tag customer.profile_image, size: "150x150" %>
+      <% else %>
+        <%= image_tag 'no_image.jpg', size: "150x150" %>
+      <% end %>
     <p><%= customer.name %></p>
   </div>
-  
   <div class="row">
     <h3 classs="text-center">自己紹介</h1>
     <p><%= customer.introduction %></p>
   </div>
-  
   <div class="row">
     <p classs="text-center"><%= link_to '編集する', edit_customer_path(customer) %></p>
   </div>

@@ -3,13 +3,13 @@
     <div class="col-2 mt-2">
       <%= render 'public/customers/customer_info', customer: current_customer %>
     </div>
-    <div class="col-10 mt-2">
+    <div class="col-9 offset-1 mt-2">
       <h2 class="text-center mb-2">タグ一覧</h2>
         <% @tags.each do |tag| %>
-          <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+          <%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
           <%= "(#{tag.posts.count})" %>
         <% end %>
-      <h2 class="text-center mb-2">投稿一覧</h2>
+      <h2 class="text-center mt-5 mb-2">投稿一覧</h2>
       <div class="d-flex flex-wrap">
         <%= render 'public/posts/index_form', posts: @posts %>
       </div>
