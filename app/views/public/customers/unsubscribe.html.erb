@@ -5,9 +5,9 @@
       <p class="text-center m-5">退会すると記事の投稿やいいね、コメントができなくなります</p>
       <div>
         <p class="text-center">
-          <%= link_to "退会しない", customer_path(current_customer) %>
+          <%= link_to "退会しない", customer_path(current_customer), class: 'btn btn-primary' %>
           |
-          <%= link_to "退会する", withdrawal_path %>
+          <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: 'btn btn-danger' %>
         </p>
       </div>
     </div>

@@ -11,6 +11,7 @@ class Public::PostsController < ApplicationController
     tag_list=params[:post][:name].split(',')         #splitは()の中の引数により文字列を分割し、分割された各文字列を要素としている。今回は「'」で区切られた文字列を要素としている。
     @post.save
     @post.save_tag(tag_list)                         #modelファイルにて定義されたメソッド
+    flash[:notice] = "投稿に成功しました"
     redirect_to posts_path
   end 
 
@@ -45,6 +46,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params.merge(rate: params[:rate]))
       PostTag.where(post_id: @post.id).destroy_all
       @post.save_tag(tag_list)
+      flash[:notice] = "変更に成功しました"
       redirect_to post_path
     else
       render:edit
