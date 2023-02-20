@@ -45,6 +45,7 @@
       <% if @customer == current_customer %>
       <div class="mt-2">
         <p><%= link_to '編集する', edit_post_path, class: 'btn btn-warning btn-sm btn-block mb-3' %></p>
+        <p><%= link_to "記事を削除する", post_path(@post), method: :delete,class: "btn btn-danger btn-sm btn-block mb-3" %></p>
       </div>
       <% end %>
       <div class="mt-5">
