@@ -1,29 +1,33 @@
 <% posts.each do |post| %>
-  <div class="blog-box">
-    <div class="blog-item">
-      <div class="card text-light">
-        <%= image_tag post.images[0], size: "150x150" %>
-        <div class="card-img-overlay">
-          <h5 class="favorite_title">
-            <% if customer_signed_in? %>
-            <span id = "favorite_<%= post.id %>">
-              <%= render partial: "public/favorites/favorite", locals: {post: post} %>
-            </span>
-            <% end %>
-          </h5>
-        </div>
-      </div>
-      <section class="blog-text">
-        <h3 class="blog-text-heading">
-          <a><%= link_to post.title, post_path(post.id) %></a>
-        </h3>
-        <% post.tags.limit(1).each do |tag| %>
-        <div class="actions mb-3">
-          <%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
-        </div>
+  <div class="list_content">
+    <div class="list_content_image">
+      <%= image_tag post.images[0], size: "300x300" %>
+        <h5 class="favorite_title">
+        <% if customer_signed_in? %>
+          <span id = "favorite_<%= post.id %>">
+            <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+          </span>
         <% end %>
-        <p class="blog-date"><%= post.created_at.strftime('%Y/%m/%d') %></p>
-        </section>
+        </h5>
+    </div>
+    <div class="list_content_author_image">
+      <% if post.customer.profile_image.attached? %>
+        <%= image_tag post.customer.profile_image, size: "150x150" %>
+      <% else %>
+        <%= image_tag 'no_image.jpg', size: "150x150" %>
+      <% end %>
+    </div>
+      
+      <%= post.customer.name %>
+    </div>
+    <a class="list_content_information"><%= link_to post.title, post_path(post.id) %></a>
+    <div>
+    <div class="list_tag">
+    <% post.tags.limit(3).each do |tag| %>
+        <a><%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %></a>
+    <% end %>
+    </div>
+    <p class="list_date"><%= post.created_at.strftime('%Y/%m/%d') %></p>
     </div>
   </div>
 <% end %>

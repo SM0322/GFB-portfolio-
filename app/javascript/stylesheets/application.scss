@@ -9,63 +9,124 @@
 
 a {
   text-decoration: none;
-}
-
-.blog-box {
+  text-align: center;
   margin: 5px;
 }
 
-.blog-item {
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+h2 {
+  text-align: center;
+  font-size: 25px;
+}
+
+.notice {
+  text-align: center;
+}
+
+.lists {
   display: flex;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  width: 80%;
 }
 
-.blog-image {
-  height: 180px;
+.list_content {
+  border-bottom: 1px solid black;
+  padding-bottom: 5.1666666667%;
+  padding-top: 2.5833333333%;
+  width: 46.6666666667%;
 }
 
-.blog-text {
-  padding: 10px 0 0 20px;
+.list_content_image {
+  margin: auto;
+  width: 70%;
+  position: relative;
+}
+.list_content_author_image {
+  position: static;
+  top: 100%;
+  left: 50%;
 }
 
-.blog-text-heading {
-  padding-bottom: 15px;
+// .favorite_title {
+//   top: 120px;
+//   left: 120px;
+// }
+
+
+
+.list_content_information {
+  text-align: center;
 }
 
-.blog-date {
+.list_tag {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.list_date {
   margin-top: 10px;
   font-size: 12px;
   display: inline-block;
 }
 
-.category {
-  background-color: #ff69b4;
-  color: #fff;
-  font-size: 11px;
-}
+// .blog-box {
+//   margin: 5px;
+// }
 
-.text-box {
-  border: 2px solid #696969;
-  font-size: 20px;
-  color: #000000;
-}
+// .blog-item {
+//   padding-bottom: 10px;
+//   margin-bottom: 10px;
+//   display: flex;
+//   justify-content: flex-start;
+// }
 
-.card text-light {
-  position: relative;
-}
-.favorite_title {
-  position: absolute;
-  top: 120px;
-  left: 120px;
-}
+// .blog-image {
+//   height: 180px;
+// }
 
-.favorite_background {
-  background-color: #ffffff;
-  color: #ffb6c1;
-  font-size: 20px;
-}
+// .blog-text {
+//   padding: 10px 0 0 20px;
+// }
+
+// .blog-text-heading {
+//   padding-bottom: 15px;
+// }
+
+// .blog-date {
+//   margin-top: 10px;
+//   font-size: 12px;
+//   display: inline-block;
+// }
+
+// .category {
+//   background-color: #ff69b4;
+//   color: #fff;
+//   font-size: 11px;
+// }
+
+// .text-box {
+//   border: 2px solid #696969;
+//   font-size: 20px;
+//   color: #000000;
+// }
+
+// .card text-light {
+//   position: relative;
+// }
+// .favorite_title {
+//   position: absolute;
+//   top: 120px;
+//   left: 120px;
+// }
+
+// .favorite_background {
+//   background-color: #ffffff;
+//   color: #ffb6c1;
+//   font-size: 20px;
+// }
 
 // .edit-image {
 //   position: relative;
