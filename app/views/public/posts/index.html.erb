@@ -11,6 +11,7 @@
       <%= link_to '古い順', posts_path(old: "true") %>
       <div class="d-flex flex-wrap">
         <%= render 'public/posts/index_form', posts: @posts %>
+        <%= paginate @posts %>
       </div>
     </div>
   </div>

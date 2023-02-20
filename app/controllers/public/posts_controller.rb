@@ -17,11 +17,11 @@ class Public::PostsController < ApplicationController
   def index
     @tags = Tag.all
     if params[:latest]
-      @posts = Post.latest
+      @posts = Post.latest.page(params[:page])
     elsif params[:old]
-      @posts = Post.old
+      @posts = Post.old.page(params[:page])
     else
-      @posts = Post.all
+      @posts = Post.page(params[:page])
     end
   end
 
@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
   def search_tag
     @tags = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.all
+    @posts = @tag.posts.page(params[:page])
   end 
   
   private

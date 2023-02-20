@@ -9,6 +9,7 @@
       <h2 class="text-center mb-2"><%= @tag.name %>の投稿一覧</h2>
       <div class="d-flex flex-wrap">
         <%= render 'public/posts/index_form', posts: @posts %>
+        <%= paginate @posts %>
       </div>
     </div>
   </div>

@@ -2,13 +2,12 @@ class Public::CustomersController < ApplicationController
   before_action :ensure_current_customer, {only: [:edit, :update, :unsubscribe, :withdrawal]}
   
   def index
-    @q = Customer.ransack(params[:q])
-    @customers = @q.result(distinct: true)
+    @customers = Customer.page(params[:page])
   end
 
   def show
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts.all
+    @posts = @customer.posts.page(params[:page])
   end
 
   def edit
