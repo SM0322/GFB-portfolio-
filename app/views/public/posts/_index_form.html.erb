@@ -12,21 +12,21 @@
     </div>
     <div class="row">
       <div class="mx-auto">
-        <a class="text-center fs-1"><%= link_to truncate(post.title, omision: "...", length: 18), post_path(post.id) %></a>
+        <a><%= link_to truncate(post.title, omision: "...", length: 18), post_path(post.id), class: "fs-1" %></a>
       </div>
     </div>
     <div class="row">
       <div class="mx-auto">
       <% post.tags.limit(5).each do |tag| %>
         <a class="text-center">
-          <%= link_to truncate(tag.name, omision: "...", length: 10), search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
+          <%= link_to truncate(tag.name, omision: "...", length: 10), search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm fs-1' %>
         </a>
       <% end %>
       </div>
     </div>
     <div class="row">
       <div class="mx-auto">
-        <p class="text-center"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+        <p class="text-center fs-1"><%= post.created_at.strftime('%Y/%m/%d') %></p>
       </div>
     </div>
   </div>
