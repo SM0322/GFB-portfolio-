@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update] do
       get :post_comments, on: :member
     end
+    get "search_tag" => "posts#search_tag"
+    get "search" => "searches#search"
     resources :posts, only: [:index, :show, :edit, :update, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

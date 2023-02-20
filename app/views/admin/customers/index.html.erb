@@ -1,4 +1,28 @@
-<h1>顧客一覧</h1>
-<% @customers.each do |customer| %>
-  <%= link_to customer.name, admin_customer_path(customer) %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-9 offset-1 mt-2">
+      <h2 class="text-center mb-2">ユーザー一覧</h1>
+        <div>
+        <% @customers.each do |customer| %>
+          <div class="m-4">
+            <div class="d-flex justify-content-around">
+              <%= render 'admin/posts/index_form', posts: customer.posts.order('id DESC').limit(3) %>
+            </div>
+            <div class="row">
+              <div class="col-1">
+                <% if customer.profile_image.attached? %>
+                  <%= image_tag customer.profile_image, size: "40x40" %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg', size: "40x40" %>
+                <% end %>
+              </div>
+              <div class="col-11 mt-1">
+                <%= link_to customer.name, admin_customer_path(customer) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</div>

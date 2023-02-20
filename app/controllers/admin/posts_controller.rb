@@ -20,10 +20,31 @@ class Admin::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
-      redirect_to post_path
+    tag_list=params[:post][:name].split(',')
+    if @post.update(post_params.merge(rate: params[:rate]))
+      PostTag.where(post_id: @post.id).destroy_all
+      @post.save_tag(tag_list)
+      redirect_to admin_post_path
     else
       render:edit
     end
+  end
+  
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to admin_posts_path
+  end
+  
+  def search_tag
+    @tags = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts.all
+  end
+  
+  private
+  
+  def post_params
+    params.require(:post).permit(:rate, :title, :introduction, images: [])
   end
 end

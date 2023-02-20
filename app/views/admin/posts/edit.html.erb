@@ -1,10 +1,69 @@
-<h1>投稿編集</h1>
-<%= form_with model: @post, url: post_path, method: :patch do |f| %>
-  <table>
-    <tr>
-      <td>非公開設定</td>
-      <td></td>
-    </tr>
-  </table>
-  <%= f.submit '編集を保存する' %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-7 offset-3 mt-3">
+      <h2>投稿編集</h2>
+      <%= form_with model: @post, url: admin_post_path, method: :patch do |f| %>
+      <div class="row">
+        <div class="col-7 mt-3">
+          <p><%= f.label :title, 'タイトル' %></p>
+        </div>
+        <div class="col-1 mt-3">
+          <p><%= f.text_field :title %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7 mt-3">
+          <p><%= f.label :name, 'タグ(,で区切ると複数のタグを登録できます)' %></p>
+        </div>
+        <div class="col-1 mt-3">
+          <p><%= f.text_field :name, value: @tag %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7 mt-3">
+          <p><%= f.label :introduction, '説明' %></p>
+        </div>
+        <div class="col-1 mt-3">
+          <p><%= f.text_area :introduction %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7 mt-3">
+          <p><%= f.label :images, '画像選択' %></p>
+        </div>
+        <div class="col-1 mt-3 mb-5">
+          <p><%= f.file_field :images, multiple: true %></p>
+        </div>
+        <div id="new-image"></div>
+      </div>
+      <div class="row">
+        <div class="col-7 mt-5">
+          <div id="star">
+            <%= f.label :rate, '満足度' %>
+            <%= f.hidden_field :rate %>
+          </div>
+        </div>
+        <div class="col-4 mt-5">
+          <div id="rate_<%= @post.id %>"></div>
+            <script>
+              let raty_elem = document.querySelector('#rate_<%= @post.id %>');
+              raty_elem.innerHTML = ""
+              let option = {  
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                scoreName: '[rate]',
+              };
+              raty(raty_elem,option);
+            </script>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 offset-7 mt-3">
+          <p><%= f.submit '編集を保存する' %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

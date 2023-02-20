@@ -1,0 +1,18 @@
+<% posts.each do |post| %>
+  <div class="blog-box">
+    <div class="blog-item">
+        <%= image_tag post.images[0], size: "150x150" %>
+      <section class="blog-text">
+        <h3 class="blog-text-heading">
+          <a><%= link_to post.title, admin_post_path(post.id) %></a>
+        </h3>
+        <% post.tags.limit(1).each do |tag| %>
+        <div class="actions mb-3">
+          <%= link_to tag.name, admin_search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
+        </div>
+        <% end %>
+        <p class="blog-date"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+        </section>
+    </div>
+  </div>
+<% end %>
