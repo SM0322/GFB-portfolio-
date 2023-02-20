@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <h3 classs="text-center">会員詳細</h1>
+      <% if customer.profile_image.attached? %>
+        <%= image_tag customer.profile_image, size: "150x150" %>
+      <% else %>
+        <%= image_tag 'no_image.jpg', size: "150x150" %>
+      <% end %>
+    <p><%= link_to customer.name, admin_customer_path(customer) %></p>
+  </div>
+  <div class="row">
+    <h3 classs="text-center">自己紹介</h1>
+    <p><%= customer.introduction %></p>
+  </div>
+  <div class="row">
+    <h3 classs="text-center">ステータス</h1>
+    <% if customer.is_deleted == false %>
+      <p class="text-success">有効</p></td>
+    <% else %>
+      <p class="text-muted">退会済</p></td>
+    <% end %>
+  </div>
+  <div class="row">
+    <p classs="text-center"><%= link_to '編集する', edit_admin_customer_path(customer) %></p>
+  </div>
+</div>

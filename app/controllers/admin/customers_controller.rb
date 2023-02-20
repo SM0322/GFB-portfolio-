@@ -23,6 +23,7 @@ class Admin::CustomersController < ApplicationController
   
   def post_comments
     @customer = Customer.find(params[:id])
+    @posts = @customer.posts.all
     @post_comments = @customer.post_comments.all
   end
   
