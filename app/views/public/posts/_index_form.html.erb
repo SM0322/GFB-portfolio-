@@ -1,33 +1,33 @@
 <% posts.each do |post| %>
-  <div class="list_content">
-    <div class="list_content_image">
-      <%= image_tag post.images[0], size: "300x300" %>
-        <h5 class="favorite_title">
+  <div class="col-md-6 col-sd-12 mx-auto mb-5">
+    <div class="card bg-white text-white">
+      <div class="position-relative">
+        <%= image_tag post.images[0], width: '100%', height: 'auto' %>
         <% if customer_signed_in? %>
           <span id = "favorite_<%= post.id %>">
             <%= render partial: "public/favorites/favorite", locals: {post: post} %>
           </span>
         <% end %>
-        </h5>
+      </div>
     </div>
-    <div class="list_content_author_image">
-      <% if post.customer.profile_image.attached? %>
-        <%= image_tag post.customer.profile_image, size: "150x150" %>
-      <% else %>
-        <%= image_tag 'no_image.jpg', size: "150x150" %>
+    <div class="row">
+      <div class="mx-auto">
+        <a class="text-center fs-1"><%= link_to truncate(post.title, omision: "...", length: 18), post_path(post.id) %></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mx-auto">
+      <% post.tags.limit(5).each do |tag| %>
+        <a class="text-center">
+          <%= link_to truncate(tag.name, omision: "...", length: 10), search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
+        </a>
       <% end %>
+      </div>
     </div>
-      
-      <%= post.customer.name %>
-    </div>
-    <a class="list_content_information"><%= link_to post.title, post_path(post.id) %></a>
-    <div>
-    <div class="list_tag">
-    <% post.tags.limit(3).each do |tag| %>
-        <a><%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %></a>
-    <% end %>
-    </div>
-    <p class="list_date"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+    <div class="row">
+      <div class="mx-auto">
+        <p class="text-center"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+      </div>
     </div>
   </div>
 <% end %>
