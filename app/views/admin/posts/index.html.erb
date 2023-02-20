@@ -2,10 +2,7 @@
   <div class="row">
     <div class="col mt-2">
       <h2 class="text-center mb-2">タグ一覧</h2>
-        <% @tags.each do |tag| %>
-          <%= link_to tag.name, admin_search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
-          <%= "(#{tag.posts.count})" %>
-        <% end %>
+      <%= render 'public/posts/tag_index', tags: @tags %>
       <h2 class="text-center mt-5 mb-2">投稿一覧</h2>
       <div class="d-flex flex-wrap">
         <%= render 'admin/posts/index_form', posts: @posts %>
