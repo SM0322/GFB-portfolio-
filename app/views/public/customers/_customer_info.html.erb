@@ -6,7 +6,7 @@
       <% else %>
         <%= image_tag 'no_image.jpg', size: "150x150" %>
       <% end %>
-    <p><%= customer.name %></p>
+    <p><%= link_to customer.name, customer_path(customer) %></p>
   </div>
   <div class="row">
     <h3 classs="text-center">自己紹介</h1>

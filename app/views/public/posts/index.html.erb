@@ -7,6 +7,8 @@
       <h2 class="text-center mb-2">タグ一覧</h2>
       <%= render 'public/posts/tag_index', tags: @tags %>
       <h2 class="text-center mt-5 mb-2">投稿一覧</h2>
+      <%= link_to '新しい順', posts_path(latest: "true") %>
+      <%= link_to '古い順', posts_path(old: "true") %>
       <div class="d-flex flex-wrap">
         <%= render 'public/posts/index_form', posts: @posts %>
       </div>

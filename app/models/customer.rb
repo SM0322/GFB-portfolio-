@@ -20,4 +20,5 @@ class Customer < ApplicationRecord
       @customer = Customer.where("name LIKE?", "%#{word}%")
     end 
   end
+  
 end
