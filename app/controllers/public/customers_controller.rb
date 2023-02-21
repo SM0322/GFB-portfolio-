@@ -20,7 +20,7 @@ class Public::CustomersController < ApplicationController
      flash[:notice] = "変更に成功しました"
      redirect_to customer_path(@customer.id)
     else
-     render :edit_customer_path
+     render :edit
     end 
   end
   

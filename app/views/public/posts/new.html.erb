@@ -1,5 +1,8 @@
 <div class="container-fluid">
   <div class="row">
+    <div>
+      <%= render 'public/customers/error', obj: @post %>
+    </div>
     <div class="col-7 offset-3 mt-3">
       <h2>新規投稿</h2>
       <%= form_with model: @post, url: posts_path, method: :post,local:true do |f| %>

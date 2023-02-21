@@ -9,10 +9,13 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params.merge(rate: params[:rate]))
     @post.customer_id = current_customer.id
     tag_list=params[:post][:name].split(',')         #splitは()の中の引数により文字列を分割し、分割された各文字列を要素としている。今回は「'」で区切られた文字列を要素としている。
-    @post.save
-    @post.save_tag(tag_list)                         #modelファイルにて定義されたメソッド
-    flash[:notice] = "投稿に成功しました"
-    redirect_to posts_path
+    if @post.save
+      @post.save_tag(tag_list)                         #modelファイルにて定義されたメソッド
+      flash[:notice] = "投稿に成功しました"
+      redirect_to posts_path
+    else
+      render :new
+    end 
   end 
 
   def index
@@ -49,7 +52,7 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "変更に成功しました"
       redirect_to post_path
     else
-      render:edit
+      render :edit
     end
   end
   

@@ -53,7 +53,10 @@
     </div>
   </div>
   <div class="row mt-3">
-  <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
+    <div>
+      <%= render 'public/customers/error', obj: @post_comment %>
+    </div>
+    <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
     <div class="col-md-8 offset-md-2">
       <p><%= f.text_area :message, rows: '3', cols: '90%', placeholder: "コメントをここに入力してください。" %></p></br>
       <p><%= f.submit "Submit", class: "submit_btn" %></p>

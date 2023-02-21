@@ -2,6 +2,9 @@
   <div class="row">
     <div class="col offset-5 mt-3">
       <h2>ユーザー情報編集</h2>
+      <div>
+        <%= render 'public/customers/error', obj: @customer %>
+      </div>
       <%= form_with model: @customer, url: customer_path(@customer), method: :patch do |f| %>
       <div class="row">
         <div class="col-2 mt-3">
