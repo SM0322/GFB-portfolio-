@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
   before_action :ensure_current_customer, {only: [:edit, :update, :unsubscribe, :withdrawal]}
   
   def index
