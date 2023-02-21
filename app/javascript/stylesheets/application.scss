@@ -1,11 +1,11 @@
 @import '~bootstrap/scss/bootstrap';
 
-// * {
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-//   color: #6c6b6b;
-// }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6b6b;
+}
 
 // a {
 //   text-decoration: none;
@@ -118,14 +118,9 @@
   right: 0;
   background-color: #ffffff;
   color: #ffb6c1;
-  height: 23px;
+  height: 25px;
   font-size: 20px;
 }
-
-// .new-image {
-//   display: flex;
-//   justify-content: flex-start;
-// }
 
 .new-img {
   width: 200px;
@@ -137,6 +132,132 @@
   font-family: 'Kaushan', cursive, sans-serif;
 }
 
+.fs-2 {
+  font-size: 30px;
+  font-family: 'Kaushan', cursive, sans-serif;
+}
+
+.main__visual-infomation-subtitle {
+    background-color: var(--orange);
+    border-radius: 25px;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: 1.2;
+    line-height: 26px;
+    margin: auto;
+    padding: 0 12px;
+    text-align: center;
+}
+
+.proxima-semibold {
+    font-family: proxima-nova,sans-serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.text-box {
+  width: 60%;
+  text-align: center;
+}
+
+.profile_box {
+  padding: 5%;
+  background-color: #7fffd4;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.profile_title {
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Kaushan', cursive, sans-serif;
+}
+
+.profile_content {
+  text-align: center;
+}
+
+.edit_btn {
+  display: block;
+  width: 100px;
+  padding: 5px 0;
+  border-radius: 6px;
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    to right,
+    #ff7f50 0%,
+    #ff7f50 50%,
+    #000000 50%,
+    #000000 100%
+  );
+  box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+  transition: background-position ease 0.4s;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+}
+.edit_btn:hover {
+  background-position: 0 0;
+}
+
+.submit_btn {
+  display: block;
+  width: 100px;
+  padding: 5px 0;
+  border-radius: 6px;
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    to right,
+    #00bfff 0%,
+    #00bfff 50%,
+    #000000 50%,
+    #000000 100%
+  );
+  box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+  transition: background-position ease 0.4s;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+}
+.submit_btn:hover {
+  background-position: 0 0;
+}
+
+.destroy_btn {
+  width: 100px;
+  padding: 5px 0;
+  border-radius: 6px;
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    to right,
+    #b22222 0%,
+    #b22222 50%,
+    #000000 50%,
+    #000000 100%
+  );
+  box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+  transition: background-position ease 0.4s;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+}
+.destroy_btn:hover {
+  background-position: 0 0;
+}
 // .favorite_background {
 //   background-color: #ffffff;
 //   color: #ffb6c1;
