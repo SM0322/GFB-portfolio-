@@ -164,26 +164,13 @@ h1 h2 a p {
   text-align: center;
 }
 
-.profile_box {
-  padding: 5%;
+.box {
   background-color: #7fffd4;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
 }
 
-.profile_title {
-  text-align: center;
-  font-size: 30px;
-  font-family: 'Kaushan', cursive, sans-serif;
-}
-
-.profile_content {
-  text-align: center;
-}
 
 .edit_btn {
-  display: block;
+  display: inline-block;
   width: 100px;
   padding: 5px 0;
   border-radius: 6px;
@@ -210,7 +197,7 @@ h1 h2 a p {
 }
 
 .submit_btn {
-  display: block;
+  display: inline-block;
   width: 100px;
   padding: 5px 0;
   border-radius: 6px;
@@ -237,6 +224,7 @@ h1 h2 a p {
 }
 
 .destroy_btn {
+  display: inline-block;
   width: 100px;
   padding: 5px 0;
   border-radius: 6px;

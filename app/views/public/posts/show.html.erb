@@ -4,11 +4,11 @@
       <div class="main__visual-infomation-subtitle proxima-semibold">Post</div>
       <h2 class="text-center mb-3"><%= @post.title %></h2>
       <div class="main__visual-infomation-subtitle proxima-semibold">Tags</div>
-        <div class="d-flex flex-wrap mt-3 mb-3">
-          <% @tag.each do |tag| %>
-            <p class="m-1"><%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %></p>
-          <% end %>
-        </div>
+      <div class="d-flex flex-wrap mt-3 mb-3">
+        <% @tag.each do |tag| %>
+          <p class="m-1"><%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %></p>
+        <% end %>
+      </div>
       <div class="main__visual-infomation-subtitle proxima-semibold">Rating</div>
       <div class="col-md-8 offset-md-2 mt-3">
         <div id="rate_<%= @post.id %>"></div>
@@ -42,26 +42,30 @@
       </div>
     </div>
   </div>
-  <div class="row  mt-3">
+  <div class="row mt-3">
     <div class="col-md-8 offset-md-2">
       <p><%= @post.introduction %></p>
     </div>
   </div>
-  <div class="row  mt-3">
+  <div class="row mt-3">
     <div class="col-md-4 offset-md-1">
       <p>Comments: <%= @post_comments.count %></p>
     </div>
   </div>
   <div class="row mt-3">
+    <div class="col-md-12 col-sm-12">
     <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
-    <div>
-      <%= render 'public/customers/error', obj: @post_comment %>
+    <%= render 'public/customers/error', obj: @post_comment %>
+    <div class="row mt-3">
+      <div class="col-md-8 offset-md-2">
+        <%= f.text_area :message, rows: '3', placeholder: "コメントをここに入力してください。",class: "col-md-12" %>
+      </div>
+      <div class="col-md-2 mt-4  text-center">
+        <%= f.submit "submit", class: "submit_btn" %>
+      </div>
     </div>
-    <div class="col-md-8 offset-md-2">
-      <p><%= f.text_area :message, rows: '3', cols: '90%', placeholder: "コメントをここに入力してください。" %></p></br>
-      <p><%= f.submit "submit", class: "submit_btn" %></p>
+    <% end %>
     </div>
-  <% end %>
   </div>
   <% @post_comments.each do |comment| %>
   <div class="row mt-3">
@@ -90,15 +94,18 @@
     <div class="col-md-12">
     <h2 class="text-center fs-2">about post</h2>
     </div>
-    <div class="col-md-1 offset-md-5">
-      <p><%= link_to 'edit', edit_post_path(@post), class: 'edit_btn' %>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-1 offset-md-4 col-sm-5 text-center">
+      <%= link_to 'edit', edit_post_path(@post), class: 'edit_btn' %>
+    </div>
+    <div class="col-md-1 offset-md-4 col-sm-5 text-center">
       <%= link_to "delete", post_path(@post), method: :delete,class: "destroy_btn" %>
-      </p>
     </div>
   </div>
   <% end %>
   <div class="row mt-3">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-10 offset-md-1 box">
       <%= render 'public/customers/customer_info', customer: @customer %>
     </div>
   </div>

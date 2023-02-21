@@ -1,17 +1,43 @@
-<div class="profile_box">
-  <h2 class="profile_title">Profile</h1>
-  <p class="profile_content fs-1">
-  <% if customer.profile_image.attached? %>
-    <%= image_tag customer.profile_image, size: "150x150" %>
-  <% else %>
-    <%= image_tag 'no_image.jpg', size: "150x150" %>
-  <% end %>
-  </p>
-  <p class="profile_content fs-1"><%= customer.name %></p>
-  <h3 class="profile_title fs-1">Introduction</h1>
-  <p class="profile_content fs-1"><%= customer.introduction %></p>
-  <p class="profile_title"><%= link_to "view more posts", customer_path(customer), class: "fs-2" %></p>
-  <% if customer == current_customer %>
-    <p class="text-center"><%= link_to 'edit', edit_customer_path(customer), class: "edit_btn" %></p>
-  <% end %>
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="text-center">Profile</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center">
+    <% if customer.profile_image.attached? %>
+      <%= image_tag customer.profile_image, size: "150x150" %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', size: "150x150" %>
+    <% end %>
+    </p>
+  </div>
+</div>  
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center"><%= customer.name %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center">Introduction</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center"><%= customer.introduction %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center"><%= link_to "view more posts", customer_path(customer), class: "fs-2" %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <% if customer == current_customer %>
+      <div class="col-md-1 offset-md-5  text-center"><%= link_to 'edit', edit_customer_path(customer), class: "edit_btn" %></div>
+    <% end %>
+  </div>
 </div>
