@@ -1,8 +1,13 @@
 class Admin::PostsController < ApplicationController
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
     @tags = Tag.all
+    if params[:latest]
+      @posts = Post.latest.page(params[:page])
+    elsif params[:old]
+      @posts = Post.old.page(params[:page])
+    else
+      @posts = Post.page(params[:page])
+    end
   end
 
   def show
@@ -39,7 +44,7 @@ class Admin::PostsController < ApplicationController
   def search_tag
     @tags = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.all
+    @posts = @tag.posts.page(params[:page])
   end
   
   private

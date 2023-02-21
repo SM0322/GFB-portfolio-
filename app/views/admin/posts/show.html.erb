@@ -1,20 +1,17 @@
 <div class="container">
-  <div class="row">
-    <div class="col-2 mt-2">
-      <%= render 'admin/customers/customer_info', customer: @customer %>
-    </div>
-    <div class="col-9 offset-1 mt-2">
-      <h2 class="text-center mb-2"><%= @post.title %></h2>
-      <div class="sliderWrapper mt-2">
-	      <div class="slider">
-          <% @post.images.each do |image| %>
-            <div><%= image_tag image, size: "1000x600" %></div>
+  <div class="row mt-2">
+    <div class="col-md-4 mt-3">
+      <div class="main__visual-infomation-subtitle proxima-semibold">Post</div>
+      <h2 class="text-center mb-3"><%= @post.title %></h2>
+      <div class="main__visual-infomation-subtitle proxima-semibold">Tags</div>
+        <div class="d-flex flex-wrap mt-3 mb-3">
+          <% @tag.each do |tag| %>
+            <p class="m-1"><%= link_to tag.name, admin_search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %></p>
           <% end %>
-	      </div>
-      </div>
-      <div class="row mt-2">
-        <div class="col-3">
-          <div id="rate_<%= @post.id %>"></div>
+        </div>
+      <div class="main__visual-infomation-subtitle proxima-semibold">Rating</div>
+      <div class="col-md-8 offset-md-2 mt-3">
+        <div id="rate_<%= @post.id %>"></div>
           <script>
             let elem = document.querySelector('#rate_<%= @post.id %>');
             let opt = {  
@@ -26,49 +23,71 @@
              };
             raty(elem,opt);
           </script>
-        </div>
       </div>
-      <div class="mt-2">
-        <p class="text-box"><%= @post.introduction %></p>
-        <p>
-          タグ:
-          <% @tag.each do |tag| %>
-            <%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
-          <% end %>
-        </p>
-      </div>
-      <div class="mt-2">
-        <p><%= link_to '編集する', edit_admin_post_path, class: 'btn btn-warning btn-sm btn-block mb-3' %></p>
-      </div>
-      <div class="mt-5">
-        <div>
-          <p>コメント件数: <%= @post_comments.count %></p>
-          <% @post_comments.each do |comment| %>
-            <div class="mt-2">
-              <p><%= comment.customer.name %>: </p>
-              <p><%= comment.message %></p>
-              <div class="row">
-                <div class="col">
-                  <%= comment.created_at.strftime('%Y/%m/%d') %>
-                </div>
-                <div class="pull-right">
-                    <p><%= link_to "削除する", post_post_comment_path(comment.post, comment), method: :delete,class: "btn btn-danger" %></p>
-                </div>
-              </div>
+    </div>
+    <div class="col-md-7 offset-md-1">
+      <div class="sliderWrapper">
+	      <div class="slider">
+          <% @post.images.each do |image| %>
+            <div class="card bg-white text-white">
+              <%= image_tag image, width: '100%', height: '300px' %>
             </div>
           <% end %>
-        </div>
+	      </div>
       </div>
-      <div class="mt-5">
-      <h2 class="text-center"><%= @customer.name %>さんの他の投稿</h2>
-        <div class="d-flex justify-content-around">
-          <%= render 'admin/posts/index_form', posts: @posts %>
-        </div>
-        <div class="text-center">
-          <p class="link_tag">
-            <%= link_to 'すべて見る', admin_customer_path(@customer), class: 'btn btn-dark btn-sm btn-block mb-3' %>
-          </p>
-        </div>
+    </div>
+  </div>
+  <div class="row  mt-3">
+    <div class="col-md-8 offset-md-2">
+      <p><%= @post.introduction %></p>
+    </div>
+  </div>
+  <div class="row  mt-3">
+    <div class="col-md-4 offset-md-1">
+      <p>Comments: <%= @post_comments.count %></p>
+    </div>
+  </div>
+  <% @post_comments.each do |comment| %>
+  <div class="row mt-3">
+    <div class="col-md-10 offset-md-1 mt-3">
+      <p><%= comment.customer.name %></p>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-md-11 offset-md-1">
+      <p><%= comment.message %></p>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="offset-md-1">
+      <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+    </div>
+    <div class="col-md-1 offset-md-8">
+      <p><%= link_to "Delete", admin_post_post_comment_path(comment.post, comment), method: :delete,class: "destroy_btn" %></p>
+    </div>
+  </div>
+  <% end %>
+  <div class="row mt-3">
+    <div class="col-md-12">
+    <h2 class="text-center fs-2">about post</h2>
+    </div>
+    <div class="col-md-1 offset-md-5">
+      <p>
+        <%= link_to 'edit', edit_admin_post_path, class: 'edit_btn' %>
+      </p>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-10 offset-md-1">
+      <%= render 'admin/customers/customer_info', customer: @customer %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-10 offset-md-1">
+      <h2 class="text-center fs-2"><%= @customer.name %>'s posts</h2>
+      <div class="d-flex flex-wrap">
+        <%= render 'admin/posts/index_form', posts: @posts %>
+      </div>
     </div>
   </div>
 </div>

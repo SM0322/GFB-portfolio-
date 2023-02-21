@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-9 offset-1 mt-2">
-      <h2 class="text-center mb-2"><%= @customer.name %>さんのコメント一覧</h2>
+      <h2 class="text-center mb-2 fs-2"><%= @customer.name %>さんのコメント一覧</h2>
         <div class="d-flex flex-wrap">
         <% @post_comments.each do |comment| %>
           <div class="m-4">
-            <p><%= link_to comment.post.title, admin_post_path(comment.post) %>へのコメント</p>
-            <p><%= comment.message %></p>
-            <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-            <p><%= link_to '削除', admin_post_comment_path(comment), method: :delete,class: "btn btn-danger" %></p>
+            <p class="fs-1"><%= link_to comment.post.title, admin_post_path(comment.post) %>へのコメント</p>
+            <p class="fs-1"><%= comment.message %></p>
+            <p class="fs-1"><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+            <p class="fs-1"><%= link_to 'Delete', admin_post_comment_path(comment), method: :delete,class: "btn btn-danger" %></p>
           </div>
         <% end %>
         </div>

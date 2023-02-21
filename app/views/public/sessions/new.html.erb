@@ -1,56 +1,52 @@
 <div class="container">
-  
   <div class="row">
-    <div class="col-6 offset-3 mt-5">
-      <h2><span class="bg-secondary">ログイン</span></h2>
-      <p><span class="bg-secondary">会員の方はこちらからログイン</span></p>
+    <div class="col-md-6 offset-md-3 col-sm-11 offset-sm-1 mt-5">
+      <h2 class="fs-2">Sign_in</h2>
     </div>
   </div>
-
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="row">
-      <div class="col-3 offset-3">
-        <p><%= f.label :email %></p>
+      <div class="col-md-5 offset-md-2 col-sm-11 offset-sm-1">
+        <p class="fs-1"><%= f.label :email %></p>
       </div>
-      <div class="col-1 offset-1">
+      <div class="col-md-1 col-sm-11 offset-sm-1">
         <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
       </div>
     </div>
-    
     <div class="row">  
-      <div class="col-3 offset-3">
-        <p><%= f.label :password %></p>
+      <div class="col-md-5 offset-md-2 col-sm-11 offset-sm-1">
+        <p class="fs-1"><%= f.label :password %></p>
       </div>
-      <div class="col-1 offset-1">
+      <div class="col-md-1 col-sm-11 offset-sm-1">
         <p><%= f.password_field :password, autocomplete: "current-password" %></p>
       </div>
     </div>
-    
     <div class="row">
-      <div class="col-3 offset-7">
+      <div class="col-md-5 offset-md-2 col-sm-11 offset-sm-1">
         <% if devise_mapping.rememberable? %>
-        <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+        <p class="fs-1"><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
         <% end %>
       </div>
     </div>
-    
     <div class="row">
-        <div class="col-3 offset-7">
-          <p class="text-center"><%= f.submit "ログイン", class: 'btn btn-primary btn-sm' %></p>
-        </div>
+      <div class="col-md-3 offset-md-8 col-sm-1 offset-sm-1">
+        <p class="fs-2"><%= f.submit "Sign_in", class: 'btn btn-success btn-sm' %></p>
+      </div>
     </div>
   <% end %>
 
   <div class="row">
-    <div class="col-6 offset-3 mt-5">
-      <h2><span class="bg-secondary">会員登録がお済みでない方</span></h2>
+    <div class="col-md-6 offset-md-3 mt-5">
+      <h2 class="fs-2">会員登録がお済みでない方</h2>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-6 offset-3 mt-2">
-      <span><%= link_to "こちら", new_registration_path(resource_name) %></span>
-      から新規登録を行ってください。
+    <div class="col-md-5 offset-md-2 col-sm-11 offset-sm-1">
+      <p class="fs-1">
+        <%= link_to "こちら", new_registration_path(resource_name) %>
+        から新規登録を行ってください。
+      </p>
     </div>
   </div>
 </div>

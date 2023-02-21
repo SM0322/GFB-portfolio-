@@ -1,11 +1,12 @@
 <div class="container">
-  <div class="row">
-    <div class="col offset-1 mt-2">
-      <h2 class="text-center mb-2">タグ一覧</h2>
-      <%= render 'public/posts/tag_index', tags: @tags %>
-      <h2 class="text-center mt-5 mb-2"><%= @tag.name %>の投稿一覧</h2>
+  <div class="row mt-2">
+    <div class="col-12 mt-2">
+      <h2 class="text-center mb-2 fs-2">tags</h2>
+      <%= render 'admin/posts/tag_index', tags: @tags %>
+      <h2 class="text-center mb-2 fs-2"><%= @tag.name %>'s posts</h2>
       <div class="d-flex flex-wrap">
         <%= render 'admin/posts/index_form', posts: @posts %>
+        <%= paginate @posts %>
       </div>
     </div>
   </div>
