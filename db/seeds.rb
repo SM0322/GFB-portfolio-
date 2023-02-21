@@ -10,3 +10,20 @@
    email: 'test@test.com',
    password: 'testtarou'
 )
+
+  Tag.create(
+  [{ name: 'HG' },
+  { name: 'MG' },
+  { name: 'RG' },
+  { name: 'EG' },
+  { name: '素組' },
+  { name: 'スミ入れ' },
+  { name: '部分塗装' },
+  { name: '艶消し' },
+  { name: 'ミリタリー' },
+  { name: '車' },
+  { name: 'ロボット' },
+  { name: '飛行機' },
+  { name: 'アニメ' },
+  { name: '城' },
+])

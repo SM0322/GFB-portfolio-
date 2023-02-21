@@ -7,11 +7,8 @@ class Public::PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(post_params.merge(rate: params[:rate]))
-    @post.customer_id = current_customer.id
-    tag_list=params[:post][:name].split(',')         #splitは()の中の引数により文字列を分割し、分割された各文字列を要素としている。今回は「'」で区切られた文字列を要素としている。
+    @post = current_customer.posts.build(post_params.merge(rate: params[:rate]))
     if @post.save
-      @post.save_tag(tag_list)                         #modelファイルにて定義されたメソッド
       flash[:notice] = "投稿に成功しました"
       redirect_to posts_path
     else
@@ -72,7 +69,7 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:rate, :title, :introduction, images: [])
+    params.require(:post).permit(:rate, :title, :introduction, tag_ids: [], images: [])
   end
   
   def ensure_post_customer

@@ -53,10 +53,10 @@
     </div>
   </div>
   <div class="row mt-3">
+    <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
     <div>
       <%= render 'public/customers/error', obj: @post_comment %>
     </div>
-    <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
     <div class="col-md-8 offset-md-2">
       <p><%= f.text_area :message, rows: '3', cols: '90%', placeholder: "コメントをここに入力してください。" %></p></br>
       <p><%= f.submit "submit", class: "submit_btn" %></p>
@@ -91,7 +91,7 @@
     <h2 class="text-center fs-2">about post</h2>
     </div>
     <div class="col-md-1 offset-md-5">
-      <p><%= link_to 'edit', edit_post_path, class: 'edit_btn' %>
+      <p><%= link_to 'edit', edit_post_path(@post), class: 'edit_btn' %>
       <%= link_to "delete", post_path(@post), method: :delete,class: "destroy_btn" %>
       </p>
     </div>
