@@ -11,5 +11,7 @@
   <h3 class="profile_title fs-1">introduction</h1>
   <p class="profile_content fs-1"><%= customer.introduction %></p>
   <p class="profile_title"><%= link_to "view more posts", customer_path(customer), class: "fs-2" %></p>
-  <p class="text-center"><%= link_to 'edit', edit_customer_path(customer), class: "edit_btn" %></p>
+  <% if customer == current_customer %>
+    <p class="text-center"><%= link_to 'edit', edit_customer_path(customer), class: "edit_btn" %></p>
+  <% end %>
 </div>

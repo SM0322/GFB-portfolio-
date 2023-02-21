@@ -85,17 +85,27 @@
     </div>
   </div>
   <% end %>
+  <% if @post.customer == current_customer %>
+  <div class="row mt-3">
+    <div class="col-md-12">
+    <h2 class="text-center fs-2">about post</h2>
+    </div>
+    <div class="col-md-1 offset-md-5">
+      <p><%= link_to 'edit', edit_post_path, class: 'edit_btn' %>
+      <%= link_to "delete", post_path(@post), method: :delete,class: "destroy_btn" %>
+      </p>
+    </div>
+  </div>
+  <% end %>
   <div class="row mt-3">
     <div class="col-md-10 offset-md-1">
       <%= render 'public/customers/customer_info', customer: @customer %>
-      <p><%= link_to '編集する', edit_post_path, class: 'btn btn-warning btn-sm btn-block mb-3' %></p>
-      <p><%= link_to "記事を削除する", post_path(@post), method: :delete,class: "btn btn-danger btn-sm btn-block mb-3" %></p>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col-md-10 offset-md-1">
       <h2 class="text-center"><%= @customer.name %>さんの他の投稿</h2>
-      <div class="d-flex justify-content-around">
+      <div class="d-flex flex-wrap">
         <%= render 'public/posts/index_form', posts: @posts %>
       </div>
     </div>
