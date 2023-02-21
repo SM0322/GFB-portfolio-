@@ -4,46 +4,46 @@
       <h2>新規投稿</h2>
       <%= form_with model: @post, url: posts_path, method: :post,local:true do |f| %>
       <div class="row">
-        <div class="col-7 mt-3">
+        <div class="col-md-8 col-sm-12 mt-3">
           <p><%= f.label :title, 'タイトル' %></p>
         </div>
-        <div class="col-1 mt-3">
+        <div class="col-md-1 col-sm-12 mt-3">
           <p><%= f.text_field :title %></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-7 mt-3">
+        <div class="col-md-8 col-sm-12 mt-3">
           <p><%= f.label :name, 'タグ(,で区切ると複数のタグを登録できます)' %></p>
         </div>
-        <div class="col-1 mt-3">
+        <div class="col-md-1 col-sm-12 mt-3">
           <p><%= f.text_field :name, value: @tag %></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-7 mt-3">
+        <div class="col-md-8 col-sm-12 mt-3">
           <p><%= f.label :introduction, '説明' %></p>
         </div>
-        <div class="col-md-1 col-sm-1 mt-3">
+        <div class="col-md-1 col-sm-12 mt-3">
           <p><%= f.text_area :introduction %></p>
         </div>
       </div>
       <div class="row">
-          <div class="col-md-11 col-sm-11 mt-3">
+          <div class="col-md-8 col-sm-12 mt-3">
           <p><%= f.label :images, '画像選択' %></p>
         </div>
-        <div class="col-1 mt-3 mb-5">
+        <div class="col-md-1 col-sm-12 mt-3">
           <p><%= f.file_field :images, multiple: true %></p>
         </div>
         <div id="new-image"></div>
       </div>
       <div class="row">
-        <div class="col-7 mt-5">
+        <div class="col-md-8 col-sm-12 mt-3">
           <div id="star">
             <%= f.label :rate, '満足度' %>
             <%= f.hidden_field :rate %>
           </div>
         </div>
-        <div class="col-4 mt-5">
+        <div class="col-md-4 col-sm-12 mt-3">
           <div id="rate_<%= @post.id %>"></div>
             <script>
               let raty_elem = document.querySelector('#rate_<%= @post.id %>');
@@ -59,7 +59,7 @@
           </div>
         </div>
       <div class="row">
-        <div class="col-4 offset-7 mt-3">
+        <div class="col-md-4 offset-md-8 mt-3">
           <p><%= f.submit '投稿する' %></p>
         </div>
       </div>
