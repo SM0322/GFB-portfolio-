@@ -1,10 +1,12 @@
 <div class="container">
-  <div class="row">
-    <div class="col-2 mt-2">
+  <div class="row mt-2">
+    <div class="col-md-6 offset-md-3">
       <%= render 'public/customers/customer_info', customer: current_customer %>
     </div>
-    <div class="col-9 offset-1 mt-2">
-      <h2 class="text-center mb-2"><%= @customer.name %>さんのいいね一覧</h2>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-10 offset-md-1 mt-2">
+      <h2 class="text-center mb-2 fs-2">Favorites</h2>
       <div class="d-flex flex-wrap">
         <%= render 'public/posts/index_form', posts: @posts %>
       </div>

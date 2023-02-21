@@ -1,18 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="col-2 mt-2">
-      <%= render 'public/customers/customer_info', customer: current_customer %>
-    </div>
-    <div class="col-9 offset-1 mt-2">
-      <h2 class="text-center mb-2">タグ一覧</h2>
+    <div class="col-md-10 offset-md-1 mt-2">
+      <h2 class="text-center mb-2 fs-2">tags</h2>
       <%= render 'public/posts/tag_index', tags: @tags %>
-      <h2 class="text-center mt-5 mb-2">投稿一覧</h2>
-      <%= link_to '新しい順', posts_path(latest: "true") %>
-      <%= link_to '古い順', posts_path(old: "true") %>
-      <div class="d-flex flex-wrap">
-        <%= render 'public/posts/index_form', posts: @posts %>
-        <%= paginate @posts %>
-      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1 mt-2">
+      <h2 class="text-center mt-5 mb-2 fs-2">posts</h2>
+    </div>
+    <div class="col-md-1 offset-md-10 mt-2">
+      <%= link_to 'latest', posts_path(latest: "true"), class: "fs-1" %>
+    </div>
+    <div class="col-md-1 mt-2">
+      <%= link_to 'old', posts_path(old: "true"), class: "fs-1" %>
+    </div>
+    <div class="d-flex flex-wrap">
+      <%= render 'public/posts/index_form', posts: @posts %>
+    </div>
+    <div class="col-md-2 offset-md-5 col-sm-6 offset-sm-3 mt-2">
+      <%= paginate @posts, class: "fs-2" %>
     </div>
   </div>
 </div>

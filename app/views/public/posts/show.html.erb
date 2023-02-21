@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row  mt-2">
+  <div class="row mt-2">
     <div class="col-md-4 mt-3">
       <div class="main__visual-infomation-subtitle proxima-semibold">Post</div>
       <h2 class="text-center mb-3"><%= @post.title %></h2>
@@ -59,7 +59,7 @@
     <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
     <div class="col-md-8 offset-md-2">
       <p><%= f.text_area :message, rows: '3', cols: '90%', placeholder: "コメントをここに入力してください。" %></p></br>
-      <p><%= f.submit "Submit", class: "submit_btn" %></p>
+      <p><%= f.submit "submit", class: "submit_btn" %></p>
     </div>
   <% end %>
   </div>
