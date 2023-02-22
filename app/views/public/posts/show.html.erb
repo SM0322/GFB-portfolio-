@@ -100,7 +100,7 @@
       <%= link_to 'edit', edit_post_path(@post), class: 'edit_btn' %>
     </div>
     <div class="col-md-1 offset-md-4 col-sm-5 text-center">
-      <%= link_to "delete", post_path(@post), method: :delete,class: "destroy_btn" %>
+      <%= link_to "delete", post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' },class: "destroy_btn" %>
     </div>
   </div>
   <% end %>

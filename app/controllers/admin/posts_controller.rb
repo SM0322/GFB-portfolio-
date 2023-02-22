@@ -43,12 +43,12 @@ class Admin::PostsController < ApplicationController
   def search_tag
     @tags = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.page(params[:page])
+    @posts = @tag.posts.order('id DESC').page(params[:page])
   end
   
   private
   
   def post_params
-    params.require(:post).permit(:rate, :title, :introduction, images: [])
+    params.require(:post).permit(:rate, :title, :introduction, tag_ids: [], images: [])
   end
 end

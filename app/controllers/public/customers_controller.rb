@@ -28,7 +28,7 @@ class Public::CustomersController < ApplicationController
   def favorites
     @customer = Customer.find(params[:id])
     favorites_post_id = Favorite.where(customer_id: @customer.id).pluck(:post_id)
-    @posts = Post.find(favorites_post_id).order('id DESC')
+    @posts = Post.find(favorites_post_id)
   end
 
   def unsubscribe
