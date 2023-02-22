@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
   end
   
   def create
-    @post = current_customer.posts.build(post_params.merge(rate: params[:rate]))
+    @post = current_customer.posts.new(post_params)
     if @post.save
       flash[:notice] = "投稿に成功しました"
       redirect_to posts_path
@@ -43,7 +43,7 @@ class Public::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params.merge(rate: params[:rate]))
+    if @post.update(post_params)
       flash[:notice] = "変更に成功しました"
       redirect_to post_path
     else

@@ -44,7 +44,7 @@ class Public::CustomersController < ApplicationController
   private
   
   def customer_params
-    params.require(:customer).permit(:name, :introduction, :profile_image, :favorite.id)
+    params.require(:customer).permit(:name, :introduction, :profile_image)
   end 
   
   def ensure_current_customer

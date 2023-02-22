@@ -26,7 +26,7 @@ class Admin::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params.merge(rate: params[:rate]))
+    if @post.update(post_params)
       flash[:notice] = "変更に成功しました"
       redirect_to admin_post_path
     else
