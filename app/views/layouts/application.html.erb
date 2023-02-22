@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>プラモ for Beginners!</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
@@ -13,11 +13,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
   </head>
-
   <body>
     <%= render 'layouts/header' %>
     <main>
-      <p id="notice" class="notice"><%= notice %></p>
+      <p id="notice" class="text-center"><%= notice %></p>
       <%= yield %>
     </main>
     <%= render 'layouts/footer' %>
