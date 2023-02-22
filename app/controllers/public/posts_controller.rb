@@ -23,7 +23,7 @@ class Public::PostsController < ApplicationController
     elsif params[:old]
       @posts = Post.old.page(params[:page])
     else
-      @posts = Post.page(params[:page])
+      @posts = Post.order('id DESC').page(params[:page])
     end
   end
 
@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
   def search_tag
     @tags = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.page(params[:page])
+    @posts = @tag.posts.order('id DESC').page(params[:page])
   end 
   
   private

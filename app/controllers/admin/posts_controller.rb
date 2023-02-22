@@ -7,14 +7,14 @@ class Admin::PostsController < ApplicationController
     elsif params[:old]
       @posts = Post.old.page(params[:page])
     else
-      @posts = Post.page(params[:page])
+      @posts = Post.order('id DESC').page(params[:page])
     end
   end
 
   def show
     @post = Post.find(params[:id])
     @customer = @post.customer
-    @posts = @customer.posts.order('id DESC').limit(4)
+    @posts = @customer.posts.where.not(id: @post.id).order('id DESC').limit(4)
     @tag = @post.tags.all
     @post_comment = PostComment.new
     @post_comments = @post.post_comments.all
