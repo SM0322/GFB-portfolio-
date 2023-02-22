@@ -26,10 +26,8 @@ class Admin::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    tag_list=params[:post][:name].split(',')
     if @post.update(post_params.merge(rate: params[:rate]))
-      PostTag.where(post_id: @post.id).destroy_all
-      @post.save_tag(tag_list)
+      flash[:notice] = "変更に成功しました"
       redirect_to admin_post_path
     else
       render:edit
