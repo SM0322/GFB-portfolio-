@@ -33,6 +33,7 @@
 - UIフレーム: https://app.diagrams.net/#G1Qu2pSLeUFOtFcdGxlmrXNV0Me_cVvNvv
 - ワイヤーフレーム: https://app.diagrams.net/#G1Vz9MBlB5TNBBlgmHftmedkEcF3bJEGBi
 - WBS: https://docs.google.com/spreadsheets/d/1rajiUV1arUFovC_AmXLVsA70QqrQZpW9PYjKlEzARsw/edit#gid=1773513600
+- テスト仕様書: https://docs.google.com/spreadsheets/d/1nh9Kvqr-iKyDOW8wgVYJD-DPCdcy697FOSKmSqbti2M/edit#gid=0
 
 ## 開発環境
 - OS：Linux(CentOS)
