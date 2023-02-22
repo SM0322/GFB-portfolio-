@@ -27,7 +27,7 @@ class Public::CustomersController < ApplicationController
   
   def favorites
     @customer = Customer.find(params[:id])
-    favorites_post_id = Favorite.where(customer_id: @customer.id).pluck(:post_id)
+    favorites_post_id = Favorite.order('id DESC').where(customer_id: @customer.id).pluck(:post_id)
     @posts = Post.find(favorites_post_id)
   end
 
@@ -44,7 +44,7 @@ class Public::CustomersController < ApplicationController
   private
   
   def customer_params
-    params.require(:customer).permit(:name, :introduction, :profile_image)
+    params.require(:customer).permit(:name, :introduction, :profile_image, :favorite.id)
   end 
   
   def ensure_current_customer

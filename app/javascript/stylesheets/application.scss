@@ -249,6 +249,10 @@ h1 h2 a p {
 .destroy_btn:hover {
   background-position: 0 0;
 }
+
+.field_with_errors {
+  display: contents;
+}
 // .favorite_background {
 //   background-color: #ffffff;
 //   color: #ffb6c1;
