@@ -5,7 +5,7 @@
         <%= image_tag post.images[0], width: '100%', height: 'auto' %>
         <% if customer_signed_in? %>
           <span id = "favorite_<%= post.id %>">
-            <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+            <p class="favorite_background"><%= render partial: "public/favorites/favorite", locals: {post: post} %></p>
           </span>
         <% end %>
       </div>

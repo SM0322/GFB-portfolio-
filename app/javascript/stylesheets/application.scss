@@ -7,111 +7,6 @@
   color: #6c6b6b;
 }
 
-// a {
-//   text-decoration: none;
-//   text-align: center;
-//   margin: 5px;
-// }
-
-// h2 {
-//   text-align: center;
-//   font-size: 25px;
-// }
-
-// .notice {
-//   text-align: center;
-// }
-
-// .lists {
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: space-evenly;
-//   text-align: center;
-//   width: 80%;
-// }
-
-// .list_content {
-//   border-bottom: 1px solid black;
-//   padding: 5%;
-//   width: 50%;
-// }
-
-// .list_content_image {
-//   margin: auto;
-//   position: relative;
-// }
-// .list_content_author_image {
-//   position: absolute;
-//   top: 250px;
-//   left: 250px;  
-// }
-// .favorite_title {
-//   position: absolute;
-//   top: 250px;
-//   left: 270px;
-//   background-color: #ffffff;
-// }
-
-
-
-// .list_content_information {
-//   text-align: center;
-// }
-
-// .list_tag {
-//   display: flex;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   text-align: center;
-// }
-
-// .list_date {
-//   margin-top: 10px;
-//   font-size: 12px;
-//   display: inline-block;
-// }
-
-// .blog-box {
-//   margin: 5px;
-// }
-
-// .blog-item {
-//   padding-bottom: 10px;
-//   margin-bottom: 10px;
-//   display: flex;
-//   justify-content: flex-start;
-// }
-
-// .blog-image {
-//   height: 180px;
-// }
-
-// .blog-text {
-//   padding: 10px 0 0 20px;
-// }
-
-// .blog-text-heading {
-//   padding-bottom: 15px;
-// }
-
-// .blog-date {
-//   margin-top: 10px;
-//   font-size: 12px;
-//   display: inline-block;
-// }
-
-// .category {
-//   background-color: #ff69b4;
-//   color: #fff;
-//   font-size: 11px;
-// }
-
-// .text-box {
-//   border: 2px solid #696969;
-//   font-size: 20px;
-//   color: #000000;
-// }
-
 .favorite_background {
   position: absolute;
   bottom: 0;
@@ -152,9 +47,6 @@
   width: 200px;
   height: 200px;
 }
-h1 h2 a p {
-  font-family: 'Kaushan', cursive, sans-serif;
-}
 
 .fs-1 {
   font-size: 20px;
@@ -171,7 +63,7 @@ h1 h2 a p {
   font-family: 'Kaushan', cursive, sans-serif;
 }
 
-.main__visual-infomation-subtitle {
+.main_visual-infomation-subtitle {
     background-color: var(--orange);
     border-radius: 25px;
     color: #fff;
@@ -197,6 +89,7 @@ h1 h2 a p {
 
 .box {
   background-color: #7fffd4;
+  padding: 10px;
 }
 
 .edit_btn {
@@ -283,30 +176,3 @@ h1 h2 a p {
 .field_with_errors {
   display: contents;
 }
-// .favorite_background {
-//   background-color: #ffffff;
-//   color: #ffb6c1;
-//   font-size: 20px;
-// }
-
-// .edit-image {
-//   position: relative;
-// }
-// .edit-img {
-//   position: absolute;
-//   left: 350px;
-//   bottom: 85px;
-//   height: 50px;
-//   width: 50px;
-// }
-
-// .new-image {
-//   position: relative;
-// }
-// .new-img {
-//   position: absolute;
-//   left: 350px;
-//   bottom: 85px;
-//   height: 50px;
-//   width: 50px;
-// }

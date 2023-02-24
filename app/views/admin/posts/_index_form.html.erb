@@ -1,6 +1,6 @@
 <% posts.each do |post| %>
   <div class="col-md-6 col-sd-12 mx-auto m-5 border-bottom border-secondary">
-    <div class="card bg-white text-white">
+    <div class="row">
       <%= image_tag post.images[0], width: '100%', height: 'auto' %>
     </div>
     <div class="row">
@@ -17,7 +17,7 @@
       <% end %>
       </div>
     </div>
-    <div class="row">
+    <div class="row mx-auto">
       <div class="mx-auto">
         <p class="text-center fs-1"><%= post.created_at.strftime('%Y/%m/%d') %></p>
       </div>

@@ -6,11 +6,11 @@
 <div class="row">
   <div class="col-md-12">
     <p class="text-center">
-    <% if customer.profile_image.attached? %>
-      <%= image_tag customer.profile_image, style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
-    <% else %>
-      <%= image_tag 'no_image.jpg', style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
-    <% end %>
+      <% if customer.profile_image.attached? %>
+        <%= image_tag customer.profile_image, style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
+      <% else %>
+        <%= image_tag 'no_image.jpg', style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
+      <% end %>
     </p>
   </div>
 </div>
@@ -78,7 +78,9 @@
 <div class="row">
   <div class="col-md-12">
     <% if customer == current_customer %>
-      <div class="col-md-1 offset-md-4 text-center"><%= link_to 'Edit', edit_customer_path(customer), class: "edit_btn" %></div>
+      <div class="col-md-1 offset-md-4 text-center">
+        <%= link_to 'Edit', edit_customer_path(customer), class: "edit_btn" %>
+      </div>
     <% end %>
   </div>
 </div>

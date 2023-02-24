@@ -2,7 +2,15 @@
   <div class="row mt-2">
     <div class="col-12 mt-2">
       <h2 class="text-center mb-2 fs-2">Tags</h2>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12 mt-2">
       <%= render 'admin/posts/tag_index', tags: @tags %>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12 mt-2">
       <h2 class="text-center mb-2 fs-2"><%= @tag.name %>'s Posts</h2>
       <div class="d-flex flex-wrap">
         <%= render 'admin/posts/index_form', posts: @posts %>
