@@ -2,7 +2,7 @@
   <div class="row mt-2">
     <div class="col-md-4 mt-3">
       <div class="main__visual-infomation-subtitle proxima-semibold">Post</div>
-      <h2 class="text-center mb-3"><%= @post.title %></h2>
+      <h2 class="text-center mb-3 fs-1"><%= @post.title %></h2>
       <div class="main__visual-infomation-subtitle proxima-semibold">Tags</div>
         <div class="d-flex flex-wrap mt-3 mb-3">
           <% @tag.each do |tag| %>
@@ -39,28 +39,28 @@
   </div>
   <div class="row  mt-3">
     <div class="col-md-8 offset-md-2">
-      <p><%= @post.introduction %></p>
+      <p class="fs-1"><%= @post.introduction %></p>
     </div>
   </div>
   <div class="row  mt-3">
     <div class="col-md-4 offset-md-1">
-      <p>Comments: <%= @post_comments.count %></p>
+      <p class="fs-1">Comments: <%= @post_comments.count %></p>
     </div>
   </div>
   <% @post_comments.each do |comment| %>
   <div class="row mt-3">
     <div class="col-md-10 offset-md-1 mt-3">
-      <p><%= comment.customer.name %></p>
+      <p class="fs-1"><%= comment.customer.name %></p>
     </div>
   </div>
   <div class="row mt-1">
     <div class="col-md-11 offset-md-1">
-      <p><%= comment.message %></p>
+      <p class="fs-1"><%= comment.message %></p>
     </div>
   </div>
   <div class="row mt-1">
     <div class="offset-md-1">
-      <p>
+      <p class="fs-1">
         <%= comment.created_at.strftime('%Y/%m/%d') %>
         <%= link_to "Delete", admin_post_comment_path(comment), method: :delete,class: "destroy_btn" %>
       </p>
@@ -69,22 +69,22 @@
   <% end %>
   <div class="row mt-3">
     <div class="col-md-12">
-    <h2 class="text-center fs-2">about post</h2>
+    <h2 class="text-center fs-2">About Post</h2>
     </div>
     <div class="col-md-12">
-      <div class="col-md-1 offset-md-4 col-sm-5 text-center">
-        <%= link_to 'edit', edit_admin_post_path, class: 'edit_btn' %>
+      <div class="col-md-1 offset-md-5 col-sm-5 text-center">
+        <%= link_to 'Edit', edit_admin_post_path, class: 'edit_btn' %>
       </div>
     </div>
   </div>
   <div class="row mt-3">
-    <div class="col-md-10 offset-md-1 box">
+    <div class="col-md-6 offset-md-3 box">
       <%= render 'admin/customers/customer_info', customer: @customer %>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col-md-10 offset-md-1">
-      <h2 class="text-center fs-2"><%= @customer.name %>'s posts</h2>
+      <h2 class="text-center fs-2"><%= @customer.name %>'s Posts</h2>
       <div class="d-flex flex-wrap">
         <%= render 'admin/posts/index_form', posts: @posts %>
       </div>
