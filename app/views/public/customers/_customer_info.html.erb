@@ -36,42 +36,49 @@
 </div>
 <div class="row">
   <div class="col-md-12">
+    <p class="text-center"><%= link_to "View More Posts", customer_path(customer), class: "fs-2" %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <p class="text-center fs-1">
-      フォロー: <%= link_to customer.followings.count, customer_followings_path(customer) %>/
-      フォロワー: <%= link_to customer.followers.count, customer_followers_path(customer) %>
+      <%= link_to customer_followings_path(customer) do %>
+        Followings: <%= customer.followings.count %>
+      <% end %>
+      /
+      <%= link_to customer_followers_path(customer) do %>
+        Followers: <%= customer.followers.count %>
+      <% end %>
     </p>
   </div>
 </div>
+<% unless customer == current_customer %>
+<div class="row">
+  <div class="col-md-12">
+    <% if current_customer.following?(customer) %>
+      <div class="col-md-2 offset-md-4"><%= link_to 'Unfollow', customer_relationships_path(customer.id), method: :delete, class: "edit_btn" %></div>
+    <% else %>
+      <div class="col-md-2 offset-md-4"><%= link_to "Follow", customer_relationships_path(customer.id), method: :post, class: "edit_btn" %></div>
+    <% end %>
+  </div>
+</div>
+<% end %>
 <% if customer == current_customer %>
 <div class="row">
   <div class="col-md-12 mt-2 mb-4">
-    <h2 class="text-center mb-2"><%= link_to 'Follow_posts', follow_posts_customer_path,class: "fs-2" %></h2>
+    <h2 class="text-center mb-2"><%= link_to 'Followings_Posts', follow_posts_customer_path,class: "fs-2" %></h2>
   </div>
 </div>
 <% end %>
 <div class="row">
-  <div class="col-md-12">
-    <% if current_customer.following?(customer) %>
-      <div class="col-md-2 offset-md-5 text-center"><%= link_to 'unfollow', customer_relationships_path(customer.id), method: :delete, class: "edit_btn" %></div>
-    <% else %>
-      <div class="col-md-2 offset-md-5 text-center"><%= link_to "follow", customer_relationships_path(customer.id), method: :post, class: "edit_btn" %></div>
-    <% end %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <p class="text-center"><%= link_to "view more posts", customer_path(customer), class: "fs-2" %></p>
-  </div>
-</div>
-<div class="row">
   <div class="col-md-12 mt-2 mb-4">
-    <h2 class="text-center mb-2"><%= link_to 'Favorites', favorites_customer_path(customer),class: "fs-2" %></h2>
+    <h2 class="text-center mb-2"><%= link_to 'Favorites_Posts', favorites_customer_path(customer),class: "fs-2" %></h2>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
     <% if customer == current_customer %>
-      <div class="col-md-1 offset-md-5 text-center"><%= link_to 'edit', edit_customer_path(customer), class: "edit_btn" %></div>
+      <div class="col-md-1 offset-md-4 text-center"><%= link_to 'Edit', edit_customer_path(customer), class: "edit_btn" %></div>
     <% end %>
   </div>
 </div>

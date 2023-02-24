@@ -1,0 +1,16 @@
+<% customers.each do |customer| %>
+  <div class="col-md-5 offset-md-1 col-sd-12 mb-5 border-bottom border-secondary">
+    <a>
+      <%= link_to customer_path(customer), class: "fs-1" do %>
+      <div class="text-center">
+        <% if customer.profile_image.attached? %>
+          <%= image_tag customer.profile_image, style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
+        <% else %>
+          <%= image_tag 'no_image.jpg', style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
+        <% end %>
+      </div>
+      <div class="text-center"><%= customer.name %></div>
+      <% end %>
+    </a>
+  </div>
+<% end %>

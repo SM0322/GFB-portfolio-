@@ -1,10 +1,16 @@
-<h2>結果</h2>
-<% if @range == "Customer" %>
-  <% @customers.each do |customer| %>
-    <%= customer.name %>
-  <% end %>
-<% else %>
-  <% @posts.each do |post| %>
-    <%= post.title %>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 mt-2">
+      <h2 class="text-center mb-2 fs-2">Results</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex flex-wrap">
+      <% if @range == "Customer" %>
+        <%= render 'public/customers/index_form', customers: @customers %>
+      <% else %>
+        <%= render 'public/posts/index_form', posts: @posts %>
+      <% end %>
+    </div>
+  </div>
+</div>
