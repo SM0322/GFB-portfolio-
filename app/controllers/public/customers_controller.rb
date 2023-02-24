@@ -30,6 +30,10 @@ class Public::CustomersController < ApplicationController
     favorites_post_id = Favorite.order('id DESC').where(customer_id: @customer.id).pluck(:post_id)
     @posts = Post.find(favorites_post_id)
   end
+  
+  def follow_posts
+    @posts = Post.where(customer_id: [*current_customer.following_ids])
+  end
 
   def unsubscribe
   end

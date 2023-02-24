@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'customer/:id/followings' => 'relationships#followings', as: 'followings'
       get 'customer/:id/followers' => 'relationships#followers', as: 'followers'
+      get :follow_posts, on: :member
     end
   end
   
