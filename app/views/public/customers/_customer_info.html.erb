@@ -1,32 +1,37 @@
 <div class="row">
   <div class="col-md-12">
-    <h2 class="text-center">Profile</h2>
+    <h2 class="text-center fs-2">Profile</h2>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
     <p class="text-center">
     <% if customer.profile_image.attached? %>
-      <%= image_tag customer.profile_image, size: "150x150" %>
+      <%= image_tag customer.profile_image, style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
     <% else %>
-      <%= image_tag 'no_image.jpg', size: "150x150" %>
+      <%= image_tag 'no_image.jpg', style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
     <% end %>
     </p>
   </div>
-</div>  
+</div>
 <div class="row">
   <div class="col-md-12">
-    <p class="text-center"><%= customer.name %></p>
+    <p class="text-center fs-2">Name</p>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p class="text-center">Introduction</p>
+    <p class="text-center fs-1"><%= customer.name %></p>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p class="text-center"><%= customer.introduction %></p>
+    <p class="text-center fs-2">Introduction</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-1"><%= customer.introduction %></p>
   </div>
 </div>
 <div class="row">

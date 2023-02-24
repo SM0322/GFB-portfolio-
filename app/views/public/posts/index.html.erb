@@ -18,8 +18,10 @@
     <div class="d-flex flex-wrap">
       <%= render 'public/posts/index_form', posts: @posts %>
     </div>
-    <div class="col-md-2 offset-md-5 col-sm-6 offset-sm-3 mt-2">
-      <%= paginate @posts, class: "fs-2" %>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p><%= paginate @posts, theme: 'twitter-bootstrap-4' %></p>
     </div>
   </div>
 </div>

@@ -6,8 +6,12 @@
       <h2 class="text-center mb-2 fs-2"><%= @tag.name %>'s posts</h2>
       <div class="d-flex flex-wrap">
         <%= render 'public/posts/index_form', posts: @posts %>
-        <%= paginate @posts %>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p><%= paginate @posts, theme: 'twitter-bootstrap-4' %></p>
     </div>
   </div>
 </div>
