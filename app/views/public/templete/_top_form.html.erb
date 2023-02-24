@@ -1,0 +1,40 @@
+<div class="sliderWrapper">
+  <div class="slider">
+	<div class="slide-item">
+	  <div class="card bg-white text-white">
+        <div class="position-relative">
+        <%= link_to root_path do %>
+          <%= image_tag 'default.jpg', width: '100%', height: '300px' %>
+          <p class="top_background">
+            プラモ for Beginners!にようこそ!</br>
+            このサイトでは製作したプラモデルを投稿したり、</br>
+            他の人の投稿にコメントやいいねすることで、</br>
+            同じ趣味の人とコミュニケーションを楽しめます。</br>
+            それでは新規登録をしてお楽しみください！
+          </p>
+        <% end %>
+        </div>
+      </div>
+	</div>
+    <div class="slide-item">
+	  <div class="card bg-white text-white">
+        <div class="position-relative">
+        <%= link_to new_post_path do %>
+          <%= image_tag 'default.jpg', width: '100%', height: '300px' %>
+          <p class="new_background">自身の作品を投稿しよう！</p>
+        <% end %>
+        </div>
+      </div>
+	</div>
+	<div class="slide-item">
+	  <div class="card bg-white text-white">
+        <div class="position-relative">
+        <%= link_to posts_path do %>
+          <%= image_tag 'default.jpg', width: '100%', height: '300px' %>
+          <p class="new_background">みんなの投稿はコチラ！</p>
+        <% end %>
+        </div>
+      </div>
+	</div>
+  </div>
+</div>
