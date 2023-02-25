@@ -14,7 +14,7 @@ class Customer < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships, source: :follower
   
-  validates :name, length: { in: 2..20 },
+  validates :name, length: { in: 1..20 },
                    uniqueness: true
   validates :email, presence: true, format: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
