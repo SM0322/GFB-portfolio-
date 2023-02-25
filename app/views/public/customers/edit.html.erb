@@ -1,4 +1,11 @@
 <div class="container">
+  <% if @customer.email == 'guest@guest.mail' %>
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      <p class="text-center fs-2">ゲストユーザーはユーザー情報の編集をすることはできません。</p>
+    </div>
+  </div>
+  <% else %>
   <div class="row">
     <div class="mx-auto">
       <%= render 'public/customers/error', obj: @customer %>
@@ -49,4 +56,5 @@
         から退会手続きを行ってください。
     </div>
   </div>
+  <% end %>
 </div>

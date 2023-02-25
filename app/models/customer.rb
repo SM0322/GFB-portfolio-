@@ -36,5 +36,12 @@ class Customer < ApplicationRecord
   
   def following?(customer)
     followings.include?(customer)
-  end 
+  end
+  
+  def self.guest
+    find_or_create_by!(email: 'guest@guest.mail') do |customer|
+      customer.name = 'ゲストユーザー'
+      customer.password = SecureRandom.urlsafe_base64
+    end
+  end
 end

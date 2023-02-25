@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'relationships/followings'
-    get 'relationships/followers'
+  # namespace :public do
+  #   get 'relationships/followings'
+  #   get 'relationships/followers'
+  # end
+  
+  devise_scope :customer do
+    post 'customers/guest_log_in', to: 'public/sessions#guest_log_in'
   end
+
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
