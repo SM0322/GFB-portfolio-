@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  FILE_NUMBER_LIMIT = 3
+  
   belongs_to :customer
   has_many :post_tags, dependent: :destroy
   has_many :tags,through: :post_tags
@@ -8,9 +10,10 @@ class Post < ApplicationRecord
   
   validates :title, presence: true
   validates :introduction, presence: true
-  validates :images, presence: true
   validates :rate, presence: true
   validates :tag_ids, presence: true
+  validate :validate_number_of_files
+
   
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
@@ -27,11 +30,8 @@ class Post < ApplicationRecord
     end 
   end
   
-  def get_image
-    unless images.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      images.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-      images
+  def validate_number_of_files
+    return if images.length <= FILE_NUMBER_LIMIT
+    errors.add(:images, "に添付できる画像は#{FILE_NUMBER_LIMIT}件までです。")
   end
 end

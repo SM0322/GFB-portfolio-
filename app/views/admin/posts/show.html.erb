@@ -30,7 +30,7 @@
 	      <div class="slider">
           <% @post.images.each do |image| %>
             <div class="card bg-white text-white">
-              <%= image_tag image, width: '100%', height: '300px' %>
+              <%= image_tag image.variant(resize: "350").processed %>
             </div>
           <% end %>
 	      </div>
