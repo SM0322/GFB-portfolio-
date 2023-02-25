@@ -22,8 +22,8 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update] do
       get :favorites, on: :member
       resource :relationships, only: [:create, :destroy]
-      get 'customer/:id/followings' => 'relationships#followings', as: 'followings'
-      get 'customer/:id/followers' => 'relationships#followers', as: 'followers'
+      get '/followings' => 'relationships#followings', as: 'followings'
+      get '/followers' => 'relationships#followers', as: 'followers'
       get :follow_posts, on: :member
     end
   end

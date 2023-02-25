@@ -12,6 +12,7 @@ class Post < ApplicationRecord
   validates :introduction, presence: true
   validates :rate, presence: true
   validates :tag_ids, presence: true
+  validates :images, presence: true
   validate :validate_number_of_files
 
   
