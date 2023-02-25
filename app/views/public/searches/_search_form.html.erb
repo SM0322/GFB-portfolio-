@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-12">
+    <div class="text-center">
+      <%= form_with url:search_path,local: true, method: :get do |f| %>
+        <%= f.text_field :word, class: "fs-1" %>
+        <%= f.select :range, options_for_select([['Post'],['Customer']]), class: "fs-1" %>
+        <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]), class: "fs-1" %>
+        <%= f.submit "検索", class: "fs-1" %>
+      <% end %>
+    </div>
+  </div>
+</div>

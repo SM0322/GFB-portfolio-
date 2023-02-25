@@ -1,76 +1,81 @@
 <div class="container">
   <div class="row">
-    <div class="col-7 offset-3 mt-3">
-      <h2 class="fs-2">Post edit</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-7 offset-3 mt-3">
+    <div class="mx-auto">
       <%= render 'public/customers/error', obj: @post %>
     </div>
   </div>
-  <%= form_with model: @post, url: admin_post_path, method: :patch do |f| %>
   <div class="row">
-    <div class="col-md-8 col-sm-12 mt-3">
-      <p><%= f.label :title, 'Title', class: "fs-1" %></p>
-    </div>
-    <div class="col-md-1 col-sm-12 mt-3">
-      <p><%= f.text_field :title %></p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8 col-sm-12 mt-3">
-      <p><%= f.label :introduction, 'Introduction', class: "fs-1" %></p>
-    </div>
-    <div class="col-md-1 col-sm-12 mt-3">
-      <p><%= f.text_area :introduction %></p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8 col-sm-12 mt-3">
-      <p><%= f.label :images, 'images', class: "fs-1" %></p>
-    </div>
-    <div class="col-md-1 col-sm-12 mt-3">
-      <p><%= f.file_field :images, multiple: true %></p>
-    </div>
-    <div id="new-image"></div>
-  </div>
-  <div class="row">
-    <div class="col-md-8 col-sm-12 mt-3">
-      <div id="star">
-        <p><%= f.label :rate, 'Rating(満足度を5段階で入力)', class: "fs-1" %></p>
-        <%= f.hidden_field :rate %>
+    <div class="col-md-7 offset-md-3 mt-3">
+      <h2 class="fs-2">Post edit</h2>
+      <%= form_with model: @post, url: admin_post_path, method: :patch do |f| %>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :title, 'Title', class: "fs-1" %></p>
+        </div>
+        <div class="col-md-1 col-sm-12 mt-3">
+          <p><%= f.text_field :title %></p>
+        </div>
       </div>
-    </div>
-    <div class="col-md-4 col-sm-12 mt-3">
-      <div id="rate_<%= @post.id %>"></div>
-        <script>
-          let raty_elem = document.querySelector('#rate_<%= @post.id %>');
-          raty_elem.innerHTML = ""
-          let option = {  
-            starOn: "<%= asset_path('star-on.png') %>",
-            starOff: "<%= asset_path('star-off.png') %>",
-            starHalf: "<%= asset_path('star-half.png') %>",
-            scoreName: 'post[rate]',
-          };
-          raty(raty_elem,option);
-        </script>
-    </div>
-  </div>
-  <div class="row">
-    <div class="d-flex flex-wrap">
-      <div class="col-md-12 col-sm-12 m-2 fs-1">
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t| %>
-          <%= t.check_box %>
-          <%= t.text %>
-        <% end %>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :introduction, 'Introduction', class: "fs-1" %></p>
+        </div>
+        <div class="col-md-1 col-sm-12 mt-3">
+          <p><%= f.text_area :introduction %></p>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :images, 'images', class: "fs-1" %></p>
+        </div>
+        <div class="col-md-1 col-sm-12 mt-3">
+          <p><%= f.file_field :images, multiple: true %></p>
+        </div>
+        <div id="new-image"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 mt-3">
+          <div id="star">
+            <p><%= f.label :rate, 'Rating(満足度を5段階で入力)', class: "fs-1" %></p>
+            <%= f.hidden_field :rate %>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12 mt-3">
+          <div id="rate_<%= @post.id %>"></div>
+            <script>
+              let raty_elem = document.querySelector('#rate_<%= @post.id %>');
+              raty_elem.innerHTML = ""
+              let option = {  
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                scoreName: 'post[rate]',
+              };
+              raty(raty_elem,option);
+            </script>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :tag_ids, class: "fs-1" %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d-flex flex-wrap">
+          <div class="col-md-12 col-sm-12 m-2 fs-1">
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t| %>
+            <%= t.check_box %>
+            <%= t.text %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 offset-md-8 mt-3">
+          <p class="fs-1"><%= f.submit 'submit', class: "submit_btn" %></p>
+        </div>
+      </div>
+      <% end %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-4 offset-md-8 mt-3">
-      <p class="fs-1"><%= f.submit 'submit', class: "submit_btn" %></p>
-    </div>
-  </div>
-  <% end %>
 </div>
