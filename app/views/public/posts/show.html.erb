@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-2">
-    <div class="col-md-4 mt-3">
+    <div class="col-md-4 offset-md-2 mt-3">
       <div class="main_visual-infomation-subtitle proxima-semibold">Post</div>
       <h2 class="text-center mb-3 fs-2"><%= @post.title %></h2>
       <div class="main_visual-infomation-subtitle proxima-semibold">Tags</div>
@@ -10,7 +10,7 @@
         <% end %>
       </div>
       <div class="main_visual-infomation-subtitle proxima-semibold">Rate</div>
-      <div class="col-md-8 offset-md-2 mt-3">
+      <div class="col-md-8 offset-md-2 mt-3 mb-5">
         <div id="rate_<%= @post.id %>"></div>
           <script>
             let elem = document.querySelector('#rate_<%= @post.id %>');
@@ -24,23 +24,17 @@
             raty(elem,opt);
           </script>
       </div>
-      <!--<div class="main_visual-infomation-subtitle proxima-semibold mt-3">Favorites</div>-->
-      <!--<div class="col-md-8 offset-md-2 mt-3">-->
-      <!--  <div id = "favorite_<%#= @post.id %>">-->
-      <!--    <%#= render partial: "public/favorites/favorite", locals: {post: @post} %>-->
-      <!--  </div>-->
-      <!--</div>-->
     </div>
-    <div class="col-md-7 offset-md-1">
+    <div class="col-md-5 offset-md-1">
       <div class="sliderWrapper">
 	      <div class="slider">
           <% @post.images.each do |image| %>
             <div class="text-center">
-              <%= image_tag image.variant(resize: "530").processed %>
+              <%= image_tag image.variant(resize: "350").processed %>
             </div>
           <% end %>
 	      </div>
-	      <div class="position-relative" style="bottom: 30px; right: 5px;">
+	      <div class="position-relative" style="bottom: 30px; right: 15px;">
           <div id="favorite_<%= @post.id %>">
             <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
           </div>
