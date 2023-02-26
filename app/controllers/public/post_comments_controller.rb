@@ -7,11 +7,7 @@ class Public::PostCommentsController < ApplicationController
     if @post_comment.save
       redirect_to post_path(@post)
     else
-      @customer = @post.customer
-      @posts = @customer.posts.where.not(id: @post.id).order('id DESC').limit(4)
-      @tag = @post.tags.all
-      @post_comments = @post.post_comments.all
-      render template: "public/posts/show"
+      redirect_to post_path(@post), notice: @post_comment.errors.full_messages.first
     end
   end 
   
