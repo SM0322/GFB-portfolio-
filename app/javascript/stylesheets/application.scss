@@ -155,6 +155,17 @@
   display: contents;
 }
 
+.parent{
+  display: table; 
+  table-layout: fixed;
+}
+
+.child{
+  display: table-cell; 
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
 .top_background {
   position: absolute;
   bottom: 500px;
