@@ -1,7 +1,18 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-12">
-      <%= render 'public/templete/top_form' %>
+      <div class="card bg-white text-white">
+        <div class="position-relative">
+          <%= link_to new_customer_session_path do %>
+            <%= image_tag 'top.jpg', width: '100%', height: 'auto' %>
+            <p class="top_background">
+              Welcome to プラモ for Beginners!</br>
+              新規登録またはゲストでログインして</br>
+              楽しんでください。
+            </p>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

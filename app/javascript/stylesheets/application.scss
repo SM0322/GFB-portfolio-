@@ -1,4 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+
 
 * {
   margin: 0;
@@ -26,17 +28,17 @@
 
 .fs-1 {
   font-size: 20px;
-  font-family: 'Kaushan', cursive, sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .fs-2 {
   font-size: 30px;
-  font-family: 'Kaushan', cursive, sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .fs-3 {
   font-size: 15px;
-  font-family: 'Kaushan', cursive, sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .subtitle {
@@ -53,7 +55,7 @@
 }
 
 .fs-4 {
-    font-family: proxima-nova,sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
     font-style: normal;
     font-weight: 600;
 }
@@ -153,21 +155,9 @@
   display: contents;
 }
 
-.new_background {
-  position: absolute;
-  bottom: 550px;
-  left: 350px;
-  margin : 2%;
-  background-color: #ffffff;
-  color: #000000;
-  font-size: 40px;
-  font-family: 'Kaushan', cursive, sans-serif;
-  text-align: center;
-}
-
 .top_background {
   position: absolute;
-  bottom: 550px;
+  bottom: 500px;
   left: 150px;
   margin : 1%;
   background-color: #ffffff;
@@ -190,21 +180,9 @@
     text-align: center;
   }
 
-  .new_background {
-    position: absolute;
-    bottom: 230px;
-    left: 100px;
-    margin : 2%;
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 30px;
-    font-family: 'Kaushan', cursive, sans-serif;
-    text-align: center;
-  }
-
   .top_background {
     position: absolute;
-    bottom: 210px;
+    bottom: 130px;
     left: 5px;
     margin : 1%;
     background-color: #ffffff;

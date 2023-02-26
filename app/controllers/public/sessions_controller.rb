@@ -29,7 +29,7 @@ class Public::SessionsController < Devise::SessionsController
   def guest_log_in
     customer = Customer.guest
     sign_in customer
-    redirect_to root_path, notice: 'Logged in as a guest'
+    redirect_to root_path, notice: 'ゲストとしてログインしました。'
   end
   protected
   
