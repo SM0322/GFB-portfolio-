@@ -26,10 +26,10 @@
       </div>
       <div class="row">
         <div class="col-md-8 col-sm-12 mt-3">
-          <p><%= f.label :images, 'images', class: "fs-1" %></p>
+          <p><%= f.label :images, 'images(Limit: 4)', class: "fs-1" %></p>
         </div>
         <div class="col-md-1 col-sm-12 mt-3">
-          <p><%= f.file_field :images, multiple: true %></p>
+          <p><%= f.file_field :images, multiple: true, accept: "image/*"  %></p>
         </div>
         <div id="new-image"></div>
       </div>
