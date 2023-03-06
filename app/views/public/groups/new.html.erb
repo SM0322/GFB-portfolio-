@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <%= render 'public/customers/error', obj: @group %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7 offset-3 mt-3">
+      <h2 class="fs-2">New Group</h2>
+      <%= form_with model: @group, url: groups_path, method: :post,local:true do |f| %>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :name, 'Name', class: "fs-1" %></p>
+        </div>
+        <div class="col-md-1 col-sm-12 mt-3">
+          <p><%= f.text_field :name %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :introduction, 'Introduction', class: "fs-1" %></p>
+        </div>
+        <div class="col-md-1 col-sm-12 mt-3">
+          <p><%= f.text_area :introduction %></p>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :images, 'Images', class: "fs-1" %></p>
+        </div>
+        <div class="col-md-1 col-sm-12 mt-3">
+          <p><%= f.file_field :group_image, accept: "image/*"  %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 offset-md-8 mt-3">
+          <p class="fs-1"><%= f.submit 'Submit', class: "submit_btn" %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -53,7 +53,7 @@ class Public::GroupsController < ApplicationController
     redirect_to group_path
   end
   
-   private
+  private
   
   def group_params
     params.require(:group).permit(:group_image, :name, :introduction)
@@ -65,4 +65,5 @@ class Public::GroupsController < ApplicationController
 #       redirect_to post_path(@post)
 #     end
 #   end 
+
 end
