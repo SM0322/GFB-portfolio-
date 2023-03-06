@@ -40,6 +40,18 @@ class Public::GroupsController < ApplicationController
     end 
   end
   
+  def join
+    @group = Group.find(params[:group_id])
+    @group.customers << current_customer                                        #<<は追加という意味で現在のユーザをグループのユーザに追加している
+    redirect_to  group_path(@group)
+  end
+  
+  def destroy
+    @group = Group.find(params[:id])
+    @group.customers.delete(current_customer)                                           #current_userは、@group.usersから消されるという記述。
+    redirect_to group_path
+  end
+  
   private
   
   def group_params
