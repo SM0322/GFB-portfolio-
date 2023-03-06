@@ -9,6 +9,7 @@ class Public::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_customer.id
+    @group.customers << current_customer
     if @group.save
       flash[:notice] = "グループの作成に成功しました"
       redirect_to groups_path
@@ -50,6 +51,18 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.customers.delete(current_customer)                                           #current_userは、@group.usersから消されるという記述。
     redirect_to group_path
+  end
+  
+  def new_mail
+    @group = Group.find(params[:group_id])
+  end
+
+  def send_mail
+    @group = Group.find(params[:group_id])
+    group_customers = @group.customers
+    @mail_title = params[:mail_title]
+    @mail_content = params[:mail_content]
+    ContactMailer.send_mail(@mail_title, @mail_content,group_customers).deliver
   end
   
   private

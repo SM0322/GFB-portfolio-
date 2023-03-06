@@ -12,7 +12,14 @@
   </div>
   <div class="row mt-3">
     <div class="col-md-12">
-    <h2 class="text-center fs-2">About Group</h2>
+      <h2 class="text-center fs-2">About Group</h2>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <% @group.customers.each do |customer| %>
+        <p class="text-center fs-1"><%= link_to customer.name, customer_path(customer) %></p>
+      <% end %>
     </div>
   </div>
   <% if @group.owner_id == current_customer.id %>
@@ -34,4 +41,10 @@
       </div>
     </div>
   <% end %>
+  <div class="row mt-3">
+    <div class="col-md-1 offset-md-4 col-sm-5 text-center">
+      <%= link_to 'Event', group_new_mail_path(@group), class: "edit_btn" %>
+    </div>
+  </div>
+  
 </div>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'event_notice/new'
+  end
   # namespace :public do
   #   get 'relationships/followings'
   #   get 'relationships/followers'
@@ -33,6 +36,10 @@ Rails.application.routes.draw do
     end
     resources :groups do
       get 'join' => 'groups#join'
+      get 'new_mail' => 'groups#new_mail'
+      get 'send_mail' => 'groups#send_mail'
+      # resources :event_notices, only: [:new, :create]
+      # get "event_notices" => "event_notices#sent"
     end
   end
   
