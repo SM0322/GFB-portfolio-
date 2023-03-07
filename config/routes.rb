@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     end
     resources :groups do
       get 'join' => 'groups#join'
+      resources :group_chats, only: [:create, :destroy]
     end
   end
   
