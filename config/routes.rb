@@ -31,6 +31,10 @@ Rails.application.routes.draw do
       get '/followers' => 'relationships#followers', as: 'followers'
       get :follow_posts, on: :member
     end
+    resources :groups do
+      get 'join' => 'groups#join'
+      resources :group_chats, only: [:create, :destroy]
+    end
   end
   
   devise_for :admins, skip: [:registrations, :passwords], controllers: {

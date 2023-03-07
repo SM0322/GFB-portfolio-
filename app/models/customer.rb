@@ -13,6 +13,7 @@ class Customer < ApplicationRecord
   has_many :followers, through: :reverse_relationships, source: :follower
   has_many :group_customers, dependent: :destroy
   has_many :groups, through: :group_customers
+  has_many :group_chats, dependent: :destroy
   
   has_one_attached :profile_image
   

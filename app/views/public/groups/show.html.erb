@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-md-4 offset-md-1 mt-3">
+      <div class="subtitle fs-4">Group</div>
+      <h2 class="text-center mb-3 fs-2"><%= @group.name %></h2>
+      <div class="subtitle fs-4">Introduction</div>
+      <h2 class="text-center mb-3 fs-2"><%= @group.introduction %></h2>
+    </div>
+    <div class="col-md-5 offset-md-1">
+      <%= image_tag @group.group_image.variant(resize: "350").processed %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <h2 class="text-center fs-2">About Group</h2>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <% @group.customers.each do |customer| %>
+        <p class="text-center fs-1"><%= link_to customer.name, customer_path(customer) %></p>
+      <% end %>
+    </div>
+  </div>
+  <% if @group.owner_id == current_customer.id %>
+    <div class="row mt-3">
+      <div class="col-md-1 offset-md-4 col-sm-5 text-center">
+        <%= link_to 'Edit', edit_group_path(@group), class: 'edit_btn' %>
+      </div>
+    </div>
+  <% elsif @group.customers.include?(current_customer) %>
+    <div class="row mt-3">
+      <div class="col-md-1 offset-md-4 col-sm-5 text-center">
+        <%= link_to 'Leave this group', group_path(@group), method: :delete, class: "edit_btn" %>
+      </div>
+    </div>
+  <% else %>
+    <div class="row mt-3">
+      <div class="col-md-1 offset-md-4 col-sm-5 text-center">
+        <%= link_to 'Join this group', group_join_path(@group), class: "edit_btn" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row mt-3">
+    <div class="col-md-4 offset-md-1">
+      <p class="fs-1">Comments: <%= @group_chats.count %></p>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12 col-sm-12">
+    <%= form_with model: [@group, @group_chat], url: group_group_chats_path(group_id: @group.id), method: :post do |f| %>
+    <div class="row mt-3">
+      <div class="col-md-8 offset-md-2">
+        <%= f.text_area :message, rows: '3', placeholder: "コメントをここに入力してください。",class: "col-md-12" %>
+      </div>
+      <div class="col-md-2 mt-4  text-center">
+        <%= f.submit "Submit", class: "submit_btn" %>
+      </div>
+    </div>
+    <% end %>
+    </div>
+  </div>
+  <% @group_chats.each do |comment| %>
+  <div class="row mt-3">
+    <div class="col-md-10 offset-md-1 mt-3">
+      <p class="fs-1"><%= comment.customer.name %></p>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-md-11 offset-md-1 parent">
+      <p class="fs-1 child"><%= comment.message %></p>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="offset-md-1">
+      <p class="fs-1">
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+        <% if comment.customer == current_customer %>
+          <%= link_to "Delete", group_group_chat_path(comment.group, comment), method: :delete,class: "destroy_btn" %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <% end %>
+</div>
