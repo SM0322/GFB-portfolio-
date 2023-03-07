@@ -1,28 +1,34 @@
 <div class="container">
   <div class="row">
-    <div class="col-9 offset-1 mt-2">
-      <h2 class="text-center mb-2">ユーザー一覧</h2>
-        <div>
+    <div class="col-md-10 offset-md-1 mt-2">
+      <h2 class="text-center mb-2 fs-2">Users</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1 mt-2">
+      <div class="d-flex flex-wrap">
         <% @customers.each do |customer| %>
-          <div class="m-4">
-            <div class="d-flex justify-content-around">
-              <%= render 'admin/posts/index_form', posts: customer.posts.order('id DESC').limit(3) %>
-            </div>
-            <div class="row">
-              <div class="col-1">
-                <% if customer.profile_image.attached? %>
-                  <%= image_tag customer.profile_image, size: "40x40" %>
-                <% else %>
-                  <%= image_tag 'no_image.jpg', size: "40x40" %>
-                <% end %>
-              </div>
-              <div class="col-11 mt-1">
-                <%= link_to customer.name, admin_customer_path(customer) %>
-              </div>
-            </div>
+          <div class="col-md-6 col-sd-12 mb-5 border-bottom border-secondary">
+            <a>
+              <%= link_to admin_customer_path(customer), class: "fs-1" do %>
+                <p class="text-center">
+                  <% if customer.profile_image.attached? %>
+                    <%= image_tag customer.profile_image, style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
+                  <% else %>
+                    <%= image_tag 'no_image.jpg', style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
+                  <% end %>
+                </p>
+                <p class="text-center"><%= customer.name %></p>
+              <% end %>
+            </a>
           </div>
         <% end %>
-        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 offset-md-5 col-sm-6 offset-sm-3 mt-2">
+      <%= paginate @customers, theme: 'twitter-bootstrap-4' %>
     </div>
   </div>
 </div>

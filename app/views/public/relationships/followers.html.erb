@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 mt-2">
+      <h2 class="text-center mb-2 fs-2">Followers</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1 mt-2">
+      <div class="d-flex flex-wrap">
+        <%= render 'public/customers/index_form', customers: @customers %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p><%= paginate @customers, theme: 'twitter-bootstrap-4' %></p>
+    </div>
+  </div>
+</div>

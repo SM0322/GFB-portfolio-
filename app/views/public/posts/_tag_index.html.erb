@@ -1,4 +1,4 @@
 <% tags.each do |tag| %>
-  <%= link_to tag.name, admin_search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
+  <%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
   <%= "(#{tag.posts.count})" %>
 <% end %>

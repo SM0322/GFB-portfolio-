@@ -1,39 +1,31 @@
 <header>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <h1 class="navbar-brand"><p><%= link_to 'プラモ for Beginners!', root_path %></p></h1>
+      <h1 class="navbar-brand fs-2">プラモ for Beginners!</h1>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if customer_signed_in? %>
-            <li><%= link_to "ホーム", root_path %></li>
-            <li><%= link_to "マイページ", customer_path(current_customer) %></li>
-            <li><%= link_to "新規投稿", new_post_path %></li>
-            <li><%= link_to "投稿一覧", posts_path %></li>
-            <li><%= link_to "ユーザー一覧", customers_path %></li>
-            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+            <li class="mr-3"><%= link_to "HOME", root_path, class: 'nav-link text-light fs-1' %></li>
+            <li class="mr-3"><%= link_to "MYPAGE", customer_path(current_customer), class: 'nav-link text-light fs-1' %></ %></li>
+            <li class="mr-3"><%= link_to "NEW", new_post_path, class: 'nav-link text-light fs-1' %></ %></li>
+            <li class="mr-3"><%= link_to "POSTS", posts_path, class: 'nav-link text-light fs-1' %></ %></li>
+            <li class="mr-3"><%= link_to "USERS", customers_path, class: 'nav-link text-light fs-1' %></ %></li>
+            <li class="mr-3"><%= link_to "LOG_OUT", destroy_customer_session_path, method: :delete, class: 'nav-link text-light fs-1' %></ %></li>
           <% elsif admin_signed_in? %>
-            <li><%= link_to "ホーム", admin_root_path %></li>
-            <li><%= link_to "投稿一覧", admin_posts_path %></li>
-            <li><%= link_to "ユーザー一覧", admin_customers_path %></li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+            <li class="mr-3"><%= link_to "HOME", admin_root_path, class: 'nav-link text-light fs-1' %></ %></li>
+            <li class="mr-3"><%= link_to "POSTS", admin_posts_path, class: 'nav-link text-light fs-1' %></ %></li>
+            <li class="mr-3"><%= link_to "USERS", admin_customers_path, class: 'nav-link text-light fs-1' %></ %></li>
+            <li class="mr-3"><%= link_to "SIGN_OUT", destroy_admin_session_path, method: :delete, class: 'nav-link text-light fs-1' %></ %></li>
           <% else %>
-            <li><%= link_to "ホーム", root_path %></li>
-            <li><%= link_to "ABOUT", about_path %></li>
-            <li><%= link_to "新規登録", new_customer_registration_path %></li>
-            <li><%= link_to "ログイン", new_customer_session_path %></li>
+            <li class="mr-3"><%= link_to "HOME", root_path, class: 'nav-link text-light fs-1' %></ %></li>
+            <li class="mr-3"><%= link_to "ABOUT", about_path, class: 'nav-link text-light fs-1' %></ %></li>
+            <li class="mr-3"><%= link_to "SIGN_UP", new_customer_registration_path, class: 'nav-link text-light fs-1' %></ %></li>
+            <li class="mr-3"><%= link_to "SIGN_IN", new_customer_session_path, class: 'nav-link text-light fs-1' %></ %></li>
           <% end %>
         </ul>
-      </div>
-      <div>
-      <%= form_with url:search_path,local: true, method: :get do |f| %>
-        <%= f.text_field :word %>
-        <%= f.select :range, options_for_select([['Customer'],['Post']]) %>
-        <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
-        <%= f.submit "検索" %>
-      <% end %>
       </div>
     </div>
   </nav>

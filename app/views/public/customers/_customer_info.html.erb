@@ -1,18 +1,83 @@
-<div class="container">
-  <div class="row">
-    <h3 classs="text-center">会員詳細</h1>
-      <% if customer.profile_image.attached? %>
-        <%= image_tag customer.profile_image, size: "150x150" %>
-      <% else %>
-        <%= image_tag 'no_image.jpg', size: "150x150" %>
-      <% end %>
-    <p><%= link_to customer.name, customer_path(customer) %></p>
-  </div>
-  <div class="row">
-    <h3 classs="text-center">自己紹介</h1>
-    <p><%= customer.introduction %></p>
-  </div>
-  <div class="row">
-    <p classs="text-center"><%= link_to '編集する', edit_customer_path(customer) %></p>
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="text-center fs-2">Profile</h2>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center">
+      <% if customer.profile_image.attached? %>
+        <%= image_tag customer.profile_image, style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
+      <% else %>
+        <%= image_tag 'no_image.jpg', style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
+      <% end %>
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-2">Name</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-1"><%= customer.name %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-2">Introduction</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-1"><%= customer.introduction %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center"><%= link_to "View More Posts", customer_path(customer), class: "fs-2" %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 mt-2 mb-4">
+    <h2 class="text-center mb-2"><%= link_to 'Favorites_Posts', favorites_customer_path(customer),class: "fs-2" %></h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-1">
+      <%= link_to customer_followings_path(customer) do %>
+        Followings: <%= customer.followings.count %>
+      <% end %>
+      /
+      <%= link_to customer_followers_path(customer) do %>
+        Followers: <%= customer.followers.count %>
+      <% end %>
+    </p>
+  </div>
+</div>
+<% if customer == current_customer %>
+  <div class="row">
+    <div class="col-md-12 mt-2 mb-4">
+      <h2 class="text-center mb-2"><%= link_to 'Followings_Posts', follow_posts_customer_path(customer),class: "fs-2" %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-1 offset-md-4 text-center">
+        <%= link_to 'Edit', edit_customer_path(customer), class: "edit_btn" %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="col-md-12">
+      <% if current_customer.following?(customer) %>
+        <div class="col-md-1 offset-md-4 text-center"><%= link_to 'Unfollow', customer_relationships_path(customer.id), method: :delete, class: "edit_btn" %></div>
+      <% else %>
+        <div class="col-md-1 offset-md-4 text-center"><%= link_to "Follow", customer_relationships_path(customer.id), method: :post, class: "edit_btn" %></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

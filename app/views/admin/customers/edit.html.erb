@@ -1,59 +1,56 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col offset-5 mt-3">
-      <h2>ユーザー情報編集</h2>
-      <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
-      <div class="row">
-        <div class="col-2 mt-3">
-          <p><%= f.label :name, 'ユーザー名' %></p>
-        </div>
-        <div class="col-2 mt-3">
-          <p><%= f.text_field :name %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-2 mt-3">
-          <p><%= f.label :introduction, '自己紹介' %></p>
-        </div>
-        <div class="col-2 mt-3">
-          <p><%= f.text_area :introduction %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-2 mt-3">
-          <p><%= f.label :profile_image, '画像選択' %></p>
-        </div>
-        <div class="col-2 mt-3">
-          <p><%= f.file_field :profile_image, accept: "image/*" %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-2 mt-3">
-          <p><%= f.label :email, 'メールアドレス' %></p>
-        </div>
-        <div class="col-2 mt-3">
-          <p><%= f.text_field :email, autofocus: true, autocomplete: "email" %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-2 mt-3">
-          <p><%= f.label :is_deleted, '会員ステータス' %></p>
-        </div>
-        <div class="col-2 mt-3">
-          <p>
-            <%= f.label :is_deleted, '有効', value: false %>
-            <%= f.radio_button :is_deleted, 'false' %>
-            <%= f.label :is_deleted, '退会', value: true %>
-            <%= f.radio_button :is_deleted, 'true' %>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-2 offset-2 mt-2">
-          <p><%= f.submit '編集を保存する' %></p>
-        </div>
-      </div>
-      <% end %>
+<div class="container">
+  <div class="row mx-auto">
+    <div class="col-md-12 mt-3">
+      <h2 class="text-center fs-2">Customer Edit</h2>
     </div>
   </div>
+  <div class="row mx-auto">
+    <div class="col-md-12 mt-3">
+      <%= render 'public/customers/error', obj: @customer %>
+    </div>
+  </div>
+  <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
+    <div class="row">
+      <div class="col-md-4 offset-md-3 mt-3">
+        <p class="fs-1"><%= f.label :name, 'Name' %></p>
+      </div>
+      <div class="col-2 mt-3">
+        <p><%= f.text_field :name %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-3 mt-3">
+        <p class="fs-1"><%= f.label :introduction, 'Introduction' %></p>
+      </div>
+      <div class="col-2 mt-3">
+        <p><%= f.text_area :introduction %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-3 mt-3">
+        <p class="fs-1"><%= f.label :profile_image, 'Images' %></p>
+      </div>
+      <div class="col-2 mt-3">
+        <p><%= f.file_field :profile_image, accept: "image/*" %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-3 mt-3">
+        <p class="fs-1"><%= f.label :is_deleted, 'Status' %></p>
+      </div>
+      <div class="col-2 mt-3">
+        <p>
+          <%= f.label :is_deleted, '有効', value: false %>
+          <%= f.radio_button :is_deleted, 'false' %>
+          <%= f.label :is_deleted, '退会', value: true %>
+          <%= f.radio_button :is_deleted, 'true' %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-6 mt-5">
+        <p class="fs-1"><%= f.submit 'Submit', class: "submit_btn" %></p>
+      </div>
+    </div>
+  <% end %>
 </div>

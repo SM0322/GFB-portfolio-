@@ -1,24 +1,22 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col">
-      <div class="sliderWrapper">
-	      <div class="slider">
-          <div><%= image_tag 'default.jpg', size:"750x500" %></div>
-          <div><%= image_tag 'no_image.jpg', size:"750x500" %></div>
-	      </div>
-      </div>
+    <div class="col-12">
+      <h2 class="text-center fs-2">Pick Up</h2>
     </div>
-    <div class="col mt-5">
-      <h2  class="text-center">新着投稿</h2>
-      <div class="d-flex justify-content-around">
-        <%= render 'public/posts/index_form', posts: @post_news %>
-      </div>
+  </div>
+  <div class="row mt-5">
+    <div class="d-flex flex-wrap">
+      <%= render 'public/posts/index_form', posts: @post_favorite_ranks %>
     </div>
-    <div class="col mt-5">
-      <h2 class="text-center">人気の投稿</h2>
-      <div class="d-flex justify-content-around">
-        <%= render 'public/posts/index_form', posts: @post_favorite_ranks %>
-      </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12">
+      <h2 class="text-center fs-2">New Posts</h2>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="d-flex flex-wrap">
+      <%= render 'public/posts/index_form', posts: @post_news %>
     </div>
   </div>
 </div>

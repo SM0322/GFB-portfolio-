@@ -1,13 +1,14 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
   before_action :ensure_current_customer, {only: [:edit, :update, :unsubscribe, :withdrawal]}
   
   def index
-    @customers = Customer.page(params[:page])
+    @customers = Customer.order('id DESC').page(params[:page])
   end
 
   def show
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts.page(params[:page])
+    @posts = @customer.posts.order('id DESC').page(params[:page])
   end
 
   def edit
@@ -20,14 +21,18 @@ class Public::CustomersController < ApplicationController
      flash[:notice] = "変更に成功しました"
      redirect_to customer_path(@customer.id)
     else
-     render :edit_customer_path
+     render :edit
     end 
   end
   
   def favorites
     @customer = Customer.find(params[:id])
     favorites_post_id = Favorite.where(customer_id: @customer.id).pluck(:post_id)
-    @posts = Post.find(favorites_post_id)
+    @posts = Post.joins(:favorites).includes(:favorites).order('favorites.id DESC').where(id: favorites_post_id).page(params[:page])
+  end
+  
+  def follow_posts
+    @posts = Post.where(customer_id: [*current_customer.following_ids]).order('id DESC').page(params[:page])
   end
 
   def unsubscribe

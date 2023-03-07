@@ -1,71 +1,62 @@
 <div class="container">
-  
   <div class="row">
-    <div class="col-6 offset-3 mt-5">
-      <h2><span class="bg-secondary">新規会員登録</span></h2>
+    <div class="col-md-6 offset-md-3 col-sm-11 offset-sm-1 mt-5">
+      <h2 class="fs-2">Registration</h2>
     </div>
   </div>
-
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
       <div class="row">
-        <div class="col-3 offset-3">
-          <p><%= f.label :name %></p>
+        <div class="col-md-5 offset-md-2 col-sm-11 offset-sm-1">
+          <p class="fs-1"><%= f.label :name %></p>
         </div>
-        <div class="col-1 offset-1">
+        <div class="col-md-1 col-sm-11 offset-sm-1">
           <p><%= f.text_field :name, autofocus: true, autocomplete: "name" %></p>
         </div>
       </div>
-      
       <div class="row">
-        <div class="col-3 offset-3">
-          <p><%= f.label :email %></p>
+        <div class="col-md-5 offset-md-2 col-sm-11 offset-sm-1">
+          <p class="fs-1"><%= f.label :email %></p>
         </div>
-        <div class="col-1 offset-1">
+        <div class="col-md-1 col-sm-11 offset-sm-1">
           <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
         </div>
       </div>
-      
       <div class="row">
-        <div class="col-3 offset-3">
-          <p>
+        <div class="col-md-5 offset-md-2 col-sm-11 offset-sm-1">
+          <p class="fs-1">
             <%= f.label :password %>
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %>
           </p>
         </div>
-        <div class="col-1 offset-1">
+        <div class="col-md-1 col-sm-11 offset-sm-1">
           <p><%= f.password_field :password, autocomplete: "new-password" %></p>
         </div>
       </div>
-      
       <div class="row">
-        <div class="col-3 offset-3">
-          <p><%= f.label :password_confirmation %></p>
+        <div class="col-md-5 offset-md-2 col-sm-11 offset-sm-1">
+          <p class="fs-1"><%= f.label :password_confirmation %></p>
         </div>
-        <div class="col-1 offset-1">
+        <div class="col-md-1 col-sm-11 offset-sm-1">
           <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
         </div>
       </div>
-
       <div class="row">
-        <div class="col-3 offset-7">
-          <p class="text-center"><%= f.submit "新規登録", class: 'btn btn-success btn-sm' %></p>
+        <div class="col-md-3 offset-md-8 col-sm-1 offset-sm-1">
+          <p class="fs-2"><%= f.submit "Sign_up", class: 'btn btn-success btn-sm' %></p>
         </div>
       </div>
   <% end %>
-
-    
   <div class="row">
-    <div class="col-6 offset-3 mt-5">
-      <h2><span class="bg-secondary">既に登録済みの方</span></h2>
+    <div class="col-md-6 offset-md-3 mt-5">
+      <h2 class="fs-2">既に登録済みの方</h2>
     </div>
   </div>
-    
   <div class="row">
-    <div class="col-6 offset-3 mt-5">
-      <span><%= link_to "こちら", new_session_path(resource_name) %></span>からログインしてください
+    <div class="col-md-5 offset-md-2 col-sm-11 offset-sm-1">
+      <p class="fs-1"><%= link_to "こちら", new_session_path(resource_name) %>からログインしてください</p>
     </div>
   </div>
   

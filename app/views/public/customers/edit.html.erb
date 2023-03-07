@@ -1,43 +1,60 @@
-<div class="container-fluid">
+<div class="container">
+  <% if @customer.email == 'guest@guest.mail' %>
   <div class="row">
-    <div class="col offset-5 mt-3">
-      <h2>ユーザー情報編集</h2>
+    <div class="col-md-12 mt-3">
+      <p class="text-center fs-2">ゲストユーザーはユーザー情報の編集をすることはできません。</p>
+    </div>
+  </div>
+  <% else %>
+  <div class="row">
+    <div class="mx-auto">
+      <%= render 'public/customers/error', obj: @customer %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      <h2 class="text-center fs-2">Customer Edit</h2>
       <%= form_with model: @customer, url: customer_path(@customer), method: :patch do |f| %>
       <div class="row">
-        <div class="col-2 mt-3">
-          <p><%= f.label :name, 'ユーザー名' %></p>
+        <div class="col-md-4 offset-md-3 mt-3">
+          <p><%= f.label :name, 'Name', class: "fs-1" %></p>
         </div>
         <div class="col-2 mt-3">
           <p><%= f.text_field :name %></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-2 mt-3">
-          <p><%= f.label :introduction, '自己紹介' %></p>
+        <div class="col-md-4 offset-md-3 mt-3">
+          <p><%= f.label :introduction, 'Introduction', class: "fs-1" %></p>
         </div>
         <div class="col-2 mt-3">
-          <p><%= f.text_area :introduction %></p>
+          <p><%= f.text_area :introduction, class: "fs-1" %></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-2 mt-3">
-          <p><%= f.label :profile_image, '画像選択' %></p>
+        <div class="col-md-4 offset-md-3 mt-3">
+          <p><%= f.label :profile_image, 'Images', class: "fs-1" %></p>
         </div>
-        <div class="col-2 mt-3 mb-5">
+        <div class="col-2 mt-3">
           <p><%= f.file_field :profile_image, accept: "image/*" %></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-2 offset-2 mt-5">
-          <p><%= f.submit '編集を保存する' %></p>
+        <div class="col-md-4 offset-md-7 mt-5">
+          <p class="fs-1"><%= f.submit 'Submit', class: "submit_btn" %></p>
         </div>
       </div>
       <% end %>
-      <h2>退会を希望される方</h2>
-      <div class="mb-5">
-        <span><%= link_to "こちら", unsubscribe_path %></span>
-        から退会手続きを行ってください。
-      </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      <h2 class="text-center fs-2 mt-5">退会を希望される方</h2>
+    </div>
+    <div class="col-md-6 offset-md-3 mt-3">
+        <span class="fs-1"><%= link_to "こちら", unsubscribe_path, class: "fs-1" %></span>
+        から退会手続きを行ってください。
+    </div>
+  </div>
+  <% end %>
 </div>

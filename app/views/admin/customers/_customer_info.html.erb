@@ -1,26 +1,73 @@
-<div class="container">
-  <div class="row">
-    <h3 classs="text-center">会員詳細</h1>
-      <% if customer.profile_image.attached? %>
-        <%= image_tag customer.profile_image, size: "150x150" %>
-      <% else %>
-        <%= image_tag 'no_image.jpg', size: "150x150" %>
-      <% end %>
-    <p><%= link_to customer.name, admin_customer_path(customer) %></p>
-  </div>
-  <div class="row">
-    <h3 classs="text-center">自己紹介</h1>
-    <p><%= customer.introduction %></p>
-  </div>
-  <div class="row">
-    <h3 classs="text-center">ステータス</h1>
-    <% if customer.is_deleted == false %>
-      <p class="text-success">有効</p></td>
-    <% else %>
-      <p class="text-muted">退会済</p></td>
-    <% end %>
-  </div>
-  <div class="row">
-    <p classs="text-center"><%= link_to '編集する', edit_admin_customer_path(customer) %></p>
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="text-center fs-2">Profile</h2>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center">
+    <% if customer.profile_image.attached? %>
+      <%= image_tag customer.profile_image, style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
+    <% end %>
+    </p>
+  </div>
+</div>  
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-2">Name</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-1"><%= customer.name %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-2">Introduction</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-1"><%= customer.introduction %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-2">
+      <%= link_to post_comments_admin_customer_path(@customer), class:"fs-1" do %>
+        Comments:<%= customer.post_comments.count %>
+      <% end %>
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-2">Status</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center fs-1">
+      <% if customer.is_deleted == false %>
+        有効
+      <% else %>
+        退会済
+      <% end %>
+    <p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center"><%= link_to "View More Posts", admin_customer_path(customer), class: "fs-2" %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-1 offset-md-5 text-center"><%= link_to 'Edit', edit_admin_customer_path(customer), class: "edit_btn" %></div>
+  </div>
+</div>
+
+  

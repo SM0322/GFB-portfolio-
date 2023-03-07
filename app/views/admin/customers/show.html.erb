@@ -1,16 +1,20 @@
 <div class="container">
-  <div class="row">
-    <div class="col-2 mt-2">
+  <div class="row mt-2">
+    <div class="col-md-6 offset-md-3 box">
       <%= render 'admin/customers/customer_info', customer: @customer %>
     </div>
-    <div class="col-9 offset-1 mt-2">
-      <h2 class="text-center mb-2"><%= @customer.name %>さんの投稿一覧</h2>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12 mt-2">
+      <h2 class="text-center mb-2 fs-2">Posts</h2>
       <div class="d-flex flex-wrap">
         <%= render 'admin/posts/index_form', posts: @posts %>
       </div>
-      <div class="mt-2 mb-4">
-        <h2 class="text-center mb-2"><%= link_to @customer.name, post_comments_admin_customer_path(@customer) %>さんのコメント一覧</h2>
-      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p><%= paginate @posts, theme: 'twitter-bootstrap-4' %></p>
     </div>
   </div>
 </div>

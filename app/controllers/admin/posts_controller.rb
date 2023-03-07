@@ -1,14 +1,20 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
     @tags = Tag.all
+    if params[:latest]
+      @posts = Post.latest.page(params[:page])
+    elsif params[:old]
+      @posts = Post.old.page(params[:page])
+    else
+      @posts = Post.order('id DESC').page(params[:page])
+    end
   end
 
   def show
     @post = Post.find(params[:id])
     @customer = @post.customer
-    @posts = @customer.posts.order('id DESC').limit(4)
+    @posts = @customer.posts.where.not(id: @post.id).order('id DESC').limit(4)
     @tag = @post.tags.all
     @post_comment = PostComment.new
     @post_comments = @post.post_comments.all
@@ -20,10 +26,8 @@ class Admin::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    tag_list=params[:post][:name].split(',')
-    if @post.update(post_params.merge(rate: params[:rate]))
-      PostTag.where(post_id: @post.id).destroy_all
-      @post.save_tag(tag_list)
+    if @post.update(post_params)
+      flash[:notice] = "変更に成功しました"
       redirect_to admin_post_path
     else
       render:edit
@@ -39,12 +43,12 @@ class Admin::PostsController < ApplicationController
   def search_tag
     @tags = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.all
+    @posts = @tag.posts.order('id DESC').page(params[:page])
   end
   
   private
   
   def post_params
-    params.require(:post).permit(:rate, :title, :introduction, images: [])
+    params.require(:post).permit(:rate, :title, :introduction, tag_ids: [], images: [])
   end
 end

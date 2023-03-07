@@ -1,20 +1,17 @@
 <div class="container">
-  <div class="row">
-    <div class="col-2 mt-2">
-      <%= render 'public/customers/customer_info', customer: @customer %>
-    </div>
-    <div class="col-9 offset-1 mt-2">
-      <h2 class="text-center mb-2"><%= @post.title %></h2>
-      <div class="sliderWrapper mt-2">
-	      <div class="slider">
-          <% @post.images.each do |image| %>
-            <div><%= image_tag image, size: "1000x600" %></div>
-          <% end %>
-	      </div>
+  <div class="row mt-2">
+    <div class="col-md-4 offset-md-1 mt-3">
+      <div class="subtitle fs-4">Post</div>
+      <h2 class="text-center mb-3 fs-2"><%= @post.title %></h2>
+      <div class="subtitle fs-4">Tags</div>
+      <div class="d-flex flex-wrap mt-3 mb-3">
+        <% @tag.each do |tag| %>
+          <p class="m-1"><%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %></p>
+        <% end %>
       </div>
-      <div class="row mt-2">
-        <div class="col-3">
-          <div id="rate_<%= @post.id %>"></div>
+      <div class="subtitle fs-4">Rate</div>
+      <div class="col-md-8 offset-md-2 mt-3 mb-5">
+        <div id="rate_<%= @post.id %>"></div>
           <script>
             let elem = document.querySelector('#rate_<%= @post.id %>');
             let opt = {  
@@ -26,65 +23,97 @@
              };
             raty(elem,opt);
           </script>
-        </div>
-        <div class="col-2 offset-7">
-          <div id = "favorite_<%= @post.id %>">
+      </div>
+    </div>
+    <div class="col-md-5 offset-md-1">
+      <div class="sliderWrapper">
+	      <div class="slider">
+          <% @post.images.each do |image| %>
+            <div class="text-center">
+              <%= image_tag image.variant(resize: "350").processed %>
+            </div>
+          <% end %>
+	      </div>
+	      <div class="position-relative" style="bottom: 30px; right: 15px;">
+          <div id="favorite_<%= @post.id %>">
             <%= render partial: "public/favorites/favorite", locals: {post: @post} %>
           </div>
         </div>
       </div>
-      <div class="mt-2">
-        <p class="text-box"><%= @post.introduction %></p>
-        <p>
-          タグ:
-          <% @tag.each do |tag| %>
-            <%= link_to tag.name, search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
-          <% end %>
-        </p>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-8 offset-md-2">
+      <p class="fs-1"><%= @post.introduction %></p>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-4 offset-md-1">
+      <p class="fs-1">Comments: <%= @post_comments.count %></p>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12 col-sm-12">
+    <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
+    <div class="row mt-3">
+      <div class="col-md-8 offset-md-2">
+        <%= f.text_area :message, rows: '3', placeholder: "コメントをここに入力してください。",class: "col-md-12" %>
       </div>
-      <% if @customer == current_customer %>
-      <div class="mt-2">
-        <p><%= link_to '編集する', edit_post_path, class: 'btn btn-warning btn-sm btn-block mb-3' %></p>
-        <p><%= link_to "記事を削除する", post_path(@post), method: :delete,class: "btn btn-danger btn-sm btn-block mb-3" %></p>
+      <div class="col-md-2 mt-4  text-center">
+        <%= f.submit "Submit", class: "submit_btn" %>
       </div>
-      <% end %>
-      <div class="mt-5">
-        <div>
-          <p>コメント件数: <%= @post_comments.count %></p>
-          <div>
-            <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id), method: :post do |f| %>
-              <p><%= f.text_area :message, rows: '3', cols: 110, placeholder: "コメントをここに" %></p>
-              <p><%= f.submit "送信する" %></p>
-            <% end %>
-          </div>
-          <% @post_comments.each do |comment| %>
-            <div class="mt-2">
-              <p><%= comment.customer.name %>: </p>
-              <p><%= comment.message %></p>
-              <div class="row">
-                <div class="col">
-                  <%= comment.created_at.strftime('%Y/%m/%d') %>
-                </div>
-                <div class="pull-right">
-                  <% if comment.customer == current_customer %>
-                    <p><%= link_to "削除する", post_post_comment_path(comment.post, comment), method: :delete,class: "btn btn-danger" %></p>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
+    </div>
+    <% end %>
+    </div>
+  </div>
+  <% @post_comments.each do |comment| %>
+  <div class="row mt-3">
+    <div class="col-md-10 offset-md-1 mt-3">
+      <p class="fs-1"><%= comment.customer.name %></p>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-md-11 offset-md-1 parent">
+      <p class="fs-1 child"><%= comment.message %></p>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="offset-md-1">
+      <p class="fs-1">
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+        <% if comment.customer == current_customer %>
+          <%= link_to "Delete", post_post_comment_path(comment.post, comment), method: :delete,class: "destroy_btn" %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <% end %>
+  <% if @post.customer == current_customer %>
+  <div class="row mt-3">
+    <div class="col-md-12">
+    <h2 class="text-center fs-2">About post</h2>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-1 offset-md-4 col-sm-5 text-center">
+      <%= link_to 'Edit', edit_post_path(@post), class: 'edit_btn' %>
+    </div>
+    <div class="col-md-1 offset-md-1 col-sm-5 text-center">
+      <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' },class: "destroy_btn" %>
+    </div>
+  </div>
+  <% end %>
+  <div class="row mt-3">
+    <div class="col-md-6 offset-md-3 box">
+      <%= render 'public/customers/customer_info', customer: @customer %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-10 offset-md-1">
+      <h2 class="text-center fs-2"><%= @customer.name %>さんの他の投稿</h2>
+      <div class="d-flex flex-wrap">
+        <%= render 'public/posts/index_form', posts: @posts %>
       </div>
-      <div class="mt-5">
-      <h2 class="text-center"><%= @customer.name %>さんの他の投稿</h2>
-        <div class="d-flex justify-content-around">
-          <%= render 'public/posts/index_form', posts: @posts %>
-        </div>
-        <div class="text-center">
-          <p class="link_tag">
-            <%= link_to 'すべて見る', customer_path(@customer), class: 'btn btn-dark btn-sm btn-block mb-3' %>
-          </p>
-        </div>
     </div>
   </div>
 </div>

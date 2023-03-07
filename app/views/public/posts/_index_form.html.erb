@@ -1,30 +1,33 @@
 <% posts.each do |post| %>
-  <div class="blog-box">
-    <div class="blog-item">
-      <div class="card text-light">
-        <%= image_tag post.images[0], size: "150x150" %>
-        <div class="card-img-overlay">
-          <h5 class="favorite_title">
-            <% if customer_signed_in? %>
-            <span id = "favorite_<%= post.id %>">
-              <%= render partial: "public/favorites/favorite", locals: {post: post} %>
-            </span>
-            <% end %>
-          </h5>
-        </div>
-      </div>
-      <section class="blog-text">
-        <h3 class="blog-text-heading">
-          <a><%= link_to truncate(post.title, omision: "...", length: 4), post_path(post.id) %></a>
-          
-        </h3>
-        <% post.tags.limit(1).each do |tag| %>
-        <div class="actions mb-3">
-          <%= link_to truncate(tag.name, omision: "...", length: 5), search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm' %>
-        </div>
+  <div class="col-md-6 col-sd-12 mx-auto m-5 border-bottom border-secondary">
+    <div class="card text-center">
+      <div class="position-relative">
+        <%= image_tag post.images[0].variant(resize: "350").processed %>
+        <% if customer_signed_in? %>
+          <span id = "favorite_<%= post.id %>">
+            <%= render partial: "public/favorites/favorite", locals: {post: post} %>
+          </span>
         <% end %>
-        <p class="blog-date"><%= post.created_at.strftime('%Y/%m/%d') %></p>
-        </section>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mx-auto">
+        <a><%= link_to truncate(post.title, omision: "...", length: 18), post_path(post.id), class: "fs-1" %></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mx-auto">
+      <% post.tags.limit(5).each do |tag| %>
+        <a class="text-center">
+          <%= link_to truncate(tag.name, omision: "...", length: 10), search_tag_path(tag_id: tag.id), class: 'btn btn-primary btn-sm fs-1' %>
+        </a>
+      <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mx-auto">
+        <p class="text-center fs-1"><%= post.created_at.strftime('%Y/%m/%d') %></p>
+      </div>
     </div>
   </div>
 <% end %>

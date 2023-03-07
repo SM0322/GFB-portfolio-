@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_customer!
   before_action :ensure_post_customer, {only: [:edit, :update, :destroy]}
   
   def new
@@ -6,13 +7,13 @@ class Public::PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(post_params.merge(rate: params[:rate]))
-    @post.customer_id = current_customer.id
-    tag_list=params[:post][:name].split(',')         #splitは()の中の引数により文字列を分割し、分割された各文字列を要素としている。今回は「'」で区切られた文字列を要素としている。
-    @post.save
-    @post.save_tag(tag_list)                         #modelファイルにて定義されたメソッド
-    flash[:notice] = "投稿に成功しました"
-    redirect_to posts_path
+    @post = current_customer.posts.new(post_params)
+    if @post.save
+      flash[:notice] = "投稿に成功しました"
+      redirect_to posts_path
+    else
+      render :new
+    end 
   end 
 
   def index
@@ -22,7 +23,7 @@ class Public::PostsController < ApplicationController
     elsif params[:old]
       @posts = Post.old.page(params[:page])
     else
-      @posts = Post.page(params[:page])
+      @posts = Post.order('id DESC').page(params[:page])
     end
   end
 
@@ -42,14 +43,11 @@ class Public::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    tag_list=params[:post][:name].split(',')
-    if @post.update(post_params.merge(rate: params[:rate]))
-      PostTag.where(post_id: @post.id).destroy_all
-      @post.save_tag(tag_list)
+    if @post.update(post_params)
       flash[:notice] = "変更に成功しました"
       redirect_to post_path
     else
-      render:edit
+      render :edit
     end
   end
   
@@ -62,13 +60,13 @@ class Public::PostsController < ApplicationController
   def search_tag
     @tags = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.page(params[:page])
+    @posts = @tag.posts.order('id DESC').page(params[:page])
   end 
   
   private
   
   def post_params
-    params.require(:post).permit(:rate, :title, :introduction, images: [])
+    params.require(:post).permit(:rate, :title, :introduction, tag_ids: [], images: [])
   end
   
   def ensure_post_customer

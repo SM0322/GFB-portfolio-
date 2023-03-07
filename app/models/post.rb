@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  FILE_NUMBER_LIMIT = 4
+  
   belongs_to :customer
   has_many :post_tags, dependent: :destroy
   has_many :tags,through: :post_tags
@@ -8,26 +10,14 @@ class Post < ApplicationRecord
   
   validates :title, presence: true
   validates :introduction, presence: true
+  validates :rate, presence: true
+  validates :tag_ids, presence: true
   validates :images, presence: true
+  validate :validate_number_of_files
+
   
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
-  
-  def save_tag(sent_tags)
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?   #unlessでタグが存在するか確認し、存在するならばcurrent_tagsという変数にタグ名を配列として習得する。
-    old_tags = current_tags - sent_tags                           #(例)既にa,b,cのタグが存在し、新たにb,dのタグが登録されると、old_tags = a,cとなる
-    new_tags = sent_tags - current_tags                           #(例)既にa,b,cのタグが存在し、新たにb,dのタグが登録されると、new_tags = dとなる
-    
-    old_tags.each do |old|                                        #このメソッドで古いタグを消去する。例でいうところのold_tags = a,cが消去される。
-      self.tags.delete
-      Tag.find_by(name: old)
-    end 
-    
-    new_tags.each do |new|                                        #このメソッドで新しく登録されたnew_tags = dが保存される。
-      new_post_tag = Tag.find_or_create_by(name: new)
-      self.tags << new_post_tag
-    end 
-  end
   
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
@@ -41,13 +31,8 @@ class Post < ApplicationRecord
     end 
   end
   
-  def get_image
-    unless images.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      images.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-      images
+  def validate_number_of_files
+    return if images.length <= FILE_NUMBER_LIMIT
+    errors.add(:images, "に添付できる画像は#{FILE_NUMBER_LIMIT}件までです。")
   end
-  
-  
 end

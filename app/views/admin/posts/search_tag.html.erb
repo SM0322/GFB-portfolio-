@@ -1,12 +1,29 @@
 <div class="container">
+  <div class="row mt-2">
+    <div class="col-12 mt-2">
+      <h2 class="text-center mb-2 fs-2">Tags</h2>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12 mt-2">
+      <%= render 'admin/posts/tag_index', tags: @tags %>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12 mt-2">
+      <h2 class="text-center mb-2 fs-2"><%= @tag.name %>'s Posts</h2>
+    </div>
+  </div>
   <div class="row">
-    <div class="col offset-1 mt-2">
-      <h2 class="text-center mb-2">タグ一覧</h2>
-      <%= render 'public/posts/tag_index', tags: @tags %>
-      <h2 class="text-center mt-5 mb-2"><%= @tag.name %>の投稿一覧</h2>
+    <div class="col-md-10 offset-md-1 mt-2">
       <div class="d-flex flex-wrap">
         <%= render 'admin/posts/index_form', posts: @posts %>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p><%= paginate @posts, theme: 'twitter-bootstrap-4' %></p>
     </div>
   </div>
 </div>

@@ -1,15 +1,20 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-6 offset-3 mt-3">
-      <h2 class="text-center">本当に退会しますか？</h2>
-      <p class="text-center m-5">退会すると記事の投稿やいいね、コメントができなくなります</p>
-      <div>
-        <p class="text-center">
-          <%= link_to "退会しない", customer_path(current_customer), class: 'btn btn-primary' %>
-          |
-          <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: 'btn btn-danger' %>
-        </p>
-      </div>
+    <div class="col-12 mt-3">
+      <h2 class="text-center fs-2">本当に退会しますか？</h2>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12 mt-3">
+      <p class="text-center m-5 fs-1">退会すると記事の投稿やいいね、コメントができなくなります</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3 mt-3">
+      <p class="text-center">
+        <%= link_to "退会しない", customer_path(current_customer), class: 'btn btn-primary' %>
+        <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: 'btn btn-danger' %>
+      </p>
+    </div>
+  </div>      
 </div>

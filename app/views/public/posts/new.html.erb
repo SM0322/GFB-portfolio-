@@ -1,49 +1,46 @@
-<div class="container-fluid">
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <%= render 'public/customers/error', obj: @post %>
+    </div>
+  </div>
   <div class="row">
     <div class="col-7 offset-3 mt-3">
-      <h2>新規投稿</h2>
+      <h2 class="fs-2">New Post</h2>
       <%= form_with model: @post, url: posts_path, method: :post,local:true do |f| %>
       <div class="row">
-        <div class="col-7 mt-3">
-          <p><%= f.label :title, 'タイトル' %></p>
+        <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :title, 'Title', class: "fs-1" %></p>
         </div>
-        <div class="col-1 mt-3">
+        <div class="col-md-1 col-sm-12 mt-3">
           <p><%= f.text_field :title %></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-7 mt-3">
-          <p><%= f.label :name, 'タグ(,で区切ると複数のタグを登録できます)' %></p>
+        <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :introduction, 'Introduction', class: "fs-1" %></p>
         </div>
-        <div class="col-1 mt-3">
-          <p><%= f.text_field :name, value: @tag %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-7 mt-3">
-          <p><%= f.label :introduction, '説明' %></p>
-        </div>
-        <div class="col-1 mt-3">
+        <div class="col-md-1 col-sm-12 mt-3">
           <p><%= f.text_area :introduction %></p>
         </div>
       </div>
       <div class="row">
-        <div class="col-7 mt-3">
-          <p><%= f.label :images, '画像選択' %></p>
+          <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :images, 'Images(Limit: 4)', class: "fs-1" %></p>
         </div>
-        <div class="col-1 mt-3 mb-5">
-          <p><%= f.file_field :images, multiple: true %></p>
+        <div class="col-md-1 col-sm-12 mt-3">
+          <p><%= f.file_field :images, multiple: true, accept: "image/*"  %></p>
         </div>
         <div id="new-image"></div>
       </div>
       <div class="row">
-        <div class="col-7 mt-5">
+        <div class="col-md-8 col-sm-12 mt-3">
           <div id="star">
-            <%= f.label :rate, '満足度' %>
+            <p><%= f.label :rate, 'Rate(満足度を5段階で入力)', class: "fs-1" %></p>
             <%= f.hidden_field :rate %>
           </div>
         </div>
-        <div class="col-4 mt-5">
+        <div class="col-md-4 col-sm-12 mt-3">
           <div id="rate_<%= @post.id %>"></div>
             <script>
               let raty_elem = document.querySelector('#rate_<%= @post.id %>');
@@ -52,15 +49,30 @@
                 starOn: "<%= asset_path('star-on.png') %>",
                 starOff: "<%= asset_path('star-off.png') %>",
                 starHalf: "<%= asset_path('star-half.png') %>",
-                scoreName: '[rate]',
+                scoreName: 'post[rate]',
               };
               raty(raty_elem,option);
             </script>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-sm-12 mt-3">
+          <p><%= f.label :tag_ids, class: "fs-1" %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d-flex flex-wrap">
+          <div class="col-md-12 col-sm-12 m-2 fs-1">
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t| %>
+            <%= t.check_box %>
+            <%= t.text %>
+          <% end %>
           </div>
         </div>
+      </div>  
       <div class="row">
-        <div class="col-4 offset-7 mt-3">
-          <p><%= f.submit '投稿する' %></p>
+        <div class="col-md-4 offset-md-8 mt-3">
+          <p class="fs-1"><%= f.submit 'Submit', class: "submit_btn" %></p>
         </div>
       </div>
       <% end %>
