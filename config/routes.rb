@@ -22,9 +22,9 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-    get 'customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
-    patch 'customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
     resources :customers, only: [:index, :show, :edit, :update] do
+      get :unsubscribe, on: :member
+      patch :withdrawal, on: :member
       get :favorites, on: :member
       resource :relationships, only: [:create, :destroy]
       get '/followings' => 'relationships#followings', as: 'followings'
