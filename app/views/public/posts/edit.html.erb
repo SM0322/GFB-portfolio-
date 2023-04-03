@@ -65,7 +65,7 @@
           <div class="col-md-12 col-sm-12 m-2 fs-1">
           <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |t| %>
             <%= t.check_box %>
-            <%= t.text %>
+            <%= t.label {t.text} %>
           <% end %>
           </div>
         </div>
